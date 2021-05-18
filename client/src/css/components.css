@@ -1,0 +1,113 @@
+.person-bild {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.tour-kort h2 {
+  padding: 0.6rem;
+}
+
+.kort-p {
+  padding: 0.5rem;
+}
+
+.tour-kort {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: 0 0rem 0 grey;
+}
+
+.tour-kort-item-right {
+  padding-left: 2rem;
+}
+
+.pic-text {
+  padding: 0.4rem 0 0.2rem 0;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.breaker {
+  width: 100%;
+  padding-top: 1rem;
+
+  height: 1px;
+  box-shadow: 0 0.1rem 0 grey;
+}
+
+.bottom-p {
+  color: grey;
+  font-style: italic;
+  font-size: 0.9rem;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+.tour-kort-item-contact {
+  display: flex;
+  flex-direction: column;
+
+  padding-left: 3rem;
+}
+
+.kontakt-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.icon-div {
+  padding: 0rem;
+  margin: 0.4rem;
+}
+
+.kontakt-seperator {
+  padding: 0.1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.artikel-grafik {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  max-width: 30%;
+}
+
+.sok-test {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  .tour-kort-item-right {
+    padding-left: 0rem;
+  }
+
+  .person-bild {
+    width: 80%;
+  }
+
+  .kontakt-seperator {
+    /* justify-content: center; */
+    left: 0;
+  }
+
+  .tour-kort-item-contact {
+    padding-left: 0rem;
+  }
+
+  .tour-kort-item-contact h3 {
+    font-size: 0.8rem;
+  }
+
+  .component-title h2 {
+    font-size: 2rem;
+  }
+}

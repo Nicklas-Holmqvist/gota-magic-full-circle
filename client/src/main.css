@@ -1,0 +1,59 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Merriweather", serif;
+}
+
+.flex {
+  display: flex;
+}
+
+.centered {
+  align-items: center;
+  justify-content: center;
+}
+
+.column {
+  flex-direction: column;
+}
+
+/* COLORS */
+.white {
+  color: white;
+}
+
+/* .grey-background {
+  background-color: #ededed;
+} */
+
+.padding2rem {
+  padding: 2rem;
+}
+
+.alignItemsCenter {
+  align-items: center;
+}
+
+.paragraphs {
+  max-width: 75ch;
+  text-align: center;
+}
+
+.link-style {
+  text-decoration: none;
+  color: brown;
+}
+
+.nyhets-datum {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: grey;
+}
+
+.produkt-bild {
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 8px;
+  overflow: hidden;
+}

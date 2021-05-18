@@ -1,0 +1,29 @@
+.background {
+  background-image: url(../assets/images/what-the-hex.png);
+  padding: 2rem;
+}
+
+.grey-card {
+  background-color: #ededed;
+  padding: 3rem;
+  border-radius: 20px;
+}
+
+.crumbs-container {
+  background-color: #ededed;
+}
+
+.grey-background {
+  background-color: #ededed;
+}
+
+.bread-btn {
+  padding-left: 0;
+}
+
+.slutfort-kop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem;
+}

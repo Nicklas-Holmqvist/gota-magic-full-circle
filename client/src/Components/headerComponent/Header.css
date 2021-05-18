@@ -1,0 +1,74 @@
+.header {
+  height: 5rem;
+  background-color: lightgray;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  z-index: 100;
+  padding: 0 2rem;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.header-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.cartIcon {
+  z-index: 200;
+}
+.dropDown {
+  width: 20rem;
+  background-color: rgba(57, 57, 57, 0.6);
+  position: absolute;
+  top: 0;
+  left: 1;
+  right: 0;
+  bottom: 0;
+  max-height: 400px;
+  transition: all 500ms;
+  z-index: 1;
+  padding-top: 5rem;
+  margin-top: 5rem;
+  color: white;
+  border-radius: 0px 2px 0px 20px;
+}
+.menu-bar {
+  display: flex;
+  align-items: center;
+}
+.menu-button {
+  margin-left: 2rem;
+}
+
+.menu-burger-icon {
+  display: none;
+}
+
+.header img {
+  margin-right: 0.75rem;
+  width: 40px;
+  height: 40px;
+}
+
+.link-style {
+  text-decoration: none;
+  color: black;
+}
+
+.cart-btn-style {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 820px) {
+  .menu-bar {
+    display: none;
+    background-color: black;
+  }
+  .menu-burger-icon {
+    display: flex;
+  }
+}
