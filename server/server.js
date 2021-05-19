@@ -8,7 +8,7 @@ app.use(express.json())
 async function run() {
   try {
     await mongoose.connect(
-      'connection string', 
+      'mongodb+srv://Oliver:qwerty123@cluster0.0tiz6.mongodb.net/magic', 
       { 
         useNewUrlParser: true,
         useUnifiedTopology: true, 
@@ -24,4 +24,4 @@ app.listen(3001, () => {
   console.log('Server is running on port 3001')
 })
 
-// run()
+run()
