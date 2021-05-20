@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const orderSchema = new mongoose.Schema({
   user: {},
-  items: [],
+  items: [], // ändra till products
   shipping: {},
   totalCost: Number,
   sent: Boolean

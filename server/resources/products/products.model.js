@@ -9,7 +9,7 @@ const productSchema = new mongoose.Schema({
   stock: Number,
   category: "String",
   color: "String",
-  cmc: "String",
+  cmc: "String", // Number?
   cardType: "String",
   expansion: "String",
   image: "String"
