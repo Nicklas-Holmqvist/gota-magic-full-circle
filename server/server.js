@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 
 const productRouter = require('./resources/products/routes')
+const userRouter = require('./resources/users/routes')
 const shippingRouter = require('./resources/shipping/routes')
 
 // This two always on TOP!!!
@@ -10,6 +11,9 @@ app.use(express.json())
 //
 
 app.use(productRouter)
+app.use(userRouter)
+
+
 app.use(shippingRouter)
 
 async function run() {
