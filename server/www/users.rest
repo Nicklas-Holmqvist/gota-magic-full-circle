@@ -10,3 +10,10 @@ Content-Type: application/json
 ###
 
 POST http://localhost:3001/api/user/login
+Content-Type: application/json
+
+{
+  "email": "pallepastej@gåslever.eu",
+  "password": "123",
+  "isAdmin": "false"
+}

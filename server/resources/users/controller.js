@@ -31,5 +31,12 @@ exports.createUser = async (req, res) => {
 
 // Log in
 exports.login = async (req, res) => {
+  const { email, password } = req.body
 
+  try {
+    const user = await UserModel.login(email, password)
+    res.status(200).json("user is logged in")
+  } catch (error) {
+    res.status(400).json(error)
+  }
 }
