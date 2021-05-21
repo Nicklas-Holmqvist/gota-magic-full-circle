@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt');
 
 // Create new user
 exports.createUser = async (req, res) => {
-  console.log('HEJHEJ')
 
   const { email, password } = req.body
   const emailExists = await UserModel.exists({ email: email })
