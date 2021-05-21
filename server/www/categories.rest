@@ -4,7 +4,12 @@ GET http://localhost:3001/api/product
 
 ###
 
+// Fetch all categories
 GET http://localhost:3001/api/categories
+
+###
+
+GET http://localhost:3001/api/categories/red
 
 ###
 

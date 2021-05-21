@@ -18,23 +18,3 @@ exports.getCategory = async (req, res) => {
     res.status(404).json("no category found");
   }
 };
-
-// Get all products from api
-// exports.getAllProducts = async (_, res) => {
-//     try {
-//         const products = await ProductModel.find({});
-//         res.status(200).json(products)
-//     } catch (error) {
-//         res.status(503).json('No database connection')
-//     }
-// }
-
-// // Get one product from para
-// exports.getSpecProduct = async (req, res) => {
-//     try {
-//         const getProduct = await ProductModel.findById(req.params.id);
-//         res.status(200).json(getProduct)
-//     } catch (error) {
-//         res.status(404).json('No product found')
-//     }
-// }
