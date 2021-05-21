@@ -4,10 +4,12 @@ const bcrypt = require('bcrypt');
 
 // Create new user
 exports.createUser = async (req, res) => {
-  // try {
-    console.log('HEJHEJ')
+  console.log('HEJHEJ')
 
-    const { email, password } = req.body
+  const { email, password } = req.body
+  const emailExists = await UserModel.exists({ email: email })
+
+  if (!emailExists) {      
     const hashedPassword = await bcrypt.hash(password, 10)
 
     const newUser = {
@@ -22,10 +24,9 @@ exports.createUser = async (req, res) => {
     } catch (error) {
       res.status(400).json(error)
     }
-
-  // } catch (error) {
-  //   console.error(error)
-  // }
+  } else {
+    res.status(400).json('Email already registered')
+  }
 }
 
 // Log in
