@@ -1,0 +1,14 @@
+POST http://localhost:3001/api/order
+Content-Type: application/json
+
+{
+    "orderNumber":123,
+  "user":"Örjan",
+  "totalCost": 540,
+  "shipping": "Truck",
+  "sent": false,
+  "products": "Småfågel",
+  "adress": 111
+}
+###
+GET http://localhost:3001/api/order
