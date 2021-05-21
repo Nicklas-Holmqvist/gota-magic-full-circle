@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 
 const productRouter = require('./resources/products/routes')
+const shippingRouter = require('./resources/shipping/routes')
 
 // This two always on TOP!!!
 const app = express()
@@ -9,8 +10,7 @@ app.use(express.json())
 //
 
 app.use(productRouter)
-
-
+app.use(shippingRouter)
 
 async function run() {
   try {
