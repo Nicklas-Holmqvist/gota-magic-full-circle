@@ -1,6 +1,0 @@
-exports.createOrder = () => {
-
-}
-exports.viewAllOrders = () => {
-
-}
