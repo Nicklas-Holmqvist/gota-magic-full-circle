@@ -1,0 +1,22 @@
+
+// Fetch all products
+GET http://localhost:3001/api/product
+
+###
+
+// Fetch all categories
+GET http://localhost:3001/api/categories
+
+###
+
+GET http://localhost:3001/api/categories/red
+
+###
+
+GET http://localhost:3001/api/product/60a63b3118f5ed530cf9daed
+
+###
+
+PUT http://localhost:3001/api/product/60a63b0c18f5ed530cf9dae8
+Content-Type: application/json
+
