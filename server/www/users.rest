@@ -1,1 +1,12 @@
-POST http://localhost:3000/api/user
+POST http://localhost:3001/api/user/register
+Content-Type: application/json
+
+{
+  "email": "pallepastej@gåslever.eu",
+  "password": "123",
+  "isAdmin": "false"
+}
+
+###
+
+POST http://localhost:3001/api/user/login
