@@ -1,0 +1,2 @@
+// Fetch all shippingMethods
+GET http://localhost:3001/api/shipping
