@@ -11,6 +11,7 @@ router.post('/api/user/register', controller.createUser)
 // Log in
 router.post('/api/user/login', controller.login)
 
+// Log out
 router.post('/api/user/logout', controller.logout)
 
 // Read cookies

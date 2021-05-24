@@ -1,6 +1,5 @@
 const UserModel = require('./model')
 const bcrypt = require('bcrypt');
-const cookieParser = require('cookie-parser')
 
 // Get all users
 exports.getAllUsers = async (req, res) => {
@@ -29,7 +28,6 @@ exports.createUser = async (req, res) => {
 
     try {
       const user = await UserModel.create(newUser)
-      console.log('_id:', user._id)
       res.status(201).json(user)
     } catch (error) {
       res.status(400).json(error)
@@ -45,8 +43,7 @@ exports.login = async (req, res) => {
 
   try {
     const user = await UserModel.login(email, password)
-    
-    // res.cookie('Test', true, { maxAge: 1000 * 60 })
+  
     res.cookie('User', user._id, { maxAge: 1000 * 60 * 60 * 24 })
 
     res.status(200).json(`${user.email} has been logged in`)
@@ -59,9 +56,7 @@ exports.login = async (req, res) => {
 exports.logout = (req, res) => {
 
   try {
-    
     res.cookie('User', '', { maxAge: 1 })
-
     res.status(200).json('User has logged out')
   } catch (error) {
     res.status(400).json(error)
@@ -70,8 +65,7 @@ exports.logout = (req, res) => {
 
 exports.readCookies = (req, res) => {
   try {
-    const currentCookies = req.cookies
-    res.status(200).send(currentCookies)
+    res.status(200).send(req.cookies)
   } catch (error) {
     res.status(400).send(error)
   }
