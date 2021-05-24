@@ -14,3 +14,16 @@ exports.auth = async (req, res, next) => {
 
   next()
 }
+
+// get user from cookie
+// access isAdmin
+// if isAdmin == true --> return? true
+//    else --> return? false
+// next()
+
+// const loggedInUser = await UserModel.findById('cookie-value')
+// if (loggedInUser.isAdmin) {
+//  return true
+// } else {
+//   return false 
+// }

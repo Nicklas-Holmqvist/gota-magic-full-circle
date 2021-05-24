@@ -7,13 +7,13 @@ const authController = require('../auth/controller')
 router.get('/api/user/all', authController.auth, controller.getAllUsers)
 
 // Get user by id
-router.get('/api/user/:id', authController.auth, controller.getUserById)
+router.get('/api/user/:id', controller.getUserById)
 
 // Register new user
 router.post('/api/user/register', controller.createUser)
 
 // Log in
-router.post('/api/user/login', authController.auth, controller.login)
+router.post('/api/user/login', controller.login)
 
 // Log out
 router.post('/api/user/logout', controller.logout)
