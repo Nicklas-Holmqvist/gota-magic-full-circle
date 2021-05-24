@@ -15,7 +15,7 @@ const orderSchema = new mongoose.Schema({
   totalCost: Number,
   shipping: String,
   sent: Boolean,
-  products: String,
+  products: [],
   adress: String
 }, { timestamps: true })
 

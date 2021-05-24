@@ -3,11 +3,23 @@ Content-Type: application/json
 
 {
     "orderNumber":123,
-  "user":"Örjan",
+  "user":"Kato2",
   "totalCost": 540,
-  "shipping": "Truck",
+  "shipping": "Speedboat",
   "sent": false,
-  "products": "Småfågel",
+  "products": [{
+    "productId":"60a63a7e18f5ed530cf9dadc",
+    "productName":"Ancestor's Chosen",
+    "price":"35",
+    "quantity":"3"
+    },
+    {
+    "productId":"60a63a8618f5ed530cf9dadd",
+    "productName":"Nightmare",
+    "price":"49",
+    "quantity":"1"
+    }],
+    
   "adress": 111
 }
 ###
