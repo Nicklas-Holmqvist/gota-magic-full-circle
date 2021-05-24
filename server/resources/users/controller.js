@@ -11,6 +11,29 @@ exports.getAllUsers = async (req, res) => {
   }
 }
 
+// Get user by id
+exports.getUserById = async (req, res) => {
+  const user = await UserModel.findById('60aba162010c3c2f005643e8')
+  try {
+    if (user.isAdmin) {
+      res.send('User is an admin')
+    } else {
+      res.send('User is not an admin')
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+// Get all users
+exports.getAllUsers = async (req, res) => {
+  const users = await UserModel.find()
+  try {
+    res.send(users)
+  } catch (error) {
+    
+  }
+}
+
 // Create new user
 exports.createUser = async (req, res) => {
 
@@ -23,7 +46,7 @@ exports.createUser = async (req, res) => {
     const newUser = {
       email: email,
       password: hashedPassword,
-      isAdmin: false
+      isAdmin: true || false
     }
 
     try {
