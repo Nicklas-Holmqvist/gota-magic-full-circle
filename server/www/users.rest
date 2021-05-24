@@ -1,8 +1,12 @@
+GET http://localhost:3001/api/user/all
+
+###
+
 POST http://localhost:3001/api/user/register
 Content-Type: application/json
 
 {
-  "email": "pallepastej@gåslever.eu",
+  "email": "pallepastejsandrakompis@gåslever.eu",
   "password": "123",
   "isAdmin": "false"
 }
@@ -17,3 +21,11 @@ Content-Type: application/json
   "password": "123",
   "isAdmin": "false"
 }
+
+###
+
+POST http://localhost:3001/api/user/logout
+
+###
+
+GET http://localhost:3001/api/user/read-cookies
