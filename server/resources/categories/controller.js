@@ -11,8 +11,9 @@ exports.getAllCategories = async (req, res) => {
 };
 
 exports.getCategory = async (req, res) => {
+  console.log(req.params.catName);
   try {
-    const getCategory = await CategoryModel.find(req.params.cardtype);
+    const getCategory = await CategoryModel.findById(req.params.id);
     res.status(200).json(getCategory);
   } catch (error) {
     res.status(404).json("no category found");
