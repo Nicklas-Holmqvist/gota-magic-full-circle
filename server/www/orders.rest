@@ -2,13 +2,19 @@ POST http://localhost:3001/api/order
 Content-Type: application/json
 
 {
-    "orderNumber":123,
-  "user":"Örjan",
+  "orderNumber":123,
+  "userId":"userID",
+  "user":"user firstname + lastname",
   "totalCost": 540,
   "shipping": "Truck",
   "sent": false,
   "products": "Småfågel",
-  "adress": 111
-}
+  "adress": {
+    "street": "Kungsgatan 5",
+    "zipCode": 51164,
+    "city": "Skövde"
+    }
+  }
+
 ###
 GET http://localhost:3001/api/order
