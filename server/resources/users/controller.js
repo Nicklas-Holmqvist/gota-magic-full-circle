@@ -1,6 +1,16 @@
-const express = require('express')
 const UserModel = require('./model')
 const bcrypt = require('bcrypt');
+const cookieParser = require('cookie-parser')
+
+// Get all users
+exports.getAllUsers = async (req, res) => {
+  const users = await UserModel.find()
+  try {
+    res.send(users)
+  } catch (error) {
+    
+  }
+}
 
 // Create new user
 exports.createUser = async (req, res) => {
@@ -19,6 +29,7 @@ exports.createUser = async (req, res) => {
 
     try {
       const user = await UserModel.create(newUser)
+      console.log('_id:', user._id)
       res.status(201).json(user)
     } catch (error) {
       res.status(400).json(error)
@@ -34,11 +45,34 @@ exports.login = async (req, res) => {
 
   try {
     const user = await UserModel.login(email, password)
+    
+    // res.cookie('Test', true, { maxAge: 1000 * 60 })
+    res.cookie('User', user._id, { maxAge: 1000 * 60 * 60 * 24 })
 
-    // set cookie here
-
-    res.status(200).json("user is logged in")
+    res.status(200).json(`${user.email} has been logged in`)
   } catch (error) {
     res.status(400).json(error)
+  }
+}
+
+// Log out
+exports.logout = (req, res) => {
+
+  try {
+    
+    res.cookie('User', '', { maxAge: 1 })
+
+    res.status(200).json('User has logged out')
+  } catch (error) {
+    res.status(400).json(error)
+  }
+}
+
+exports.readCookies = (req, res) => {
+  try {
+    const currentCookies = req.cookies
+    res.status(200).send(currentCookies)
+  } catch (error) {
+    res.status(400).send(error)
   }
 }
