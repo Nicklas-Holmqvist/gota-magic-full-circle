@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
 
 const categorySchema = new mongoose.Schema({
-  name: "String",
-  products: [],
+  catName: "String",
 });
 
-const CategoryModel = mongoose.model("category", categorySchema);
+const CategoryModel = mongoose.model("categorie", categorySchema);
 
 module.exports = CategoryModel;
 
@@ -14,3 +13,4 @@ module.exports = CategoryModel;
 // Queries:
 // find by category prefix:
 // { product.cat: { $regex: "^category prefix" } }
+// asfdjaksfdh/asdasdjsad/12314
