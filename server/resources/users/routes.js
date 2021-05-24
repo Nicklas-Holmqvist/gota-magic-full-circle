@@ -13,7 +13,7 @@ router.get('/api/user/:id', authController.auth, controller.getUserById)
 router.post('/api/user/register', controller.createUser)
 
 // Log in
-router.post('/api/user/login', controller.login)
+router.post('/api/user/login', authController.auth, controller.login)
 
 // Log out
 router.post('/api/user/logout', controller.logout)
