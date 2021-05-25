@@ -11,8 +11,7 @@ Content-Type: application/json
 
 {
   "email": "adminAnders@gåslever.eu",
-  "password": "123",
-  "isAdmin": "true"
+  "password": "123"
 }
 
 ###
@@ -22,8 +21,7 @@ Content-Type: application/json
 
 {
   "email": "pallepastej@gåslever.eu",
-  "password": "123",
-  "isAdmin": "false"
+  "password": "123"
 }
 
 ###

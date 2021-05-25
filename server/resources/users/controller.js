@@ -11,19 +11,6 @@ exports.getAllUsers = async (req, res) => {
   }
 }
 
-// Get user by id
-exports.getUserById = async (req, res) => {
-  const user = await UserModel.findById('60aba162010c3c2f005643e8')
-  try {
-    if (user.isAdmin) {
-      res.send('User is an admin')
-    } else {
-      res.send('User is not an admin')
-    }
-  } catch (error) {
-    console.error(error)
-  }
-}
 // Get all users
 exports.getAllUsers = async (req, res) => {
   const users = await UserModel.find()
@@ -67,7 +54,7 @@ exports.login = async (req, res) => {
   try {
     const user = await UserModel.login(email, password)
   
-    res.cookie('User', user._id, { maxAge: 1000 * 60 * 60 * 24 })
+    res.cookie('user', user._id, { maxAge: 1000 * 60 * 60 * 24 })
 
     res.status(200).json(`${user.email} has been logged in`)
   } catch (error) {

@@ -6,9 +6,6 @@ const authController = require('../auth/controller')
 // Get all users
 router.get('/api/user/all', authController.auth, controller.getAllUsers)
 
-// Get user by id
-router.get('/api/user/:id', controller.getUserById)
-
 // Register new user
 router.post('/api/user/register', controller.createUser)
 
