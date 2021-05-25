@@ -3,6 +3,8 @@ const orderModel = require("./model")
 ///// hämta jämför products med data basen och ändra stocken efter order ///////
 exports.createOrder = async (req, res) => {
 
+    let updateProducts = req.body.products
+
 
     const newOrder = {
         orderNumber: req.body.orderNumber,
@@ -16,8 +18,8 @@ exports.createOrder = async (req, res) => {
 
     try {
         const order = await orderModel.create(newOrder);
-
         res.status(201).json({ message: 'Order successfully created!', order })
+        updateProductStock(updateProducts)
     } catch (error) {
         res.status(400).json({ message: 'Something went wrong', error })
 
@@ -34,8 +36,19 @@ exports.viewAllOrders = async (req, res,) => {
     }
 
 }
-///// for each obj i req.body.products plocka ut obj.id och filtrera productList och ändra sedan stocken o sätt tilbaka /////  
-async function getProductList() {
-    const productList = await ProductModel.find({})
-    console.log(productList)
+
+async function updateProductStock(orderProducts) {
+    orderProducts.forEach(async (obj) => {
+        if (obj.quantity > 2) {
+            console.log(obj)
+            const getProduct = await ProductModel.findById(obj.productId);
+            const updateProductStock = { stock: getProduct.stock - obj.quantity }
+
+            if (getProduct) {
+                await ProductModel.findByIdAndUpdate({ _id: obj.productId }, updateProductStock)
+
+
+            } else console.log('No product stock updated ')
+        }
+    })
 }

@@ -8,16 +8,16 @@ Content-Type: application/json
   "shipping": "Speedboat",
   "sent": false,
   "products": [{
+    "productId":"60a63b0c18f5ed530cf9dae8",
+    "productName":"Hail of Arrows",
+    "price":"39",
+    "quantity":"4"
+    },
+    {
     "productId":"60a63a7e18f5ed530cf9dadc",
     "productName":"Ancestor's Chosen",
     "price":"35",
     "quantity":"3"
-    },
-    {
-    "productId":"60a63a8618f5ed530cf9dadd",
-    "productName":"Nightmare",
-    "price":"49",
-    "quantity":"1"
     }],
     
   "adress": 111
