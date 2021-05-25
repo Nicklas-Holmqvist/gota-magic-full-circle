@@ -7,21 +7,26 @@ exports.auth = async (req, res, next) => {
 
   if (loggedInUser.isAdmin) {
     console.log(loggedInUser.email, 'is admin')
+    return next()
   } else {
-    console.log(loggedInUser.email, 'is not admin')
+    let error = new Error('User is unauthorized and has no admin rights')
+    error.status = 401
+    return next(error)
   }
-
-  next()
 }
 
 exports.isLoggedIn = async (req, res, next) => {
   const userCookieId = req.cookies.user
 
   if(userCookieId === undefined) {
-    console.log('not logged in')
+    let error = new Error('Not logged in') 
+    error.status = 400
+    // redirecta till log in page här
+
+    return next(error)
   } else {
     console.log('logged in')
+    return next()
   }
 
-  next()
 }
