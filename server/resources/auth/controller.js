@@ -10,7 +10,7 @@ exports.auth = async (req, res, next) => {
     return next()
   } else {
     let error = new Error('User is unauthorized and has no admin rights')
-    error.status = 401
+    error.status = 403
     return next(error)
   }
 }
@@ -20,7 +20,7 @@ exports.isLoggedIn = async (req, res, next) => {
 
   if(userCookieId === undefined) {
     let error = new Error('Not logged in') 
-    error.status = 400
+    error.status = 401
     // redirecta till log in page här
 
     return next(error)
