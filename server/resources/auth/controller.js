@@ -17,10 +17,10 @@ exports.auth = async (req, res, next) => {
 exports.isLoggedIn = async (req, res, next) => {
   const userCookieId = req.cookies.user
 
-  if(userCookieId == '') {
-    res.send('not logged in')
+  if(userCookieId === undefined) {
+    console.log('not logged in')
   } else {
-    res.send('logged in')
+    console.log('logged in')
   }
 
   next()

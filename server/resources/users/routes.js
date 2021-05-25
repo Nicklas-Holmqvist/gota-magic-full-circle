@@ -16,6 +16,6 @@ router.post('/api/user/login', controller.login)
 router.post('/api/user/logout', controller.logout)
 
 // Read cookies
-router.get('/api/user/read-cookies', controller.readCookies)
+router.get('/api/user/read-cookies', authController.isLoggedIn, controller.readCookies)
 
 module.exports = router

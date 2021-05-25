@@ -66,7 +66,7 @@ exports.login = async (req, res) => {
 exports.logout = (req, res) => {
 
   try {
-    res.cookie('User', '', { maxAge: 1 })
+    res.cookie('user', '', { maxAge: 1 })
     res.status(200).json('User has logged out')
   } catch (error) {
     res.status(400).json(error)
