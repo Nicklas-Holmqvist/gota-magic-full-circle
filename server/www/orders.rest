@@ -4,9 +4,9 @@ Content-Type: application/json
 {
   "orderNumber":123,
   "userId":"userID",
-  "user":"user firstname + lastname",
+  "user":"OlaGolaj + lastname",
   "totalCost": 540,
-  "shipping": "Speedboat",
+  "shipping": "Teleport",
   "sent": false,
   "products": [{
     "productId":"60a63b0c18f5ed530cf9dae8",
