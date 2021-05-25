@@ -11,6 +11,16 @@ exports.getAllUsers = async (req, res) => {
   }
 }
 
+// Get all users
+exports.getAllUsers = async (req, res) => {
+  const users = await UserModel.find()
+  try {
+    res.send(users)
+  } catch (error) {
+    
+  }
+}
+
 // Create new user
 exports.createUser = async (req, res) => {
 
@@ -23,7 +33,7 @@ exports.createUser = async (req, res) => {
     const newUser = {
       email: email,
       password: hashedPassword,
-      isAdmin: false
+      isAdmin: true || false
     }
 
     try {
@@ -44,7 +54,7 @@ exports.login = async (req, res) => {
   try {
     const user = await UserModel.login(email, password)
   
-    res.cookie('User', user._id, { maxAge: 1000 * 60 * 60 * 24 })
+    res.cookie('user', user._id, { maxAge: 1000 * 60 * 60 * 24 })
 
     res.status(200).json(`${user.email} has been logged in`)
   } catch (error) {
@@ -56,7 +66,7 @@ exports.login = async (req, res) => {
 exports.logout = (req, res) => {
 
   try {
-    res.cookie('User', '', { maxAge: 1 })
+    res.cookie('user', '', { maxAge: 1 })
     res.status(200).json('User has logged out')
   } catch (error) {
     res.status(400).json(error)
