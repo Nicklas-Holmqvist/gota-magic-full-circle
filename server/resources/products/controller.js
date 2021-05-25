@@ -4,7 +4,8 @@ const ProductModel = require('./model')
 // Get all products from api
 exports.getAllProducts = async (_, res) => {
     try {
-        const products = await ProductModel.find({});
+        // Populate skriver man det objekt.titel man vill fylla
+        const products = await ProductModel.find({}).populate('categories');
         res.status(200).json(products) 
     } catch (error) {
         res.status(503).json('No database connection')
