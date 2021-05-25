@@ -9,7 +9,8 @@ GET http://localhost:3001/api/categories
 
 ###
 
-GET http://localhost:3001/api/categories/red
+GET http://localhost:3001/api/categories/60ab8c8df78812a881b04407
+// Content-Type: application/json
 
 ###
 

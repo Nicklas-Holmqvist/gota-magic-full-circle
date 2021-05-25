@@ -8,12 +8,17 @@ exports.createOrder = async (req, res) => {
 
     const newOrder = {
         orderNumber: req.body.orderNumber,
+        userId: req.body.userId,
         user: req.body.user,
         totalCost: req.body.totalCost,
         shipping: req.body.shipping,
         sent: req.body.sent,
         products: req.body.products,
-        adress: req.body.adress
+        adress: {
+            street: req.body.adress.street,
+            zipCode: req.body.adress.zipCode,
+            city: req.body.adress.city
+            }
     }
 
     try {

@@ -2,8 +2,9 @@ POST http://localhost:3001/api/order
 Content-Type: application/json
 
 {
-    "orderNumber":123,
-  "user":"Kato2",
+  "orderNumber":123,
+  "userId":"userID",
+  "user":"user firstname + lastname",
   "totalCost": 540,
   "shipping": "Speedboat",
   "sent": false,
@@ -20,7 +21,11 @@ Content-Type: application/json
     "quantity":"3"
     }],
     
-  "adress": 111
+  "adress": {
+    "street": "Kungsgatan 5",
+    "zipCode": 51164,
+    "city": "Skövde"
+    }
 }
 ###
 GET http://localhost:3001/api/order
