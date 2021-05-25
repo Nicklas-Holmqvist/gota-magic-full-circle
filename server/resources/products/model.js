@@ -1,4 +1,6 @@
+const { ObjectId } = require("bson");
 const mongoose = require("mongoose");
+const {Types} = require("mongoose");
 
 const productSchema = new mongoose.Schema({
   name: "String",
@@ -7,7 +9,10 @@ const productSchema = new mongoose.Schema({
     min: 0,
   },
   stock: Number,
-  category: "String",
+  // ref ska vara modellen
+  categories: [{
+    type: Types.ObjectId,
+    ref: 'categorie'}],
   color: "String",
   cmc: "String", // Number?
   cardType: "String",
