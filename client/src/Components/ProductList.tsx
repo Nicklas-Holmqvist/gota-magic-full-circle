@@ -12,7 +12,8 @@ import {
 } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import { useProducts } from "../Context/ProductContext";
+// import { useProducts } from "../Context/ProductContext";
+import { useProductContext } from "../Context/ProductContext";
 
 import { Product } from "../DB/Products";
 
@@ -27,8 +28,9 @@ const useStyles = makeStyles({
 
 function ProductList() {
 
+  const productContext = useProductContext()
   // Products from ProductsContext
-  const products = useProducts();
+  const products = productContext.products;
 
   const style = useStyles();
 
@@ -107,7 +109,7 @@ function ProductList() {
 
   // The mapping of the product database
   const productData = productViewArray.slice(page, pageItems).map((product) => (
-    <div key={product.id}>
+    <div key={product._id}>
       
       {/* Link is to show the right product on ProductPage.
       The product.id is set in the URL string, and shows the right product that has the ID. */}
@@ -115,7 +117,7 @@ function ProductList() {
         productname={product.productname}
         price={product.price}
         image={product.image}
-        id={product.id}
+        id={product._id}
       />
     </div>
   ));

@@ -30,7 +30,7 @@ function ProductPage() {
   const params = useParams<{ id: string }>();
   const cart = useCart();
   // Default product to stop error when a product is choosen to display
-  const product = products.find((p) => String(p.id) === params.id);
+  const product = products.find((p) => String(p._id) === params.id);
 
   if (!product) {
     return <p>Det här magikortet verkar inte finnas.</p>;
@@ -63,7 +63,7 @@ function ProductPage() {
                     product.productname,
                     product.price,
                     product.image,
-                    product.id
+                    product._id
                   )
                 }
                 variant="contained"
