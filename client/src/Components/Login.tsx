@@ -9,7 +9,8 @@ function Login() {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [emailError, displayErrorMsg] = useState("")
+  const [emailError, setEmailError] = useState("")
+  const [passwordError, setPasswordError] = useState("")
 
   const handleEmailChange = (e:any) => {
     setEmail(e.target.value)
@@ -19,15 +20,15 @@ function Login() {
     setPassword(e.target.value)
   }
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
-    displayErrorMsg('')
+    setEmailError('')
 
     const formData = { email, password }
 
     // Email validation
     if (!email.includes('@' && '.')) {
-      displayErrorMsg('Skriv in en giltig email-adress')
+      setEmailError('Skriv in en giltig email-adress')
       return
     }
 
@@ -39,18 +40,28 @@ function Login() {
       body: JSON.stringify(formData)
     }
 
-    fetch('/api/user/login', options)
-      .then((response) => {
-        console.log(response)
-        if (response.status === 400) {
-          displayErrorMsg('Ett konto med denna email existerar ej')
-        } else {
-          history.push('/ProductList')
+    try {
+      const response = await fetch('/api/user/login', options)
+      const data: any = await response.json()
+
+      if (data.errors) {
+        console.log(data.errors)
+        if (data.errors.email !== '') {
+          setEmailError(data.errors.email)
         }
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+        if (data.errors.password !== '') {
+          setPasswordError(data.errors.password)
+        }
+      }
+
+      if (data.user) {
+        console.log(data.user)
+      }
+      
+    } catch (err) {
+      console.log(err)
+    }
+
   }
 
   return (
@@ -63,6 +74,7 @@ function Login() {
           <span className="email-error">{emailError}</span>
           <label htmlFor="password">Lösenord</label>
           <input type="password" name="password" id="password-login" onChange={handlePasswordChange} required />
+          <span className="password-error">{passwordError}</span>
           <button type="submit" onClick={handleSubmit}>Logga In</button>
         </form>
         <div className="alternate-link">
