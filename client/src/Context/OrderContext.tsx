@@ -8,6 +8,17 @@ type Context = {
     fetchOrders:() => void
 }
 
+export interface Order{
+    _id: string
+    orderNumber: number
+    userId: string
+    user: string
+    totalCost: number
+    shipping: string
+    address: []
+    sent: boolean
+}
+
 export const OrderProvider: FunctionComponent = ({ children }) => {
 
     const [allOrders, setAllOrders] = useState<[]>([])
@@ -25,16 +36,13 @@ export const OrderProvider: FunctionComponent = ({ children }) => {
             return res.json();
         })
         .then(function (data) {
-            console.log(data)
-            setAllOrders(data);
+            console.log(data.allOrders)
+            setAllOrders(data.allOrders);
         })
         .catch(function (err) {
             console.error(err);
         });
     };
-
-    // fetchOrders();
-
 
     return (
         <OrderContext.Provider value={{ allOrders, fetchOrders }}>
