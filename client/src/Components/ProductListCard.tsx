@@ -18,6 +18,7 @@ interface Props {
   productname: string;
   price: number;
   id: number;
+  stock: number;
 }
 
 const useStyles = makeStyles({
@@ -70,7 +71,7 @@ function ProductListCard(props: Props) {
                       props.productname,
                       props.price,
                       props.image,
-                      props.id
+                      props.id,
                     )
                   }
                   className={style.centerBtnLeft}
@@ -92,6 +93,7 @@ function ProductListCard(props: Props) {
             </CardActions>
             <Typography className={style.font}>{props.productname}</Typography>
             <Typography className={style.font}>{props.price} kr</Typography>
+            <Typography className={style.font}>Lager: {props.stock}</Typography>
           </CardContent>
         </Card>
       </Grid>
