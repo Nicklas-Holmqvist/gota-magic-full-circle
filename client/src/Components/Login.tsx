@@ -20,10 +20,26 @@ function Login() {
     e.preventDefault();
     displayErrorMsg('')
 
+    const formData = { email, password }
+
     // Email validation
     if (!email.includes('@' && '.')) {
       displayErrorMsg('Skriv in en giltig email-adress')
+      return
     }
+
+    const options = {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    }
+
+    fetch('/api/user/login', options)
+      .then((response) => {
+        console.log(response)
+      })
   }
 
   return (

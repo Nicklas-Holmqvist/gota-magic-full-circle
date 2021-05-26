@@ -33,7 +33,7 @@ exports.createUser = async (req, res) => {
     const newUser = {
       email: email,
       password: hashedPassword,
-      isAdmin: true || false
+      isAdmin: false || true
     }
 
     try {
@@ -55,6 +55,7 @@ exports.login = async (req, res) => {
     const user = await UserModel.login(email, password)
   
     res.cookie('user', user._id, { maxAge: 1000 * 60 * 60 * 24 })
+    console.log('request made')
 
     res.status(200).json(`${user.email} has been logged in`)
   } catch (error) {
