@@ -46,6 +46,12 @@ export default function SimpleMenu() {
         <Link className="link-style" to="/Tournaments">
           <MenuItem onClick={handleClose}>Turneringar</MenuItem>
         </Link>
+        <Link className="link-style" to="/Login">
+          <MenuItem onClick={handleClose}>Logga In</MenuItem>
+        </Link>
+        <Link className="link-style" to="/Register">
+          <MenuItem onClick={handleClose}>Skapa konto</MenuItem>
+        </Link>
       </Menu>
     </div>
   );

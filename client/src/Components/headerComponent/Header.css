@@ -11,6 +11,13 @@
   left: 0;
   right: 0;
 }
+.header-right {
+  display: flex;
+  align-items: center;
+}
+.header-right button {
+  margin: 0 1rem;
+}
 .header-icon {
   display: flex;
   flex-direction: row;
@@ -63,12 +70,15 @@
   text-decoration: none;
 }
 
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 880px) {
   .menu-bar {
     display: none;
     background-color: black;
   }
   .menu-burger-icon {
     display: flex;
+  }
+  .header-right .menu-button {
+    display: none;
   }
 }

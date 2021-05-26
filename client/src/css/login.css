@@ -1,0 +1,73 @@
+.login-container {
+  margin: 5rem auto 0 auto;
+  padding: 6rem 0;
+  background-image: url(../assets/images/what-the-hex.png);
+}
+
+.form-container {
+  max-width: 500px;
+  background: #ededed;
+  padding: 3rem 0;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 18px;
+}
+
+.form-container h3 {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  text-transform: uppercase;
+}
+
+.form-container form {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 350px;
+  padding: 1rem;
+}
+
+.form-container form label {
+  margin-bottom: 0.25rem;
+  text-align: left;
+  color: grey;
+  font-size: .9rem;
+}
+
+.form-container form input {
+  margin-bottom: 1rem;
+  border: none;
+  height: 2rem;
+  padding: 0 0.5rem;
+  border-radius: 4px;
+}
+
+.form-container form button {
+  border: none;
+  padding: .75rem 0;
+  background: black;
+  color: white;
+  border-radius: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+}
+
+.form-container form button:hover {
+  background: rgb(62, 62, 62);
+}
+
+.alternate-link h4 {
+  margin-top: 1rem;
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: grey;
+}
+
+.alternate-link a {
+  font-size: .9rem;
+  color: black;
+}
