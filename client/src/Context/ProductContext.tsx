@@ -13,7 +13,7 @@ type Context = {
 }
 
 export const ProductProvider: FunctionComponent = ({ children }) => {
-    // const [products, setProducts] = useState<Product[]>(mockedProducts)
+
     const [products, setProducts] = useState<Product[]>([])
 
     // const [viewProduct, setViewProduct] = useState<Product[]>([])
@@ -36,7 +36,7 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
     }
 
     const getProductView = products.filter((p) => {
-        if(p.id === productId) {
+        if(p._id === productId) {
            return productId
         }
         return null

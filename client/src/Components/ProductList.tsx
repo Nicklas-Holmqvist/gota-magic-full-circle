@@ -6,31 +6,33 @@ import { useEffect, useState } from "react";
 import {
   IconButton,
   Grid,
-  TextField,
-  Button,
-  makeStyles,
+  // TextField,
+  // Button,
+  // makeStyles,
 } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import { useProducts } from "../Context/ProductContext";
+// import { useProducts } from "../Context/ProductContext";
+import { useProductContext } from "../Context/ProductContext";
 
 import { Product } from "../DB/Products";
 
-const useStyles = makeStyles({
-  searchfield: {
-    background: "#EDEDED",
-  },
-  resetBtn: {
-    margin: "2rem 1rem 2rem 1rem",
-  },
-});
+// const useStyles = makeStyles({
+//   searchfield: {
+//     background: "#EDEDED",
+//   },
+//   resetBtn: {
+//     margin: "2rem 1rem 2rem 1rem",
+//   },
+// });
 
 function ProductList() {
 
+  const productContext = useProductContext()
   // Products from ProductsContext
-  const products = useProducts();
+  const products = productContext.products;
 
-  const style = useStyles();
+  // const style = useStyles();
 
   // Number of items in productlist
   const pageNumbers = 12;
@@ -39,7 +41,7 @@ function ProductList() {
   const [pageItems, setPageItems] = useState(pageNumbers);
   const [pageNumber, setPageNumber] = useState(1);
   const [productViewArray, setProductViewArray] = useState<Product[]>(products);
-  const [searchValue, setSearchValue] = useState<string>();
+  // const [searchValue, setSearchValue] = useState<string>();
 
   // Fetch data from LS
   useEffect(() => {   
@@ -83,31 +85,31 @@ function ProductList() {
     margin: "2rem 1rem",
   };
 
-  const searchStyle: CSSProperties = {
-    width: "100%",
-    justifyContent: "center",
-    display: "flex",
-    marginRight: "1rem",
-  };
+  // const searchStyle: CSSProperties = {
+  //   width: "100%",
+  //   justifyContent: "center",
+  //   display: "flex",
+  //   marginRight: "1rem",
+  // };
 
-  const formStyle: CSSProperties = {
-    width: "100%",
-    margin: "2rem 1rem",
-  };
+  // const formStyle: CSSProperties = {
+  //   width: "100%",
+  //   margin: "2rem 1rem",
+  // };
 
   // End styling variables
 
 
-  const noResult = () => {
-    <div><h2>Ingen träff</h2></div>
+  // const noResult = () => {
+  //   <div><h2>Ingen träff</h2></div>
     
-  }
+  // }
 
   
 
   // The mapping of the product database
   const productData = productViewArray.slice(page, pageItems).map((product) => (
-    <div key={product.id}>
+    <div key={product._id}>
       
       {/* Link is to show the right product on ProductPage.
       The product.id is set in the URL string, and shows the right product that has the ID. */}
@@ -115,7 +117,8 @@ function ProductList() {
         productname={product.productname}
         price={product.price}
         image={product.image}
-        id={product.id}
+        id={product._id}
+        stock={product.stock}
       />
     </div>
   ));
@@ -125,59 +128,60 @@ function ProductList() {
   // Filtering the product database with the searchvalue
   // The searchvalue is broken down with length to slice the product database value to the lenght of the searchvalue
   // Both value is formated to lowercase for easier compare
-  const filterdArray = products.filter((result) => {
-    const searchlength = searchValue?.length;
-    const productColor = result.color;
-    const sliceProductColor = productColor.slice(0, searchlength);
-    const productName = result.productname;
-    const sliceProductName = productName.slice(0, searchlength);
-    const productCardtype = result.cardtype;
-    const sliceProductCardtype = productCardtype.slice(0, searchlength);
+  // const filterdArray = products.filter((result) => {
+    // const searchlength = searchValue?.length;
+    // const productColor = result.color;
+    // console.log(products)
+    // const sliceProductColor = productColor.slice(0, searchlength);
+    // const productName = result.productname;
+    // const sliceProductName = productName.slice(0, searchlength);
+    // const productCardtype = result.cardtype;
+    // const sliceProductCardtype = productCardtype.slice(0, searchlength);
 
-    if (searchValue?.toLowerCase() === sliceProductColor.toLowerCase()) {
-      return searchValue?.toLowerCase();
-    } else if (searchValue?.toLowerCase() === sliceProductName.toLowerCase()) {
-      return searchValue?.toLowerCase();
-    } else if (
-      searchValue?.toLowerCase() === sliceProductCardtype.toLowerCase()
-    ) {
-      return searchValue?.toLowerCase();
-    }
-    return null;
-  });
+    // if (searchValue?.toLowerCase() === sliceProductColor.toLowerCase()) {
+    //   return searchValue?.toLowerCase();
+    // } else if (searchValue?.toLowerCase() === sliceProductName.toLowerCase()) {
+    //   return searchValue?.toLowerCase();
+    // } else if (
+    //   searchValue?.toLowerCase() === sliceProductCardtype.toLowerCase()
+    // ) {
+    //   return searchValue?.toLowerCase();
+    // }
+  //   return null;
+  // });
 
   // Reset the pagination values and set the setProductViewArray with the full product database values
   // And then sets the setProductViewArray to the filtered result
-  const searchArray = () => {
-    setPage(0);
-    setPageItems(pageNumbers);
-    setPageNumber(1);
-    setProductViewArray(products);
-    setProductViewArray(filterdArray);    
-  };
+  // const searchArray = () => {
+  //   setPage(0);
+  //   setPageItems(pageNumbers);
+  //   setPageNumber(1);
+  //   setProductViewArray(products);
+  //   // setProductViewArray(filterdArray);    
+  // };
 
   // sets the input value to searchValue
-  const handleChange = (e: any) => {
-    setSearchValue(e.target.value);
-    searchArray();
-    noResult()
-  };
+  // const handleChange = (e: any) => {
+  //   setSearchValue(e.target.value);
+  //   searchArray();
+  //   noResult()
+  // };
 
   // When pressed it runs the seachArray function to show the search result
-  const handleSubmit = (evt: any) => {
-    // correctAnswer(props.value)
-    resetSearch();
-    evt.preventDefault();
-  };
+  // const handleSubmit = (evt: any) => {
+  //   // correctAnswer(props.value)
+  //   resetSearch();
+  //   evt.preventDefault();
+  // };
 
   // Reset the searchvalue and sets the input to blank
-  const resetSearch = () => {
-    setPage(0);
-    setPageItems(pageNumbers);
-    setPageNumber(1);
-    setProductViewArray(products);
-    setSearchValue("");
-  };
+  // const resetSearch = () => {
+  //   setPage(0);
+  //   setPageItems(pageNumbers);
+  //   setPageNumber(1);
+  //   setProductViewArray(products);
+  //   setSearchValue("");
+  // };
 
   // Goes back in the pagination
   const decrease = () => {
@@ -222,7 +226,7 @@ function ProductList() {
       style={productListContainer}
     >
       <div className="sok-test">
-        <Grid item xs={12} className="searchContainer" style={searchStyle}>
+        {/* <Grid item xs={12} className="searchContainer" style={searchStyle}>
           <form onSubmit={handleSubmit} style={formStyle} autoComplete="off" >
             <TextField
               id="filled-basic"
@@ -245,7 +249,7 @@ function ProductList() {
             Reset
           </Button>
         </Grid>
-        {noResult}
+        {noResult} */}
 
         <Grid container xs={12} md={10} style={infoLandingContainer}>
           <Grid item style={listStyle}>
