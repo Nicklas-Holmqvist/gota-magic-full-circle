@@ -57,6 +57,8 @@ function ProductListCard(props: Props) {
   const usecart = useCart();
   const style = useStyles();
 
+  console.log(props.stock)
+
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -93,7 +95,7 @@ function ProductListCard(props: Props) {
             </CardActions>
             <Typography className={style.font}>{props.productname}</Typography>
             <Typography className={style.font}>{props.price} kr</Typography>
-            <Typography className={style.font}>Lager: {props.stock}</Typography>
+            <Typography className={style.font}>{props.stock >= 0 ? 'I Lager' : 'Ej i lager'}</Typography>
           </CardContent>
         </Card>
       </Grid>

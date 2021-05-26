@@ -30,8 +30,8 @@ function Api() {
           method: "get",
         };
     
-        const fetchPosts = async () => {
-          await fetch("/api/product", options)
+        
+           fetch("/api/product", options)
             .then(function (res) {
               if (res.status === 400) {
                 return;
@@ -45,10 +45,9 @@ function Api() {
             .catch(function (err) {
               console.error(err);
             });
-        };
+        
     
-        fetchPosts();
-      });
+      }, [setProducts]);
 
     return(
         <Layout />
