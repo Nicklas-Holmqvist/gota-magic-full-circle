@@ -13,57 +13,36 @@ import {
 
  
   const useStyles = makeStyles({
-    card: {
-      maxWidth: 250,
-      margin: "1rem",
-    },
-    cardContent: {
-      padding: "1rem 2rem",
-    },
-    media: {
-      height: 230,
-    },
+
     font: {
-      textAlign: "center",
+      // textAlign: "center",
       fontSize: "1rem",
-      padding: '5rem'
+      // padding: '5rem'
     },
-    centerBtnLeft: {
-      fontSize: "0.8rem",
-      border: '1px solid grey',
-      background: '#FF7A2F',
-    },
-    centerBtnRight: {
-      fontSize: "0.8rem",
-      border: '1px solid grey',
-      borderTopLeftRadius: '0',
-      borderBottomLeftRadius: '0',
-    },
-    linkStyle: {
-      textDecoration: 'none'
-    }
+
   });
 
   interface Order{
     // _id: string
     orderNumber: number
     // userId: string
-    // user: string
-    // totalCost: number
-    // shipping: string
+    user: string
+    totalCost: number
+    shipping: string
     // address: []
-    // sent: boolean
+    sent: boolean
 }
   function OrderList(props: Order) {
 
     const style = useStyles();
   
     return (
-      <Grid container>
-        <Grid item xs={12}>
-        <Typography className={style.font}>{props.orderNumber}</Typography>
-
-        </Grid>
+      <Grid container direction='row' justify='center'>        
+          <Grid item xs={1}>{props.orderNumber}</Grid>
+          <Grid item xs={3}>{props.user}</Grid>
+          <Grid item xs={2}>{props.shipping}</Grid>
+          <Grid item xs={2}>{props.totalCost}</Grid>
+          <Grid item xs={2}><p>{props.sent === true ? 'Skickat' : 'Ej skickat'}</p></Grid>
       </Grid>
     );
   }
