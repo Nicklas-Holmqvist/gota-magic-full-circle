@@ -5,15 +5,12 @@ export const OrderContext = createContext<Context>(undefined!);
 // Typing for items in ProductProvider
 type Context = {
     allOrders: [],
-    orderConfirmation: [],
     fetchOrders:() => void
 }
 
 export const OrderProvider: FunctionComponent = ({ children }) => {
 
     const [allOrders, setAllOrders] = useState<[]>([])
-
-    const [orderConfirmation, setorderConfirmation] = useState<[]>([])
 
     const options = {
         method: "get",
@@ -40,7 +37,7 @@ export const OrderProvider: FunctionComponent = ({ children }) => {
 
 
     return (
-        <OrderContext.Provider value={{ allOrders, orderConfirmation, fetchOrders }}>
+        <OrderContext.Provider value={{ allOrders, fetchOrders }}>
             {children}
         </OrderContext.Provider>
     )    
