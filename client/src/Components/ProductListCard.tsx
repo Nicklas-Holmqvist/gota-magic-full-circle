@@ -57,8 +57,6 @@ function ProductListCard(props: Props) {
   const usecart = useCart();
   const style = useStyles();
 
-  console.log(props.stock)
-
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -68,6 +66,7 @@ function ProductListCard(props: Props) {
             <CardActions>
               <ButtonGroup>
                 <Button
+                  disabled={props.stock >= 0 ? false : true}
                   onClick={() =>{
                       if (props.stock > 0 || null) {
                         usecart.addToCart(
