@@ -23,6 +23,7 @@ function Login() {
   const handleSubmit = async (e:any) => {
     e.preventDefault();
     setEmailError('')
+    setPasswordError('')
 
     const formData = { email, password }
 
@@ -55,7 +56,7 @@ function Login() {
       }
 
       if (data.user) {
-        console.log(data.user)
+        history.push('/ProductList')
       }
       
     } catch (err) {

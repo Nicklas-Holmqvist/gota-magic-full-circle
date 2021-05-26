@@ -55,16 +55,15 @@ exports.login = async (req, res) => {
   try {
     const user = await UserModel.login(email, password)
     res.cookie('user', user._id, { maxAge: 1000 * 60 * 60 * 24 })
-    res.status(200).json(`${user.email} has been logged in`)
+    res.status(200).json({ user })
   } catch (err) { // här fångas error från "throw"
-    // console.log(err.message)
 
     //incorrect email
     if (err.message === 'incorrect email') {
       errors.email = 'Denna email finns ej registrerad'
     }
     
-    //incorrect email
+    //incorrect password
     if (err.message === 'incorrect password') {
       errors.password = 'Fel lösenord'
     }
