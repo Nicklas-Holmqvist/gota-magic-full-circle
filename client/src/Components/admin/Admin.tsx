@@ -17,6 +17,7 @@ function Admin() {
                 totalCost={order.totalCost}
                 shipping={order.shipping}
                 sent={order.sent}
+                products={order.products}
             />
         </div>
     ))

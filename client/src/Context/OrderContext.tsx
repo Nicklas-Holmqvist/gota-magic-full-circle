@@ -13,10 +13,18 @@ export interface Order{
     orderNumber: number
     userId: string
     user: string
+    products: OrderRow[]
     totalCost: number
     shipping: string
     address: []
     sent: boolean
+}
+
+export interface OrderRow {
+    productId: string
+    productName: string
+    price: string
+    quantity: number
 }
 
 export const OrderProvider: FunctionComponent = ({ children }) => {
