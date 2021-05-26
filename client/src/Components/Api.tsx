@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { Product, products as mockedProducts } from '../DB/Products'
+import { Product } from '../DB/Products'
 import Layout from './Layout'
 
 import { useProductContext } from "../Context/ProductContext";
@@ -11,7 +11,8 @@ function Api() {
     const productContext = useProductContext()
 
     // Fetch the product DB
-    const products:Product[] = mockedProducts
+    // const products:Product[] = mockedProducts
+    const [products, setProducts] = useState<Product[]>([])
    
     // Sends the products to ProductContext
     useEffect(() => {
@@ -23,6 +24,30 @@ function Api() {
     useEffect(() => {    
         localStorage.setItem('products', JSON.stringify(products))
     })
+
+    useEffect(() => {
+        const options = {
+          method: "get",
+        };
+    
+        
+           fetch("/api/product", options)
+            .then(function (res) {
+              if (res.status === 400) {
+                return;
+              }
+              return res.json();
+            })
+            .then(function (data) {
+    
+                setProducts(data);
+            })
+            .catch(function (err) {
+              console.error(err);
+            });
+        
+    
+      }, [setProducts]);
 
     return(
         <Layout />
