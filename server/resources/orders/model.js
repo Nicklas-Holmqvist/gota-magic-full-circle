@@ -7,10 +7,12 @@ const Product = require('../products/model')
 const addressSchema = mongoose.Schema({
   street: {
     type: 'String',
-    reuired: true},
+    reuired: true
+  },
   zipCode: {
-    type:'Number',
-    required: true},
+    type: 'Number',
+    required: true
+  },
   city: {
     type: 'String',
     required: true
@@ -34,7 +36,7 @@ const orderSchema = new mongoose.Schema({
   totalCost: Number,
   shipping: String,
   sent: Boolean,
-  products: String,
+  products: [],
   adress: [addressSchema]
 }, { timestamps: true })
 
