@@ -118,6 +118,7 @@ function ProductList() {
         price={product.price}
         image={product.image}
         id={product._id}
+        stock={product.stock}
       />
     </div>
   ));

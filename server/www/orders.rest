@@ -4,17 +4,28 @@ Content-Type: application/json
 {
   "orderNumber":123,
   "userId":"userID",
-  "user":"user firstname + lastname",
+  "user":"OlaGolaj + lastname",
   "totalCost": 540,
-  "shipping": "Truck",
+  "shipping": "Teleport",
   "sent": false,
-  "products": "Småfågel",
+  "products": [{
+    "productId":"60a63b0c18f5ed530cf9dae8",
+    "productName":"Hail of Arrows",
+    "price":"39",
+    "quantity":"4"
+    },
+    {
+    "productId":"60a63a7e18f5ed530cf9dadc",
+    "productName":"Ancestor's Chosen",
+    "price":"35",
+    "quantity":"3"
+    }],
+    
   "adress": {
     "street": "Kungsgatan 5",
     "zipCode": 51164,
     "city": "Skövde"
     }
-  }
-
+}
 ###
 GET http://localhost:3001/api/order

@@ -12,4 +12,5 @@ export interface Product {
     view: boolean,
     rating: number
     categories: []
+    stock: number
 }

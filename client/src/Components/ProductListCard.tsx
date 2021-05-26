@@ -18,6 +18,7 @@ interface Props {
   productname: string;
   price: number;
   id: number;
+  stock: number;
 }
 
 const useStyles = makeStyles({
@@ -65,13 +66,20 @@ function ProductListCard(props: Props) {
             <CardActions>
               <ButtonGroup>
                 <Button
-                  onClick={() =>
-                    usecart.addToCart(
-                      props.productname,
-                      props.price,
-                      props.image,
-                      props.id
-                    )
+                  disabled={props.stock >= 0 ? false : true}
+                  onClick={() =>{
+                      if (props.stock > 0 || null) {
+                        usecart.addToCart(
+                          props.productname,
+                          props.price,
+                          props.image,
+                          props.id,
+                        )
+                      } else {
+                        alert('Inget i lager!')
+                        return                        
+                      }
+                    }
                   }
                   className={style.centerBtnLeft}
                 >
@@ -92,6 +100,7 @@ function ProductListCard(props: Props) {
             </CardActions>
             <Typography className={style.font}>{props.productname}</Typography>
             <Typography className={style.font}>{props.price} kr</Typography>
+            <Typography className={style.font}>{props.stock >= 0 ? 'I Lager' : 'Ej i lager'}</Typography>
           </CardContent>
         </Card>
       </Grid>
