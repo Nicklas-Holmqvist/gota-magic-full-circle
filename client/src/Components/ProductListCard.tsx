@@ -68,13 +68,19 @@ function ProductListCard(props: Props) {
             <CardActions>
               <ButtonGroup>
                 <Button
-                  onClick={() =>
-                    usecart.addToCart(
-                      props.productname,
-                      props.price,
-                      props.image,
-                      props.id,
-                    )
+                  onClick={() =>{
+                      if (props.stock > 0 || null) {
+                        usecart.addToCart(
+                          props.productname,
+                          props.price,
+                          props.image,
+                          props.id,
+                        )
+                      } else {
+                        alert('Inget i lager!')
+                        return                        
+                      }
+                    }
                   }
                   className={style.centerBtnLeft}
                 >
