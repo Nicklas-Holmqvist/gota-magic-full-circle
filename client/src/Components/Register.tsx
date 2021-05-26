@@ -1,8 +1,11 @@
 import '../main.css';
 import '../css/login.css';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom'
 
 function Register() {
+
+  const history = useHistory()
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -46,6 +49,12 @@ function Register() {
     fetch('/api/user/register', options)
       .then((response) => {
         console.log(response)
+        if (response.status === 201) {
+          history.push('/ProductList')
+        }
+      })
+      .catch((error) => {
+        console.error(error)
       })
   }
 

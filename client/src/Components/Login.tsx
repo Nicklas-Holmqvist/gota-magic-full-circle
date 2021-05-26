@@ -48,6 +48,9 @@ function Login() {
           history.push('/ProductList')
         }
       })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   return (
