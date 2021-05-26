@@ -33,7 +33,7 @@ exports.createUser = async (req, res) => {
     const newUser = {
       email: email,
       password: hashedPassword,
-      isAdmin: false || true
+      isAdmin: false
     }
 
     try {
