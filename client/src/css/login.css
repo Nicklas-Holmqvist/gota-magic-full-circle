@@ -31,13 +31,14 @@
 
 .form-container form label {
   margin-bottom: 0.25rem;
+  margin-top: 1rem;
   text-align: left;
   color: grey;
   font-size: .9rem;
 }
 
 .form-container form input {
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   border: none;
   height: 2rem;
   padding: 0 0.5rem;
@@ -54,6 +55,7 @@
   text-transform: uppercase;
   cursor: pointer;
   transition: 200ms ease-in-out;
+  margin-top: 1rem;
 }
 
 .form-container form button:hover {
@@ -70,4 +72,11 @@
 .alternate-link a {
   font-size: .9rem;
   color: black;
+}
+
+.email-error {
+  margin-top: .5rem;
+  color: red;
+  font-size: .75rem;
+  text-align: center;
 }
