@@ -24,13 +24,14 @@ function Orders() {
   ))
 
   return (
-    <div>
-      <button style={{marginTop: "5rem"}} onClick={importOrders.fetchOrders}>Hämta order</button>
+    <div className="orders">
+      <div className="product-divider"></div>
+      <button style={{marginTop: "3rem"}} onClick={importOrders.fetchOrders} className="get-orders-btn">Hämta ordrar</button>
         <Grid container spacing={0}
             direction="column"
             alignItems="center"
             justify="center" 
-            md={8}>
+            md={12}>
             <Grid container alignContent='center'>
                 <Grid item xs={1}>Ordernr</Grid>
                 <Grid item xs={4}>Namn</Grid>  

@@ -6,7 +6,7 @@ import Orders from './Orders';
 import Products from './Products'
 
 function Admin() {
-	const [displayProducts, setDisplayProducts] = useState(false)
+	const [displayProducts, setDisplayProducts] = useState(true)
 
 	const showProducts = (e: any) => {
 		setDisplayProducts(true)

@@ -1,6 +1,6 @@
 .admin-product {
   background: rgb(245, 245, 245);
-  padding: 2rem 4rem 0 4rem;
+  padding: 3rem 4rem 1rem 4rem;
   box-sizing: border-box;
   /* max-width: 400px; */
 }
@@ -38,15 +38,30 @@
   cursor: pointer;
 }
 
+.get-orders-btn {
+  margin-bottom: 2rem;
+  padding: .4rem 1rem;
+  border: none;
+  background: rgb(204, 204, 204);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.orders {
+  padding: 0 3rem;
+  background: rgb(245, 245, 245);
+}
+
 .product-divider {
   height: 1px;
   background: rgb(186, 186, 186);
   width: 100%;
 }
 
+
 .admin-buttons {
   margin-top: 5rem;
-  padding: 3rem 4rem 1rem 4rem;
+  padding: 2rem 4rem 2rem 4rem;
   display: flex;
   justify-content: center;
   background: rgb(245, 245, 245);
