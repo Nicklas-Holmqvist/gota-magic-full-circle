@@ -5,21 +5,18 @@ export const AuthContext = createContext<Context>(undefined!);
 // Typing for items in ProductProvider
 type Context = {
     auth: {};
-    getAuth: (auth:boolean) => void;
+    // getAuth: () => void;
 }
 
 export const AuthProvider: FunctionComponent = ({ children }) => {
     
     const [auth, setAuth] = useState<{}>({})
-    console.log(auth)
-
+    // console.log(auth)
    
-    const getAuth = (auth:boolean) => {
-        
-        setAuth(auth) 
-        console.log('kör getAuth funktionen')
-        
-    }
+    // const getAuth = (auth:boolean) => {
+    //     setAuth(auth) 
+    //     console.log('kör getAuth funktionen')
+    // }
 
     const options = {
         method: 'get'
@@ -34,7 +31,6 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
             return res.json();
         })
         .then(function (data) {
-            console.log(data)
             setAuth({
                 isAdmin: data.isAdmin,
                 userId: data._id})
@@ -47,7 +43,7 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
     fetchAuth()
 
     return (
-        <AuthContext.Provider value={{ getAuth, auth }}>
+        <AuthContext.Provider value={{ auth }}>
             {children}
         </AuthContext.Provider>
     )    

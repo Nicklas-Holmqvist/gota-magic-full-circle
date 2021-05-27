@@ -5,10 +5,18 @@ import TemporaryDrawer from "./Drawer";
 import SimpleMenu from "./SimpleMenu";
 import { Link
  } from 'react-router-dom';
+import { useAuthContext } from "../../Context/AuthContext";
 
 
 function Header() {
+
+  const authContext = useAuthContext()
+  const auth = authContext.auth
+  
   let [isOpen, setIsOpen] = useState(false);
+  const [login, setLogin] = useState(auth)
+
+  console.log(login)
 
   return (
     <div className="header">
@@ -53,7 +61,9 @@ function Header() {
       <div className="header-right">
         <Link className="link-style" to="/Login">
           <div className="menu-button menu-button-last">
-            <Button>Logga In</Button>
+            <Button>
+              {login === 'null' ? 'Logga in' : 'Logga ut'}
+            </Button>
           </div>
         </Link>
         <div className="cartIcon" onClick={() => setIsOpen(!isOpen)}>
