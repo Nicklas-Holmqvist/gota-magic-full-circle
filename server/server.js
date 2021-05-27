@@ -1,9 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const cookieParser = require('cookie-parser')
+const cookieParser = require("cookie-parser");
+const fileUpload = require("express-fileupload");
 
-const productRouter = require('./resources/products/routes')
-const orderRouter = require('./resources/orders/routes')
+const productRouter = require("./resources/products/routes");
+const orderRouter = require("./resources/orders/routes");
 
 const userRouter = require("./resources/users/routes");
 const shippingRouter = require("./resources/shipping/routes");
@@ -14,18 +15,19 @@ const app = express();
 app.use(express.json());
 //
 
-app.use(cookieParser())
+app.use(cookieParser());
+app.use(express - static("uploads"));
 
 app.use(productRouter);
 app.use(userRouter);
 app.use(categoryRouter);
-app.use(orderRouter)
+app.use(orderRouter);
 app.use(shippingRouter);
 
 async function run() {
   try {
     await mongoose.connect(
-      'mongodb+srv://Nicklas:qwerty123@cluster0.0tiz6.mongodb.net/magic',
+      "mongodb+srv://Nicklas:qwerty123@cluster0.0tiz6.mongodb.net/magic",
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
