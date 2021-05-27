@@ -133,6 +133,3 @@ function ProductListCard(props: Props) {
 }
 
 export default ProductListCard;
-function setDbStock(stock: any) {
-  throw new Error("Function not implemented.");
-}

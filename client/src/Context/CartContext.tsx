@@ -6,7 +6,6 @@ import React, {
   useState,
 } from "react";
 import { orderItem } from "../Types/orderItem";
-import { useProductContext } from "./ProductContext";
 
 type Context = {
   getCartSize: () => number;
@@ -34,7 +33,7 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
   const getCartSize = () => {
     return cart.length;
   };
-  const productContext = useProductContext();
+
   // Sätter totalpriset på LSvarukorgen + quantity //
   const totalPrice = lsCart.reduce(
     (acc, curr) => acc + curr.price * curr.quantity,

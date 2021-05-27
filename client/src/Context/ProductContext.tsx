@@ -68,36 +68,7 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
         console.error(err);
       });
   };
-  //   function changeQuantity(id: string) {
-  //     const productExist = products.find((obj) => obj._id === id);
-  //     if (productExist) {
-  //       const newStock = productExist.stock - 1;
-  //       let newProduct: Product = {
-  //         productname: productExist.productname,
-  //         cardtype: productExist.cardtype,
-  //         color: productExist.color,
-  //         cardtext: productExist.cardtext,
-  //         expansion: productExist.expansion,
-  //         cmc: productExist.cmc,
-  //         image: productExist.image,
-  //         _id: productExist._id,
-  //         price: productExist.price,
-  //         producttype: productExist.producttype,
-  //         view: productExist.view,
-  //         rating: productExist.rating,
-  //         categories: productExist.categories,
-  //         stock: newStock,
-  //       };
 
-  //       let newPoducts = [
-  //         ...products.filter((obj) => {
-  //           return obj._id !== id;
-  //         }),
-  //       ];
-
-  //       setProducts([...newPoducts, newProduct]);
-  //     }
-  //   }
   // fetchCategories()
 
   return (
