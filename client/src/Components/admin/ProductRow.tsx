@@ -43,15 +43,15 @@ import { formatDiagnostics } from "typescript";
           <Grid item xs={2}>{props.price + ' kr'}</Grid>   
           <Grid item xs={2}>{props.stock + ' in stock'}</Grid>    */}
 
+          <div className="product-divider"></div>
           <h3 className="admin-product-name">{props.productname}</h3>
           <p className="admin-product-cardtext">{props.cardtext}</p>
           <b className="admin-product-price">{props.price + ' kr'}</b>
-          <form>
+          <form className="stock-form">
             <label htmlFor="stock" className="stock-label">I lager:</label>
             <input className="admin-product-stock-input" type="text" defaultValue={props.stock} name="stock" />
             <button type="submit" className="update-stock-btn">Ändra lagersaldo</button> {/* här läggs en onClick={handleStockUpdate} */}
           </form>
-          <div className="product-divider"></div>
         </Grid> 
       </Grid>
     );

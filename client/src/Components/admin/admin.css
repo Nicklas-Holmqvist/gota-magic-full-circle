@@ -5,12 +5,8 @@
   /* max-width: 400px; */
 }
 
-section:first-of-type {
-  margin-top: 5rem;
-}
-
 .admin-product-name {
-  margin-bottom: 1rem;
+  margin: 2rem 0 1rem 0;
 }
 
 .admin-product-cardtext {
@@ -19,6 +15,10 @@ section:first-of-type {
 
 .admin-product-stock {
   margin: 1rem 0 1rem 0;
+}
+
+.stock-form {
+  margin: 1rem 0 0 0;
 }
 
 .admin-product-stock-input {
@@ -42,4 +42,29 @@ section:first-of-type {
   height: 1px;
   background: rgb(186, 186, 186);
   width: 100%;
+}
+
+.admin-buttons {
+  margin-top: 5rem;
+  padding: 3rem 4rem 1rem 4rem;
+  display: flex;
+  justify-content: center;
+  background: rgb(245, 245, 245);
+}
+
+.products-admin-btn, .orders-admin-btn {
+  padding: 1rem 2rem;
+  margin: 0 2rem;
+  background: rgb(189, 189, 189);
+  color: black;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.products-admin-btn:hover, .orders-admin-btn:hover {
+  background: rgb(150, 150, 150);
 }

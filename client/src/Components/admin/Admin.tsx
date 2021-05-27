@@ -9,10 +9,23 @@ function Admin() {
 	const [displayProducts, setDisplayProducts] = useState(false)
 	const [displayOrders, setDisplayOrders] = useState(true)
 
+	const showProducts = (e: any) => {
+		setDisplayProducts(true)
+		setDisplayOrders(false)
+	}
+	
+	const showOrders = (e: any) => {
+		setDisplayProducts(false)
+		setDisplayOrders(true)
+	}
+
 	return(
 		<>
-			<Products />
-			<Orders />
+			<div className="admin-buttons">
+				<button className="products-admin-btn" onClick={showProducts}>Visa Produkter</button>
+				<button className="orders-admin-btn" onClick={showOrders}>Visa Ordrar</button>
+			</div>
+			{displayProducts ? <Products /> : <Orders/>}
 		</>
 	)
 }

@@ -13,7 +13,7 @@ function Products() {
     const products:Product[] = productContext.products;
 
     const viewAllProducts = products.map((p) => (
-        <section className="admin-product" key={p._id}>
+        <div className="admin-product" key={p._id}>
             <ProductRow
                 _id={p._id}
                 productname={p.productname}
@@ -30,7 +30,7 @@ function Products() {
                 view={p.view}
                 rating={p.rating}
                 />
-        </section>
+        </div>
     ))
 
     return(
