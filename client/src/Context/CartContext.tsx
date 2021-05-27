@@ -13,7 +13,7 @@ type Context = {
     itemName: string,
     price: number,
     image: string,
-    id: number
+    id: string
   ) => void;
   cart: orderItem[];
   removeFromCart: (productName: string) => void;
@@ -33,6 +33,7 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
   const getCartSize = () => {
     return cart.length;
   };
+
   // Sätter totalpriset på LSvarukorgen + quantity //
   const totalPrice = lsCart.reduce(
     (acc, curr) => acc + curr.price * curr.quantity,
@@ -80,7 +81,7 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
     itemName: string,
     price: number,
     image: string,
-    id: number
+    id: string
   ) => {
     let existingItem = cart.find(
       (item) => item.itemName === itemName //Retunerar true eller false beroende på om det finns två item av samma namn //
