@@ -25,7 +25,7 @@ app.use(shippingRouter);
 async function run() {
   try {
     await mongoose.connect(
-      'mongodb+srv://Olof:qwerty123@cluster0.0tiz6.mongodb.net/magic',
+      'mongodb+srv://Nicklas:qwerty123@cluster0.0tiz6.mongodb.net/magic',
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,

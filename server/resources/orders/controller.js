@@ -1,5 +1,6 @@
 const ProductModel = require("../products/model");
 const orderModel = require("./model")
+
 ///// hämta jämför products med data basen och ändra stocken efter order ///////
 exports.createOrder = async (req, res) => {
 
