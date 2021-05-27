@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useProductContext } from "../../Context/ProductContext";
 
 import { Product } from "../../DB/Products";
 import ProductRow from "./ProductRow";
+import '../../main.css'
+import './admin.css'
 
 function Products() {
 
@@ -11,7 +13,7 @@ function Products() {
     const products:Product[] = productContext.products;
 
     const viewAllProducts = products.map((p) => (
-        <div key={p._id}>
+        <section className="admin-product" key={p._id}>
             <ProductRow
                 _id={p._id}
                 productname={p.productname}
@@ -28,7 +30,7 @@ function Products() {
                 view={p.view}
                 rating={p.rating}
                 />
-        </div>
+        </section>
     ))
 
     return(
