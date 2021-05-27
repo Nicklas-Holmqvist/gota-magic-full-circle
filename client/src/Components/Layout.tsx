@@ -6,6 +6,7 @@ import Header from "./headerComponent/Header";
 import ProductPage from "./ProductPage";
 import BreadCrumbs from "./BreadCrumbs";
 import Tournaments from "./Tournaments";
+import Admin from "./admin/Admin";
 import AboutUs from "./AboutUs";
 import Contact from "./Contact";
 import ErrorBoundary from "./ErrorBoundary";
@@ -25,6 +26,7 @@ function Layout() {
         <Route exact path="/" component={LandingPage} />
         <Route path="/Tournaments" component={Tournaments} />
         <Route path="/AboutUs" component={AboutUs} />
+        <Route path="/Admin" component={Admin} />
         <Route path="/Contact" component={Contact} />
         <Route path="/ProductList" component={ProductList} />
         <Route path="/ProductCart" component={ProductCart} />

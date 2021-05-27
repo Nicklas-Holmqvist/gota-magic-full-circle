@@ -1,0 +1,85 @@
+.admin-product {
+  background: rgb(245, 245, 245);
+  padding: 3rem 4rem 1rem 4rem;
+  box-sizing: border-box;
+  /* max-width: 400px; */
+}
+
+.admin-product-name {
+  margin: 2rem 0 1rem 0;
+}
+
+.admin-product-cardtext {
+  margin-bottom: 2rem;
+}
+
+.admin-product-stock {
+  margin: 1rem 0 1rem 0;
+}
+
+.stock-form {
+  margin: 1rem 0 0 0;
+}
+
+.admin-product-stock-input {
+  width: 3rem;
+  padding: .25rem .5rem;
+  text-align: center;
+  margin: 0 1rem;
+  border: none;
+  border-radius: 3px;
+}
+
+.update-stock-btn {
+  padding: .4rem 1rem;
+  border: none;
+  background: rgb(204, 204, 204);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.get-orders-btn {
+  margin-bottom: 2rem;
+  padding: .4rem 1rem;
+  border: none;
+  background: rgb(204, 204, 204);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.orders {
+  padding: 0 3rem;
+  background: rgb(245, 245, 245);
+}
+
+.product-divider {
+  height: 1px;
+  background: rgb(186, 186, 186);
+  width: 100%;
+}
+
+
+.admin-buttons {
+  margin-top: 5rem;
+  padding: 2rem 4rem 2rem 4rem;
+  display: flex;
+  justify-content: center;
+  background: rgb(245, 245, 245);
+}
+
+.products-admin-btn, .orders-admin-btn {
+  padding: 1rem 2rem;
+  margin: 0 2rem;
+  background: rgb(189, 189, 189);
+  color: black;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.products-admin-btn:hover, .orders-admin-btn:hover {
+  background: rgb(150, 150, 150);
+}
