@@ -33,7 +33,6 @@ exports.isLoggedIn = async (req, res, next) => {
     console.log('logged in')
     return next()
   }
-
 }
 
 exports.isAuth = async (req, res) => {
@@ -46,5 +45,4 @@ exports.isAuth = async (req, res) => {
   } else {
     res.status(200).json(user)
   }
-
 }
