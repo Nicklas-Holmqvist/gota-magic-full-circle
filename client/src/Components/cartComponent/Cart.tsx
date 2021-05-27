@@ -5,12 +5,14 @@ import "./cartContainer.css";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useCart } from "../../Context/CartContext";
 import { orderItem } from "../../Types/orderItem";
+import { useProductContext } from "../../Context/ProductContext";
 interface Props {
   item: orderItem;
 }
 
 const CartComponent = ({ item }: Props) => {
   const cart = useCart();
+  const productContext = useProductContext();
 
   const priceText = item.price + " kr";
   const totalPriceText = "Totalpris: " + item.price * item.quantity + " kr";

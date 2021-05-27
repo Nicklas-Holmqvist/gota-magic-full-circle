@@ -13,12 +13,12 @@ import "../main.css";
 import { useProductContext } from "../Context/ProductContext";
 import { useCart } from "../Context/CartContext";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 interface Props {
   image: string;
   productname: string;
   price: number;
-  id: number;
+  id: string;
   stock: number;
 }
 
@@ -58,8 +58,11 @@ function ProductListCard(props: Props) {
   const usecart = useCart();
   const style = useStyles();
   const [dbStock, setDbStock] = useState(props.stock);
-  console.log(dbStock);
-  // updateStock(props.stock);
+  console.log(props.productname, dbStock);
+  useEffect(() => {
+    updateStock(props.stock);
+  }, [usecart.cart]);
+  // ;
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -114,6 +117,7 @@ function ProductListCard(props: Props) {
       </Grid>
     </Grid>
   );
+
   function updateStock(stock: number) {
     let cartQuantity = 0;
     const cartProduct = usecart.cart.filter((obj) => {
