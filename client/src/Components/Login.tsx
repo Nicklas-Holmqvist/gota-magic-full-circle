@@ -46,7 +46,6 @@ function Login() {
       const data: any = await response.json()
 
       if (data.errors) {
-        console.log(data.errors)
         if (data.errors.email !== '') {
           setEmailError(data.errors.email)
         }
@@ -60,7 +59,7 @@ function Login() {
       }
       
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
 
   }
