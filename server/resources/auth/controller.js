@@ -4,15 +4,20 @@ exports.auth = async (req, res, next) => {
 
   const userCookieId = req.cookies.user
   const loggedInUser = await UserModel.findById(userCookieId)
-
-  if (loggedInUser.isAdmin) {
-    console.log(loggedInUser.email, 'is admin')
+  
+  if(loggedInUser === null) {
+    res.status(401).json('Your not logged in!')
     return next()
   } else {
-    let error = new Error('User is unauthorized and has no admin rights')
-    error.status = 403
-    return next(error)
-  }
+    if (loggedInUser.isAdmin) {
+      console.log(loggedInUser.email, 'is admin')
+      return next()
+    } else {
+      let error = new Error('User is unauthorized and has no admin rights')
+      // error.status = 403
+      return next(error)
+    }
+  }  
 }
 
 exports.isLoggedIn = async (req, res, next) => {
