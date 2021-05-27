@@ -39,7 +39,9 @@ import {
         >
 
           <Grid item xs={1}>{props.productname}</Grid>  
-          <Grid item xs={4}>{props._id}</Grid>   
+          <Grid item xs={4}>{props.cardtext}</Grid>     
+          <Grid item xs={2}>{props.price}</Grid>   
+          <Grid item xs={2}>{props.stock}</Grid>   
       </Grid> 
       </Grid>
     );
