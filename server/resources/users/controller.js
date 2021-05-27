@@ -33,7 +33,7 @@ exports.createUser = async (req, res) => {
     const newUser = {
       email: email,
       password: hashedPassword,
-      isAdmin: true || false
+      isAdmin: false
     }
 
     try {
@@ -43,22 +43,38 @@ exports.createUser = async (req, res) => {
       res.status(400).json(error)
     }
   } else {
-    res.status(400).json('Email already registered')
+    let errors = { email: '' }
+
+    // if email already exists in db
+    errors.email = 'Denna email är redan registrerad'
+    console.log(errors)
+
+    res.status(400).json({ errors })
   }
 }
 
 // Log in
 exports.login = async (req, res) => {
   const { email, password } = req.body
+  let errors = { email: '', password: '' }
 
   try {
     const user = await UserModel.login(email, password)
-  
     res.cookie('user', user._id, { maxAge: 1000 * 60 * 60 * 24 })
+    res.status(200).json({ user })
+  } catch (err) { // här fångas error från "throw"
 
-    res.status(200).json(`${user.email} has been logged in`)
-  } catch (error) {
-    res.status(400).json(error)
+    //incorrect email
+    if (err.message === 'incorrect email') {
+      errors.email = 'Denna email finns ej registrerad'
+    }
+    
+    //incorrect password
+    if (err.message === 'incorrect password') {
+      errors.password = 'Fel lösenord'
+    }
+
+    res.status(400).json({ errors })
   }
 }
 
