@@ -37,7 +37,7 @@ function Api() {
         return res.json();
       })
       .then(function (data) {
-        console.log("hämtar");
+        console.log(data);
         setProducts(data);
       })
       .catch(function (err) {
