@@ -9,8 +9,8 @@ function Register() {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [emailError, displayEmailErrorMsg] = useState("")
-  const [passwordError, displayPasswordErrorMsg] = useState("")
+  const [emailError, setEmailError] = useState("")
+  const [passwordError, setPasswordError] = useState("")
 
   const handleEmailChange = (e:any) => {
     setEmail(e.target.value)
@@ -20,21 +20,22 @@ function Register() {
     setPassword(e.target.value)
   }
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
-    displayEmailErrorMsg('')
+    setEmailError('')
+    setPasswordError('')
 
     const formData = { email, password }
 
     // Email validation
     if (!email.includes('@' && '.')) {
-      displayEmailErrorMsg('Skriv in en giltig email-adress')
+      setEmailError('Skriv in en giltig email-adress')
       return
     }
 
     // Password length validation
     if (password.length < 6) {
-      displayPasswordErrorMsg('Lösenordet måste innehålla minst 6 tecken')
+      setPasswordError('Lösenordet måste innehålla minst 6 tecken')
       return
     }
 
@@ -46,16 +47,20 @@ function Register() {
       body: JSON.stringify(formData)
     }
 
-    fetch('/api/user/register', options)
-      .then((response) => {
-        console.log(response)
-        if (response.status === 201) {
-          history.push('/ProductList')
-        }
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+    try {
+      const response = await fetch('/api/user/register', options)
+      const data: any = await response.json()
+
+      if (data.errors) {
+        setEmailError(data.errors.email)
+        return
+      } else {
+        history.push('/Login')
+      }
+      
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   return (
