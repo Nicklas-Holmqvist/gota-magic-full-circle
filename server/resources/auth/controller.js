@@ -35,3 +35,16 @@ exports.isLoggedIn = async (req, res, next) => {
   }
 
 }
+
+exports.isAuth = async (req, res) => {
+  const cookie = req.cookies.user
+
+  const user = await UserModel.findOne({ _id: cookie })
+  
+  if(!user) {
+    res.status(400).json('No logged in!')
+  } else {
+    res.status(200).json(user)
+  }
+
+}
