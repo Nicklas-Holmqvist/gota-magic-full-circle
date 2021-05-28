@@ -1,22 +1,65 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
 import "./Header.css";
 import Button from "@material-ui/core/Button";
 import TemporaryDrawer from "./Drawer";
 import SimpleMenu from "./SimpleMenu";
-import { Link
- } from 'react-router-dom';
 import { useAuthContext } from "../../Context/AuthContext";
+import { Link, useHistory } from 'react-router-dom'
 
 
 function Header() {
 
   const authContext = useAuthContext()
-  const auth = authContext.auth
+  const authUser:boolean = authContext.auth
+  const history = useHistory()
+  // const auth = authContext.auth
   
-  let [isOpen, setIsOpen] = useState(false);
-  const [login, setLogin] = useState(auth)
+  const [auth, setAuth] = useState<boolean>(authUser)
+  let [isOpen, setIsOpen] = useState(false)
 
-  console.log(login)
+
+  useEffect(() => {
+    console.log(auth)
+    setAuth(authContext.auth)
+  },[authContext.auth, setAuth, auth])
+
+  const handleClick = (e:any) => {
+    e.preventDefault()
+    setAuth(false)
+    history.push('/')
+    authContext.getAuth(false)
+    console.log('Inne i handleclick')
+    
+    fetch('/api/user/logout', { method: 'GET' })
+      .then((response) => {
+        console.log('Inne i fetch')
+        if (response.ok) {        
+          alert('You are now logged out!')      
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  function LoggedInButtons() {
+    return (
+      <>
+        <button onClick={handleClick} className="border-btn">Log Out</button>
+      </>
+    )
+  }
+
+  function NotLoggedInButtons() {
+    return (
+      <>
+        <Link to="/login">
+          <button className="log-in">Log In</button>
+        </Link>       
+      </>
+    )
+  }
 
   return (
     <div className="header">
@@ -59,13 +102,11 @@ function Header() {
       </div>
 
       <div className="header-right">
-        <Link className="link-style" to="/Login">
-          <div className="menu-button menu-button-last">
-            <Button>
-              {login === 'null' ? 'Logga in' : 'Logga ut'}
-            </Button>
-          </div>
-        </Link>
+      {auth === false ? (
+        <NotLoggedInButtons />)
+        : (
+        <LoggedInButtons />
+         )}
         <div className="cartIcon" onClick={() => setIsOpen(!isOpen)}>
           <TemporaryDrawer></TemporaryDrawer>
         </div>

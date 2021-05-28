@@ -2,10 +2,12 @@ import '../main.css';
 import '../css/login.css';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom'
+import { useAuthContext } from "../Context/AuthContext";
 
 function Login() {
 
   const history = useHistory()
+  const authContext = useAuthContext()
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -55,6 +57,7 @@ function Login() {
       }
 
       if (data.user) {
+        authContext.getAuth(true)
         history.push('/ProductList')
       }
       

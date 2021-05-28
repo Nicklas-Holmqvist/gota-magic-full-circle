@@ -4,46 +4,53 @@ export const AuthContext = createContext<Context>(undefined!);
 
 // Typing for items in ProductProvider
 type Context = {
-    auth: {};
-    // getAuth: () => void;
+    authAdmin: boolean;
+    auth: boolean;
+    getAuth: (auth:boolean) => void;
 }
 
 export const AuthProvider: FunctionComponent = ({ children }) => {
     
-    const [auth, setAuth] = useState<{}>({})
-    // console.log(auth)
+    const [authAdmin, setAuthAdmin] = useState<boolean>(false)
+    const [auth, setAuth] = useState<boolean>(false)
+    console.log(auth)
    
-    // const getAuth = (auth:boolean) => {
-    //     setAuth(auth) 
-    //     console.log('kör getAuth funktionen')
-    // }
+    const getAuth = (auth:boolean) => {
+        setAuth(auth) 
+        console.log('kör getAuth funktionen')
+    }
 
     const options = {
         method: 'get'
     }
 
-    const fetchAuth = async () => {
-        await fetch("/auth", options)
-        .then(function (res) {
-            if (res.status === 400) {
-            return;
-            }
-            return res.json();
-        })
-        .then(function (data) {
-            setAuth({
-                isAdmin: data.isAdmin,
-                userId: data._id})
-        })
-        .catch(function (err) {
-            console.error(err);
-        });
-    };
+    useEffect(() => {
+        const fetchAuth = async () => {
+            await fetch("/auth", options)
+            .then(function (res) {
+                if (res.status === 400) {
+                return;
+                }
+                return res.json();
+            })
+            .then(function (data) {
+                console.log(data)
+                const user = data
+                setAuthAdmin(user.isAdmin)
+                setAuth(user.userId === null ? false : true)
+            })
+            .catch(function (err) {
+                console.error(err);
+            });
+        };
+        
+        fetchAuth()
+    })
+
     
-    fetchAuth()
 
     return (
-        <AuthContext.Provider value={{ auth }}>
+        <AuthContext.Provider value={{ auth, getAuth, authAdmin }}>
             {children}
         </AuthContext.Provider>
     )    
