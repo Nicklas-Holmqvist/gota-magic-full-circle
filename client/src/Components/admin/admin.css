@@ -73,6 +73,12 @@
   font-weight: bolder;
 }
 
+.order-number {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
 .order-row {
   padding: 0.3rem 0;
   border-bottom: 1px solid grey;
@@ -93,6 +99,10 @@
 .order-product-row small {
   margin: .75rem;
   font-size: .8rem;
+}
+
+.hide {
+  display: none;
 }
 
 .admin-buttons {

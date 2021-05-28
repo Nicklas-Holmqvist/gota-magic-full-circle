@@ -7,7 +7,6 @@ import {
     AccordionDetails,
 } from "@material-ui/core";
   import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { isNumber } from "node:util";
 import { useState } from "react";
   // import "../main.css";
 
@@ -47,14 +46,14 @@ function OrderList(props: Order) {
   
     // checks if screen width is mobile size when page loads
     window.addEventListener('load', () => {
-      if (window.innerWidth < 400) {
+      if (window.innerWidth < 500) {
         setMobileView(true)
       }
     })
 
     // checks if screen width is mobile size when page resizes
     window.addEventListener('resize', () => {  
-      if (window.innerWidth < 400) {
+      if (window.innerWidth < 500) {
         setMobileView(true)
       } else {
         setMobileView(false)
@@ -113,8 +112,8 @@ function OrderList(props: Order) {
       return (
         <div className="order">
           <div className="order-row">
-            <p>Ordernummer</p>
-            <p>{props.orderNumber}</p>
+            <p className="order-number">Ordernummer</p>
+            <p className="order-number">#{props.orderNumber}</p>
           </div>
           <div className="order-row">
             <p>Kund</p>
