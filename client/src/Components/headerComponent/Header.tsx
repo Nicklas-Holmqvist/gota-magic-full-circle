@@ -7,18 +7,21 @@ import SimpleMenu from "./SimpleMenu";
 import { useAuthContext } from "../../Context/AuthContext";
 import { Link, useHistory } from 'react-router-dom'
 import { useProductContext } from "../../Context/ProductContext";
-
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+interface Category {
+  _id: string,
+  catName: string
+}
 
 function Header() {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const authContext = useAuthContext()
   const authUser:boolean = authContext.auth
   const productContext = useProductContext()
-  const categories = productContext.categories
+  const categories: Category[] = productContext.categories
   const history = useHistory()
-
-  console.log(categories)
-
   
   const [auth, setAuth] = useState<boolean>(authUser)
   let [isOpen, setIsOpen] = useState(false)
@@ -44,6 +47,20 @@ function Header() {
         console.log(err)
       })
   }
+
+  const categoriesList = categories.map((c)=> (
+    <Link className="link-style" to="/ProductList" key={c._id}>
+          <MenuItem >{c.catName}</MenuItem>
+    </Link>
+  ))
+
+  const handleCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   function LoggedInButtons() {
     return (
@@ -81,11 +98,41 @@ function Header() {
       </Link>
 
       <div className="menu-bar">
-        <Link className="link-style" to="/ProductList">
-          <div className="menu-button">
-            <Button>Produkter</Button>
-          </div>
+      <Button
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={handleCategory}
+        className="hamb-menu-icon-btn"
+      >
+        Produkter
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        {categoriesList}
+        {/* <Link className="link-style" to="/ProductList">
+          <MenuItem >Produkter</MenuItem>
         </Link>
+        <Link className="link-style" to="/AboutUs">
+          <MenuItem >Om oss</MenuItem>
+        </Link>
+        <Link className="link-style" to="/Contact">
+          <MenuItem >Kontakt</MenuItem>
+        </Link>
+        <Link className="link-style" to="/Tournaments">
+          <MenuItem >Turneringar</MenuItem>
+        </Link>
+        <Link className="link-style" to="/Login">
+          <MenuItem >Logga In</MenuItem>
+        </Link>
+        <Link className="link-style" to="/Register">
+          <MenuItem >Skapa konto</MenuItem>
+        </Link> */}
+      </Menu>
         <Link className="link-style" to="/AboutUs">
           <div className="menu-button">
             <Button>Om oss</Button>
