@@ -3,6 +3,7 @@ import React, {
   createContext,
   FunctionComponent,
   useContext,
+  useEffect,
 } from "react";
 
 import { Product } from "../DB/Products";
@@ -48,28 +49,32 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
     return null;
   });
 
-  const options = {
-    method: "get",
-  };
+  useEffect(() => {
 
-  const fetchCategories = async () => {
-    await fetch("/api/categories", options)
-      .then(function (res) {
-        if (res.status === 400) {
-          return;
-        }
-        return res.json();
-      })
-      .then(function (data) {
-        console.log(data);
-        setCategories(data);
-      })
-      .catch(function (err) {
-        console.error(err);
-      });
-  };
+    const options = {
+      method: "get",
+    };
 
-  // fetchCategories()
+    const fetchCategories = async () => {
+      await fetch("/api/categories", options)
+        .then(function (res) {
+          if (res.status === 400) {
+            return;
+          }
+          return res.json();
+        })
+        .then(function (data) {
+          console.log(data);
+          setCategories(data);
+        })
+        .catch(function (err) {
+          console.error(err);
+        });
+    };
+  
+    fetchCategories()
+  },[setCategories])
+  
 
   return (
     <ProductContext.Provider

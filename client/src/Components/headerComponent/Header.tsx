@@ -6,13 +6,19 @@ import TemporaryDrawer from "./Drawer";
 import SimpleMenu from "./SimpleMenu";
 import { useAuthContext } from "../../Context/AuthContext";
 import { Link, useHistory } from 'react-router-dom'
+import { useProductContext } from "../../Context/ProductContext";
 
 
 function Header() {
 
   const authContext = useAuthContext()
   const authUser:boolean = authContext.auth
+  const productContext = useProductContext()
+  const categories = productContext.categories
   const history = useHistory()
+
+  console.log(categories)
+
   
   const [auth, setAuth] = useState<boolean>(authUser)
   let [isOpen, setIsOpen] = useState(false)
