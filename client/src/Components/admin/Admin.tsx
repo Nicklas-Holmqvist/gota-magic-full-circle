@@ -1,5 +1,5 @@
 // import { Grid } from '@material-ui/core';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Redirect } from "react-router";
 import { useAuthContext } from "../../Context/AuthContext";
 import Orders from "./Orders";
@@ -22,7 +22,6 @@ function Admin() {
   const showOrders = (e: any) => {
     setDisplayProducts(false);
   };
-  console.log(isAdmintrue);
   if (!isAdmintrue) {
     return <Redirect to="/Login" />;
   } else {

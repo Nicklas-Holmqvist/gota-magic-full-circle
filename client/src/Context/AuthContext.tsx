@@ -20,7 +20,6 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
   const [authAdmin, setAuthAdmin] = useState<boolean>(false);
   const [auth, setAuth] = useState<boolean>(false);
 
-  console.log(authAdmin);
   const getAuth = (auth: boolean) => {
     setAuth(auth);
   };
