@@ -80,7 +80,7 @@ exports.login = async (req, res) => {
 
 // Log out
 exports.logout = (req, res) => {
-
+  console.log('INNE PÅ LOGOUT')
   try {
     res.cookie('user', '', { maxAge: 1 })
     res.status(200).json('User has logged out')
