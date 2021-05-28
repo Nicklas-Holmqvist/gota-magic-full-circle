@@ -16,7 +16,7 @@ exports.uploadImage = async (req, res, next) => {
   const newImage = req.body;
   try {
     console.log(req.file, "hejsan?");
-    const image = await ImageModel.create(req.file);
+    const image = await ImageModel.create(newImage);
     res.status(200).json(image);
   } catch (error) {
     res.status(400).json(error, "It is a no working yo");
