@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
-const fileUpload = require("express-fileupload");
+// const fileUpload = require("express-fileupload");
 
 const productRouter = require("./resources/products/routes");
 const orderRouter = require("./resources/orders/routes");
@@ -9,6 +9,7 @@ const orderRouter = require("./resources/orders/routes");
 const userRouter = require("./resources/users/routes");
 const shippingRouter = require("./resources/shipping/routes");
 const categoryRouter = require("./resources/categories/routes");
+const imageRouter = require("./resources/images/routes");
 
 // This two always on TOP!!!
 const app = express();
@@ -16,13 +17,13 @@ app.use(express.json());
 //
 
 app.use(cookieParser());
-app.use(express - static("uploads"));
 
 app.use(productRouter);
 app.use(userRouter);
 app.use(categoryRouter);
 app.use(orderRouter);
 app.use(shippingRouter);
+app.use(imageRouter);
 
 async function run() {
   try {
