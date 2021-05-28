@@ -20,6 +20,7 @@ import { useCheckoutContext } from "../Context/CheckoutContext";
 import { useCart } from "../Context/CartContext";
 import { Grid } from "@material-ui/core";
 import { Redirect } from "react-router-dom";
+import { useAuthContext } from "../Context/AuthContext";
 
 // Creates an array for all the steps.
 // the amount of strings in the array decides the amount of
@@ -49,9 +50,9 @@ function getStepContent(stepIndex: number) {
 }
 
 function BreadCrumbs() {
-  // if (!auth){
-  //   return <Redirect to="/Login"/>
-  // }
+  const authContext = useAuthContext();
+  const auth: boolean = authContext.auth;
+
   const cart = useCart();
   const user = useCheckoutContext();
   const validatedUser = user.validatedUser;
@@ -171,6 +172,9 @@ function BreadCrumbs() {
       handleNext();
     }
   };
+  if (!auth) {
+    return <Redirect to="/Login" />;
+  }
 
   return (
     <div className="background">
