@@ -13,11 +13,9 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
     
     const [authAdmin, setAuthAdmin] = useState<boolean>(false)
     const [auth, setAuth] = useState<boolean>(false)
-    console.log(auth)
    
     const getAuth = (auth:boolean) => {
         setAuth(auth) 
-        console.log('kör getAuth funktionen')
     }
 
     const options = {
@@ -34,7 +32,6 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
                 return res.json();
             })
             .then(function (data) {
-                console.log(data)
                 const user = data
                 setAuthAdmin(user.isAdmin)
                 setAuth(user.userId === null ? false : true)

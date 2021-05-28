@@ -13,14 +13,12 @@ function Header() {
   const authContext = useAuthContext()
   const authUser:boolean = authContext.auth
   const history = useHistory()
-  // const auth = authContext.auth
   
   const [auth, setAuth] = useState<boolean>(authUser)
   let [isOpen, setIsOpen] = useState(false)
 
 
   useEffect(() => {
-    console.log(auth)
     setAuth(authContext.auth)
   },[authContext.auth, setAuth, auth])
 
@@ -29,11 +27,9 @@ function Header() {
     setAuth(false)
     history.push('/')
     authContext.getAuth(false)
-    console.log('Inne i handleclick')
     
-    fetch('/api/user/logout', { method: 'GET' })
+    fetch('/api/user/logout', { method: 'POST' })
       .then((response) => {
-        console.log('Inne i fetch')
         if (response.ok) {        
           alert('You are now logged out!')      
         }
