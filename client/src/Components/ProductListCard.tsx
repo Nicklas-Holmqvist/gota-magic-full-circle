@@ -127,8 +127,10 @@ function ProductListCard(props: Props) {
       cartQuantity = obj.quantity;
     });
     let newStock = stock - cartQuantity - 1;
+    if (newStock < 0) {
+      newStock = 0;
+    }
     setDbStock(newStock);
-    console.log(cartQuantity);
   }
 }
 
