@@ -2,7 +2,7 @@ import { CSSProperties } from "@material-ui/styles";
 import '../css/components.css';
 import ProductListCard from "./ProductListCard";
 import SearchError from "./SearchError";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   IconButton,
   Grid,
@@ -10,12 +10,20 @@ import {
   // Button,
   // makeStyles,
 } from "@material-ui/core";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import Button from "@material-ui/core/Button";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 // import { useProducts } from "../Context/ProductContext";
 import { useProductContext } from "../Context/ProductContext";
 
 import { Product } from "../DB/Products";
+
+interface Category {
+  _id: string,
+  catName: string
+}
 
 // const useStyles = makeStyles({
 //   searchfield: {
@@ -43,6 +51,10 @@ function ProductList() {
   const [pageNumber, setPageNumber] = useState(1);
   const [productViewArray, setProductViewArray] = useState<Product[]>(products);
   // const [searchValue, setSearchValue] = useState<string>();
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const getCat = productContext.getCategory
+  const categories: Category[] = productContext.categories
+  const resetAllCategories = productContext.setAllProducts
 
   console.log(products)
 
@@ -225,6 +237,27 @@ function ProductList() {
     }
   };
 
+  // Categories
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
+    resetAllCategories()
+    setPage(0);
+      setPageItems(pageNumbers);
+      setPageNumber(1);
+    setAnchorEl(event.currentTarget);
+  };
+
+
+  const categoriesList = categories.map((c)=> (
+      
+    
+          <MenuItem onClick={() => {
+            getCat(c._id)}}>{c.catName}</MenuItem>
+  ))
+
  
   return (
     <Grid
@@ -234,6 +267,7 @@ function ProductList() {
       className="productListContainer"
       style={productListContainer}
     >
+      
       <div className="sok-test">
         {/* <Grid item xs={12} className="searchContainer" style={searchStyle}>
           <form onSubmit={handleSubmit} style={formStyle} autoComplete="off" >
@@ -261,8 +295,26 @@ function ProductList() {
         {noResult} */}
 
         <Grid container xs={12} md={10} style={infoLandingContainer}>
+          
+          <Button
+            aria-controls="simple-menu"
+            aria-haspopup="true"
+            onClick={handleCategory}        
+            className="hamb-menu-icon-btn"
+          >
+            Kategorier
+          </Button>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+              <MenuItem onClick={resetAllCategories}>Alla Produkter</MenuItem>
+            {categoriesList}
+          </Menu>
           <Grid item style={listStyle}>
-            
             {productData}
             {productViewArray.length === 0 ? <SearchError /> : null}
             <Grid

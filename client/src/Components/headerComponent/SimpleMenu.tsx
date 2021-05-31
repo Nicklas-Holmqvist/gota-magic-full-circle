@@ -63,27 +63,9 @@ export default function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <Button
-        aria-controls="simple-menu"
-        aria-haspopup="true"
-        onClick={handleCategory}
-        >
-        Produkter
-        </Button>
-        <Menu
-        id="simple-menu"
-        anchorEl={anchorE2}
-        keepMounted
-        open={Boolean(anchorE2)}
-        onClose={handleClose2}
-        >
         <Link className="link-style" to="/ProductList">
-          <MenuItem onClick={resetAllCategories}>Alla Produkter</MenuItem>
+          <MenuItem onClick={handleClose}>Produkter</MenuItem>
         </Link>
-        {categoriesList}
-      </Menu>
-      
-     
         <Link className="link-style" to="/AboutUs">
           <MenuItem onClick={handleClose}>Om oss</MenuItem>
         </Link>

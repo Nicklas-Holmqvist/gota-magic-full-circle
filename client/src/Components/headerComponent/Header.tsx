@@ -103,26 +103,11 @@ function Header() {
       </Link>
 
       <div className="menu-bar">
-      <Button
-        aria-controls="simple-menu"
-        aria-haspopup="true"
-        onClick={handleCategory}        
-        className="hamb-menu-icon-btn"
-      >
-        Produkter
-      </Button>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
         <Link className="link-style" to="/ProductList">
-          <MenuItem onClick={resetAllCategories}>Alla Produkter</MenuItem>
+          <div className="menu-button">
+            <Button>Produkter</Button>
+          </div>
         </Link>
-        {categoriesList}
-      </Menu>
         <Link className="link-style" to="/AboutUs">
           <div className="menu-button">
             <Button>Om oss</Button>
