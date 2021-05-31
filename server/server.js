@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
-// const fileUpload = require("express-fileupload");
 
 const productRouter = require("./resources/products/routes");
 const orderRouter = require("./resources/orders/routes");
@@ -14,6 +13,7 @@ const imageRouter = require("./resources/images/routes");
 // This two always on TOP!!!
 const app = express();
 app.use(express.json());
+app.use("/uploads", express.static("uploads"));
 //
 
 app.use(cookieParser());
