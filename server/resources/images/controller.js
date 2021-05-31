@@ -1,19 +1,17 @@
 const express = require("express");
+const { Mongoose } = require("mongoose");
 const ImageModel = require("./model");
 
 // const multer = require("multer");
 // const upload = multer({ dest: "uploads/" });
 
 exports.uploadImage = async (req, res, next) => {
-  // const image = new ImageModel({
-  //     _id: new mongoose.Types.ObjectId()
-  // })
-  //   const imgName = req.body;
+  const newImage = {
+    // _id: new mongoose.Types.ObjectId(),
+    imgName: req.body.imgName,
+    productImage: req.file.path,
+  };
 
-  //   const newImage = {
-  //     imgName: imgName,
-  //   };
-  const newImage = req.body;
   try {
     console.log(req.file, "hejsan?");
     const image = await ImageModel.create(newImage);
