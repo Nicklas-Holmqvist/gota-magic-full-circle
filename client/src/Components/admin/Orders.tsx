@@ -1,5 +1,5 @@
 import { Grid } from '@material-ui/core'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Order, useOrderContext } from '../../Context/OrderContext'
 import OrderList from './OrdeList'
 
@@ -8,28 +8,36 @@ function Orders() {
   const [mobileView, setMobileView] = useState(false)
   
   // checks if screen width is mobile size when page loads
-  window.addEventListener('load', () => {
-    if (window.innerWidth < 500) {
-      setMobileView(true)
-      console.log('mobile')
-    }
-    console.log('not mobile')
-  })
+  // window.addEventListener('load', () => {
+  //   if (window.innerWidth < 500) {
+  //     setMobileView(true)
+  //     console.log('mobile')
+  //   }
+  //   console.log('not mobile')
+  // })
 
-  // checks if screen width is mobile size when page resizes
-  window.addEventListener('resize', () => {  
+  // // checks if screen width is mobile size when page resizes
+  // window.addEventListener('resize', () => {  
+  //   if (window.innerWidth < 500) {
+  //     setMobileView(true)
+  //     console.log('mobile')
+  //   } else {
+  //     setMobileView(false)
+  //   }
+  // })
+
+  useEffect(() => {
     if (window.innerWidth < 500) {
       setMobileView(true)
-      console.log('mobile')
     } else {
       setMobileView(false)
     }
-  })
+  },[]) 
 
   const importOrders = useOrderContext()
 
   const allOrders:Order[] = importOrders.allOrders
-  console.log(allOrders)
+  // console.log(allOrders)
 
   const viewAllOrders = allOrders.map((order) => (
     <div key={order._id}>

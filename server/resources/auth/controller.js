@@ -10,7 +10,6 @@ exports.auth = async (req, res, next) => {
     return next()
   } else {
     if (loggedInUser.isAdmin) {
-      console.log(loggedInUser.email, 'is admin')
       return next()
     } else {
       let error = new Error('User is unauthorized and has no admin rights')

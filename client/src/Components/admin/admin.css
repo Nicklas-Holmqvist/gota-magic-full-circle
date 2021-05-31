@@ -136,6 +136,24 @@
   align-items: center;
 }
 
+.order {
+  display: none
+}
+
+.desktop-orders {
+  display: unset
+}
+
+@media(max-width: 500px) {
+  .order {
+    display: block;
+  }
+  
+  .desktop-orders {
+    display: none
+  }
+}
+
 @media(max-width: 400px) {
   .admin-buttons {
     flex-direction: column;
