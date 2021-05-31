@@ -21,6 +21,7 @@ import { useCart } from "../Context/CartContext";
 import { Grid } from "@material-ui/core";
 import { Redirect } from "react-router-dom";
 import { useAuthContext } from "../Context/AuthContext";
+import { useOrderContext } from "../Context/OrderContext";
 
 // Creates an array for all the steps.
 // the amount of strings in the array decides the amount of
@@ -55,6 +56,7 @@ function BreadCrumbs() {
 
   const cart = useCart();
   const user = useCheckoutContext();
+
   const validatedUser = user.validatedUser;
   const validatedUserShipping = user.validatedShipping;
   const validatedUserPayment = user.validatedPayment;
