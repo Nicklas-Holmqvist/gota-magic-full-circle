@@ -44,17 +44,16 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
     // setViewProduct(getProductView)
   };
 
-  // useEffect(() => {
-  //   setFilterProduct(newList)
-  // },[newList])
+  useEffect(() => {
+    setFilterProduct(products)
+  }, [products, setFilterProduct])
 
   const setAllProducts = () => {
     setFilterProduct(products)
   }
 
-
   const getCategory = (id:string) => {
-    setFilterProduct(products)
+    setProducts(products)
 
     const filteredCategories:Product[] = products.filter((p) => {     
 
@@ -69,7 +68,6 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
         }
       })
       setFilterProduct(newList)
-      console.log({NEWLIST: newList})
       return filtered
     })
     return filteredCategories

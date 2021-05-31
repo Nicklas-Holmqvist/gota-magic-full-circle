@@ -118,6 +118,9 @@ function Header() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+        <Link className="link-style" to="/ProductList">
+          <MenuItem onClick={resetAllCategories}>Alla Produkter</MenuItem>
+        </Link>
         {categoriesList}
       </Menu>
         <Link className="link-style" to="/AboutUs">

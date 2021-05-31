@@ -44,6 +44,12 @@ function ProductList() {
   const [productViewArray, setProductViewArray] = useState<Product[]>(products);
   // const [searchValue, setSearchValue] = useState<string>();
 
+  console.log(products)
+
+  useEffect(() => {
+    setProductViewArray(products)
+  },)
+
   // Fetch data from LS
   useEffect(() => {   
     const data = localStorage.getItem('products') || "[]"
@@ -52,9 +58,7 @@ function ProductList() {
     }
   }, [])
 
-  useEffect(() => {
-    setProductViewArray(products)
-  },)
+
 
   // Styling variables
   const productListContainer: CSSProperties = {
