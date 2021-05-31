@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const productRouter = require("./resources/products/routes");
 const orderRouter = require("./resources/orders/routes");
 
+const auth = require("./resources/auth/routes");
 const userRouter = require("./resources/users/routes");
 const shippingRouter = require("./resources/shipping/routes");
 const categoryRouter = require("./resources/categories/routes");
@@ -19,6 +20,7 @@ app.use("/uploads", express.static("uploads"));
 app.use(cookieParser());
 
 app.use(productRouter);
+app.use(auth);
 app.use(userRouter);
 app.use(categoryRouter);
 app.use(orderRouter);
