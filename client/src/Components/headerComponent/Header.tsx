@@ -5,74 +5,46 @@ import Button from "@material-ui/core/Button";
 import TemporaryDrawer from "./Drawer";
 import SimpleMenu from "./SimpleMenu";
 import { useAuthContext } from "../../Context/AuthContext";
-import { Link, useHistory } from 'react-router-dom'
-import { useProductContext } from "../../Context/ProductContext";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-interface Category {
-  _id: string,
-  catName: string
-}
+import { Link, useHistory } from "react-router-dom";
 
 function Header() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const authContext = useAuthContext();
+  const authUser: boolean = authContext.auth;
+  const history = useHistory();
 
-  const authContext = useAuthContext()
-  const authUser:boolean = authContext.auth
-  const productContext = useProductContext()
-  const getCat = productContext.getCategory
-  const categories: Category[] = productContext.categories
-  const resetAllCategories = productContext.setAllProducts
-  const history = useHistory()
-  
-  const [auth, setAuth] = useState<boolean>(authUser)
-  let [isOpen, setIsOpen] = useState(false)
-
+  const [auth, setAuth] = useState<boolean>(authUser);
+  let [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    setAuth(authContext.auth)
-  },[authContext.auth, setAuth, auth])
+    setAuth(authContext.auth);
+  }, [authContext.auth, setAuth, auth]);
 
-  const handleClick = (e:any) => {
-    e.preventDefault()
-    setAuth(false)
-    history.push('/')
-    authContext.getAuth(false)
-    
-    fetch('/api/user/logout', { method: 'POST' })
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    setAuth(false);
+    history.push("/");
+    authContext.getAuth(false);
+    authContext.getAuthAdmin(false);
+
+    fetch("/api/user/logout", { method: "POST" })
       .then((response) => {
-        if (response.ok) {        
-          alert('You are now logged out!')      
+        if (response.ok) {
+          alert("You are now logged out!");
         }
       })
       .catch((err) => {
-        console.log(err)
-      })
-  }
-
-  const categoriesList = categories.map((c)=> (
-
-    <Link className="link-style" to="/ProductList" key={c._id}>
-          <MenuItem onClick={() => {
-            getCat(c._id)}}>{c.catName}</MenuItem>
-    </Link>
-  ))
-
-  const handleCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
-    resetAllCategories()
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
+        console.log(err);
+      });
   };
 
   function LoggedInButtons() {
     return (
       <>
-        <button onClick={handleClick} className="border-btn">Log Out</button>
+        <button onClick={handleClick} className="border-btn">
+          Log Out
+        </button>
       </>
-    )
+    );
   }
 
   function NotLoggedInButtons() {
@@ -80,24 +52,20 @@ function Header() {
       <>
         <Link to="/login">
           <button className="log-in">Log In</button>
-        </Link>       
+        </Link>
       </>
-    )
+    );
   }
 
   return (
     <div className="header">
-
       <div className="menu-burger-icon">
         <SimpleMenu></SimpleMenu>
       </div>
 
       <Link className="link-style" to="/">
         <div className="header-icon">
-          <img
-            src="../magic 1.png"
-            alt=""
-            />
+          <img src="../magic 1.png" alt="" />
           <h3>Göta Magic</h3>
         </div>
       </Link>
@@ -123,19 +91,19 @@ function Header() {
             <Button>Turneringar</Button>
           </div>
         </Link>
+        <Link className="link-style" to="/Admin">
+          <div className="menu-button">
+            <Button>admin</Button>
+          </div>
+        </Link>
       </div>
 
       <div className="header-right">
-      {auth === false ? (
-        <NotLoggedInButtons />)
-        : (
-        <LoggedInButtons />
-         )}
+        {auth === false ? <NotLoggedInButtons /> : <LoggedInButtons />}
         <div className="cartIcon" onClick={() => setIsOpen(!isOpen)}>
           <TemporaryDrawer></TemporaryDrawer>
         </div>
       </div>
-
     </div>
   );
 }
