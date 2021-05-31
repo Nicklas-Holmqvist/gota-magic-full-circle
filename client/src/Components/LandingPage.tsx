@@ -5,8 +5,12 @@ import '../css/components.css';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
+import { useProductContext } from "../Context/ProductContext";
 
 function LandingPage() {
+
+    const productContext = useProductContext()
+    const resetAllCategories = productContext.setAllProducts
 
     return(
         <>
@@ -28,7 +32,7 @@ function LandingPage() {
                             för kompetativt Magicspel i Göteborg.
                         </p>
                         <Link className="link-style" to="/ProductList">
-                            <Button variant="contained" color="primary">Våra Produkter</Button>
+                            <Button variant="contained" onClick={resetAllCategories} color="primary">Våra Produkter</Button>
                         </Link>
             </div>
         </div>

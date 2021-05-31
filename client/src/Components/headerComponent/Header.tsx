@@ -20,7 +20,9 @@ function Header() {
   const authContext = useAuthContext()
   const authUser:boolean = authContext.auth
   const productContext = useProductContext()
+  const getCat = productContext.getCategory
   const categories: Category[] = productContext.categories
+  const resetAllCategories = productContext.setAllProducts
   const history = useHistory()
   
   const [auth, setAuth] = useState<boolean>(authUser)
@@ -49,12 +51,15 @@ function Header() {
   }
 
   const categoriesList = categories.map((c)=> (
+
     <Link className="link-style" to="/ProductList" key={c._id}>
-          <MenuItem >{c.catName}</MenuItem>
+          <MenuItem onClick={() => {
+            getCat(c._id)}}>{c.catName}</MenuItem>
     </Link>
   ))
 
   const handleCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
+    resetAllCategories()
     setAnchorEl(event.currentTarget);
   };
 
@@ -101,7 +106,7 @@ function Header() {
       <Button
         aria-controls="simple-menu"
         aria-haspopup="true"
-        onClick={handleCategory}
+        onClick={handleCategory}        
         className="hamb-menu-icon-btn"
       >
         Produkter
@@ -114,24 +119,6 @@ function Header() {
         onClose={handleClose}
       >
         {categoriesList}
-        {/* <Link className="link-style" to="/ProductList">
-          <MenuItem >Produkter</MenuItem>
-        </Link>
-        <Link className="link-style" to="/AboutUs">
-          <MenuItem >Om oss</MenuItem>
-        </Link>
-        <Link className="link-style" to="/Contact">
-          <MenuItem >Kontakt</MenuItem>
-        </Link>
-        <Link className="link-style" to="/Tournaments">
-          <MenuItem >Turneringar</MenuItem>
-        </Link>
-        <Link className="link-style" to="/Login">
-          <MenuItem >Logga In</MenuItem>
-        </Link>
-        <Link className="link-style" to="/Register">
-          <MenuItem >Skapa konto</MenuItem>
-        </Link> */}
       </Menu>
         <Link className="link-style" to="/AboutUs">
           <div className="menu-button">

@@ -30,7 +30,8 @@ function ProductList() {
 
   const productContext = useProductContext()
   // Products from ProductsContext
-  const products = productContext.products;
+  const products = productContext.filterProduct;
+  // console.log({PRODUCTLIST: products})
 
   // const style = useStyles();
 
@@ -50,6 +51,10 @@ function ProductList() {
       setProductViewArray(JSON.parse(data))
     }
   }, [])
+
+  useEffect(() => {
+    setProductViewArray(products)
+  },)
 
   // Styling variables
   const productListContainer: CSSProperties = {
