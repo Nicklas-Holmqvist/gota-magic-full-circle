@@ -6,6 +6,7 @@ const imageSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  file: "String",
 });
 
 const ImageModel = mongoose.model("image", imageSchema);

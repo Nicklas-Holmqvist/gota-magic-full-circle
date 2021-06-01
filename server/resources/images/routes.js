@@ -13,18 +13,27 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+// Makes sure only the wanted image-formats can be uploaded
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype === "image/jpeg" ||
+    file.mimetype === "image/jpg" ||
+    file.mimetype === "image/png"
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
 
-// router.use(express.static("uploads"));
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5,
+  },
+  fileFilter: fileFilter,
+});
 
-// router.post("/upload", fileUpload({ createParentPath: true }), (req, res) => {
-//   console.log(req.files);
-
-//   res.status(200).send();
-// });
 router.post("/uploads", upload.single("productImage"), controller.uploadImage);
-
-// router.post("/uploads", upload.single("productImage"), (req, res, next) => {
-//   console.log(req.file);
 
 module.exports = router;

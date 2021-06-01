@@ -11,7 +11,7 @@ const shippingRouter = require("./resources/shipping/routes");
 const categoryRouter = require("./resources/categories/routes");
 const imageRouter = require("./resources/images/routes");
 
-// This two always on TOP!!!
+// This three always on TOP!!!
 const app = express();
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
