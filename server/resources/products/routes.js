@@ -7,7 +7,7 @@ const { auth } = require('../auth/controller')
 router.get("/api/product/", controller.getAllProducts);
 ///////////////                      /////////////////////
 router.get("/api/product/:id", controller.getSpecProduct);
-//////////////                       ////////////////////
+////////////// update stock ////////////////////
 router.put("/api/product/:id", auth, controller.updateStock);
 
 module.exports = router;
