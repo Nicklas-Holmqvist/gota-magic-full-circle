@@ -58,7 +58,7 @@ function ProductListCard(props: Props) {
   const usecart = useCart();
   const style = useStyles();
   const [dbStock, setDbStock] = useState(props.stock);
-  console.log(props.productname, dbStock);
+  // console.log(props.productname, dbStock);
   useEffect(() => {
     updateStock(props.stock);
   }, [usecart.cart]);
@@ -127,8 +127,10 @@ function ProductListCard(props: Props) {
       cartQuantity = obj.quantity;
     });
     let newStock = stock - cartQuantity - 1;
+    if (newStock < 0) {
+      newStock = 0;
+    }
     setDbStock(newStock);
-    console.log(cartQuantity);
   }
 }
 
