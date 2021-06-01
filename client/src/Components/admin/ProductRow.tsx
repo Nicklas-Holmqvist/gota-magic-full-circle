@@ -15,9 +15,27 @@ function ProductRow(props: Product) {
     setStock(e.target.value)
   }
 
-  const handleStockUpdate = (e: any) => {
+  const handleStockUpdate = async (e: any) => {
     e.preventDefault()
     console.log('updating stock for', props.productname, 'to', stock)
+
+    const stockObject = { stock }
+
+    const options = {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(stockObject)
+    }
+
+    try {
+      const response = await fetch(`/api/product/${props._id}`, options)
+      const data = await response.json()
+      console.log(data)
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   return (

@@ -50,7 +50,6 @@ export const OrderProvider: FunctionComponent = ({ children }) => {
             console.error(err);
         });
     };
-    fetchOrders()
 
     return (
         <OrderContext.Provider value={{ allOrders, fetchOrders }}>

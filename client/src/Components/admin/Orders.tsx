@@ -45,13 +45,13 @@ function Orders() {
         className="order-headers"
       >
         {mobileView ? ''
-         : <Grid container alignContent='center'>
-         <Grid item xs={1}>Ordernr</Grid>
-         <Grid item xs={4}>Namn</Grid>
-         <Grid item xs={2}>Fraktsätt</Grid>
-         <Grid item xs={2}>Totalt värde</Grid>
-         <Grid item xs={2}>Skickat</Grid>
-       </Grid>}
+          : <Grid container alignContent='center'>
+          <Grid item xs={1}>Ordernr</Grid>
+          <Grid item xs={4}>Namn</Grid>
+          <Grid item xs={2}>Fraktsätt</Grid>
+          <Grid item xs={2}>Totalt värde</Grid>
+          <Grid item xs={2}>Skickat</Grid>
+        </Grid>}
 
         <Grid container direction='column'>
           {viewAllOrders}
