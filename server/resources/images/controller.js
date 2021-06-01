@@ -2,14 +2,11 @@ const express = require("express");
 const { Mongoose } = require("mongoose");
 const ImageModel = require("./model");
 
-// const multer = require("multer");
-// const upload = multer({ dest: "uploads/" });
-
 exports.uploadImage = async (req, res, next) => {
   const newImage = {
-    // _id: new mongoose.Types.ObjectId(),
     imgName: req.body.imgName,
     productImage: req.file.path,
+    file: req.file.data,
   };
 
   try {
