@@ -39,18 +39,18 @@ export const OrderProvider: FunctionComponent = ({ children }) => {
         await fetch("/api/order", options)
         .then(function (res) {
             if (res.status === 400) {
-            return;
+                return;
             }
             return res.json();
         })
         .then(function (data) {
-            console.log(data.allOrders)
             setAllOrders(data.allOrders);
         })
         .catch(function (err) {
             console.error(err);
         });
     };
+    fetchOrders()
 
     return (
         <OrderContext.Provider value={{ allOrders, fetchOrders }}>
