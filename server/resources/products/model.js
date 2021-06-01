@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema({
     type: Types.ObjectId,
     ref: 'categorie'}],
   color: "String",
-  cmc: "String", // Number?
+  cmc: "String",
   cardType: "String",
   expansion: "String",
   image: "String",
