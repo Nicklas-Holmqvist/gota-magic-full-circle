@@ -6,6 +6,7 @@ import TemporaryDrawer from "./Drawer";
 import SimpleMenu from "./SimpleMenu";
 import { useAuthContext } from "../../Context/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import Logo from '../../assets/images/magic-1.png'
 
 function Header() {
   const authContext = useAuthContext();
@@ -40,7 +41,7 @@ function Header() {
   function LoggedInButtons() {
     return (
       <>
-        <button onClick={handleClick} className="border-btn">
+        <button onClick={handleClick} className="border-btn alt-btn">
           Log Out
         </button>
       </>
@@ -51,7 +52,7 @@ function Header() {
     return (
       <>
         <Link to="/login">
-          <button className="log-in">Log In</button>
+          <button className="log-in alt-btn">Log In</button>
         </Link>
       </>
     );
@@ -65,7 +66,7 @@ function Header() {
 
       <Link className="link-style" to="/">
         <div className="header-icon">
-          <img src="../magic 1.png" alt="" />
+          <img src={Logo} alt="Logo" />
           <h3>Göta Magic</h3>
         </div>
       </Link>
