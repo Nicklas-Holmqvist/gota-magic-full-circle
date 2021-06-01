@@ -6,25 +6,6 @@ import OrderList from './OrdeList'
 function Orders() {
 
   const [mobileView, setMobileView] = useState(false)
-  
-  // checks if screen width is mobile size when page loads
-  // window.addEventListener('load', () => {
-  //   if (window.innerWidth < 500) {
-  //     setMobileView(true)
-  //     console.log('mobile')
-  //   }
-  //   console.log('not mobile')
-  // })
-
-  // // checks if screen width is mobile size when page resizes
-  // window.addEventListener('resize', () => {  
-  //   if (window.innerWidth < 500) {
-  //     setMobileView(true)
-  //     console.log('mobile')
-  //   } else {
-  //     setMobileView(false)
-  //   }
-  // })
 
   useEffect(() => {
     if (window.innerWidth < 500) {
@@ -37,7 +18,6 @@ function Orders() {
   const importOrders = useOrderContext()
 
   const allOrders:Order[] = importOrders.allOrders
-  // console.log(allOrders)
 
   const viewAllOrders = allOrders.map((order) => (
     <div key={order._id}>
@@ -65,13 +45,13 @@ function Orders() {
         className="order-headers"
       >
         {mobileView ? ''
-         : <Grid container alignContent='center'>
-         <Grid item xs={1}>Ordernr</Grid>
-         <Grid item xs={4}>Namn</Grid>
-         <Grid item xs={2}>Fraktsätt</Grid>
-         <Grid item xs={2}>Totalt värde</Grid>
-         <Grid item xs={2}>Skickat</Grid>
-       </Grid>}
+          : <Grid container alignContent='center'>
+          <Grid item xs={1}>Ordernr</Grid>
+          <Grid item xs={4}>Namn</Grid>
+          <Grid item xs={2}>Fraktsätt</Grid>
+          <Grid item xs={2}>Totalt värde</Grid>
+          <Grid item xs={2}>Skickat</Grid>
+        </Grid>}
 
         <Grid container direction='column'>
           {viewAllOrders}
