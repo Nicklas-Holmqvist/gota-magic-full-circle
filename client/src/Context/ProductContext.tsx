@@ -3,23 +3,30 @@ import React, {
   createContext,
   FunctionComponent,
   useContext,
+  useEffect,
 } from "react";
 
-import { Product } from "../DB/Products";
+import { Product, Categories } from "../DB/Products";
 export const ProductContext = createContext<Context>(undefined!);
 
 // Typing for items in ProductProvider
 type Context = {
+  filterProduct: Product[];
   products: Product[];
   getProductView: Product[];
   categories: [];
   addProduct: (product: Product) => void;
   getIdFromProductList: (id: string) => void;
   ProductArray: (product: Product[]) => void;
+  getCategory: (id: string) => void;
+  setAllProducts: () => void;
 };
 
 export const ProductProvider: FunctionComponent = ({ children }) => {
+  const newList:Product[] = []
   const [products, setProducts] = useState<Product[]>([]);
+  const [filterProduct, setFilterProduct] = useState<Product[]>(products);
+
 
   const [categories, setCategories] = useState<[]>([]);
 
@@ -37,6 +44,35 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
     // setViewProduct(getProductView)
   };
 
+  useEffect(() => {
+    setFilterProduct(products)
+  }, [products, setFilterProduct])
+
+  const setAllProducts = () => {
+    setFilterProduct(products)
+  }
+
+  const getCategory = (id:string) => {
+    setProducts(products)
+
+    const filteredCategories:Product[] = products.filter((p) => {     
+
+      const cat:Categories[] = p.categories
+      const product = p
+
+      const filtered = cat.filter((c) => {
+        if(c._id === id) {
+          return newList.push(product)          
+        } else {
+          return null
+        }
+      })
+      setFilterProduct(newList)
+      return filtered
+    })
+    return filteredCategories
+  }
+  
   const ProductArray = (products: Product[]) => {
     setProducts(products);
   };
@@ -48,28 +84,31 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
     return null;
   });
 
-  const options = {
-    method: "get",
-  };
+  useEffect(() => {
 
-  const fetchCategories = async () => {
-    await fetch("/api/categories", options)
-      .then(function (res) {
-        if (res.status === 400) {
-          return;
-        }
-        return res.json();
-      })
-      .then(function (data) {
-        console.log(data);
-        setCategories(data);
-      })
-      .catch(function (err) {
-        console.error(err);
-      });
-  };
+    const options = {
+      method: "get",
+    };
 
-  // fetchCategories()
+    const fetchCategories = async () => {
+      await fetch("/api/categories", options)
+        .then(function (res) {
+          if (res.status === 400) {
+            return;
+          }
+          return res.json();
+        })
+        .then(function (data) {
+          setCategories(data);
+        })
+        .catch(function (err) {
+          console.error(err);
+        });
+    };
+  
+    fetchCategories()
+  },[setCategories])
+  
 
   return (
     <ProductContext.Provider
@@ -80,6 +119,9 @@ export const ProductProvider: FunctionComponent = ({ children }) => {
         addProduct,
         getIdFromProductList,
         ProductArray,
+        getCategory,
+        filterProduct,
+        setAllProducts
       }}
     >
       {children}

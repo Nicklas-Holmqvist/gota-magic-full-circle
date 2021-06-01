@@ -11,6 +11,11 @@ export interface Product {
   producttype: string;
   view: boolean;
   rating: number;
-  categories: [];
+  categories: Categories[];
   stock: number;
+}
+
+export interface Categories {
+  _id: string;
+  catName: string
 }

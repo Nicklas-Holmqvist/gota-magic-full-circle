@@ -37,7 +37,6 @@ function Api() {
         return res.json();
       })
       .then(function (data) {
-        console.log(data);
         setProducts(data);
       })
       .catch(function (err) {
