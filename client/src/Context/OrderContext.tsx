@@ -12,7 +12,17 @@ export const OrderContext = createContext<Context>(undefined!);
 type Context = {
   allOrders: [];
   fetchOrders: () => void;
-  getNewOrderInfo: (order: any) => void;
+  getNewOrderInfo: (
+    id: string,
+    orderNumber: number,
+    userId: string,
+    user: string,
+    products: OrderRow[],
+    totalCost: number,
+    shipping: string,
+    address: [],
+    sent: boolean
+  ) => void;
 };
 
 export interface Order {
@@ -36,7 +46,7 @@ export interface OrderRow {
 
 export const OrderProvider: FunctionComponent = ({ children }) => {
   const [allOrders, setAllOrders] = useState<[]>([]);
-  const [newOrder, setNewOrder] = useState({});
+  const [newOrder, setNewOrder] = useState<{}>();
 
   const options = {
     method: "get",
@@ -58,9 +68,30 @@ export const OrderProvider: FunctionComponent = ({ children }) => {
         console.error(err);
       });
   };
-  const getNewOrderInfo = (order: any) => {
-    setNewOrder({});
-    setNewOrder(order);
+  const getNewOrderInfo = (
+    id: string,
+    orderNumber: number,
+    userId: string,
+    user: string,
+    products: OrderRow[],
+    totalCost: number,
+    shipping: string,
+    address: [],
+    sent: boolean
+  ) => {
+    const newOrder = {
+      _id: id,
+      orderNumber,
+      userId,
+      user,
+      products,
+      totalCost,
+      shipping,
+      address,
+      sent,
+    };
+    // setNewOrder({});
+    // setNewOrder(newOrder);
     console.log(newOrder);
   };
   const sendOrder = async (e: any) => {
