@@ -70,6 +70,20 @@
   text-decoration: none;
 }
 
+.alt-btn {
+  background: rgb(172, 172, 172);
+  border: none;
+  text-transform: uppercase;
+  padding: .5rem .8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+}
+
+.alt-btn:hover {
+  background: rgb(153, 153, 153);
+}
+
 @media screen and (max-width: 880px) {
   .menu-bar {
     display: none;

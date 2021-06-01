@@ -41,7 +41,7 @@ function Header() {
   function LoggedInButtons() {
     return (
       <>
-        <button onClick={handleClick} className="border-btn">
+        <button onClick={handleClick} className="border-btn alt-btn">
           Log Out
         </button>
       </>
@@ -52,7 +52,7 @@ function Header() {
     return (
       <>
         <Link to="/login">
-          <button className="log-in">Log In</button>
+          <button className="log-in alt-btn">Log In</button>
         </Link>
       </>
     );
