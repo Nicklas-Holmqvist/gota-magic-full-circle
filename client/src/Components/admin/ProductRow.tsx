@@ -11,13 +11,11 @@ function ProductRow(props: Product) {
   const [stock, setStock] = useState(Number)
 
   const updateValue = (e: any) => {
-    console.log(e.target.value)
     setStock(e.target.value)
   }
 
   const handleStockUpdate = async (e: any) => {
     e.preventDefault()
-    console.log('updating stock for', props.productname, 'to', stock)
 
     const stockObject = { stock }
 
@@ -32,7 +30,6 @@ function ProductRow(props: Product) {
     try {
       const response = await fetch(`/api/product/${props._id}`, options)
       const data = await response.json()
-      console.log(data)
     } catch (err) {
       console.error(err)
     }
