@@ -1,6 +1,4 @@
 import {
-    Typography,
-    makeStyles,
     Grid,
     Accordion,
     AccordionSummary,
