@@ -14,11 +14,11 @@ function Orders() {
       setMobileView(false)
     }
   },[]) 
-
+  
   const importOrders = useOrderContext()
-
+  
   const allOrders:Order[] = importOrders.allOrders
-
+  
   const viewAllOrders = allOrders.map((order) => (
     <div key={order._id}>
       <OrderList
@@ -36,7 +36,6 @@ function Orders() {
     <div className="orders">
       <div className="product-divider"></div>
       <p className="subtext">Vi rekommenderar att ni visar och hanterar denna vyn på en datorskärm</p>
-      <button style={{ marginTop: "3rem" }} onClick={importOrders.fetchOrders} className="get-orders-btn">Hämta ordrar</button>
       <Grid container spacing={0}
         direction="column"
         alignItems="center"

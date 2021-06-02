@@ -35,7 +35,6 @@ function Products() {
 
     return(
         <>
-        {console.log(products)}
         {viewAllProducts}
         </>
     )

@@ -27,8 +27,6 @@ export interface OrderRow {
   quantity: number
 }
 
-
-
 function OrderList(props: Order) {
 
     const products:OrderRow[] = props.products
