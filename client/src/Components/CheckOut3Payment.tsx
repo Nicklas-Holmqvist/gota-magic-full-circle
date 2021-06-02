@@ -323,10 +323,10 @@ function CheckOut3Payment() {
             {cart.cart.map((item) => {
               return (
                 <div className="cartItem">
-                  <img src={item.img} alt={item.productname} />
+                  <img src={item.img} alt={item.productName} />
                   <div className="cartInfoText">
                     <p>
-                      <strong>{item.productname}</strong>
+                      <strong>{item.productName}</strong>
                     </p>
                     <p>{item.price} kr</p>{" "}
                     <p>
