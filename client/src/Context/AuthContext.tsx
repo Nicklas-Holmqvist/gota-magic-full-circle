@@ -11,30 +11,30 @@ export const AuthContext = createContext<Context>(undefined!);
 // Typing for items in ProductProvider
 type Context = {
   authAdmin: boolean;
-  auth: boolean;
-  getAuth: (auth: boolean) => void;
-  getAuthAdmin: (auth: boolean) => void;
+  // getAuth: (auth: boolean) => void;
+  // getAuthAdmin: (auth: boolean) => void;
+  fetchAuth: () => void;
+  logOut: () => void;
   user: any;
 };
 
 export const AuthProvider: FunctionComponent = ({ children }) => {
   const [authAdmin, setAuthAdmin] = useState<boolean>(false);
-  const [auth, setAuth] = useState<boolean>(false);
+  // const [auth, setAuth] = useState<boolean>(false);
   const [user, setUser] = useState();
 
-  const getAuth = (auth: boolean) => {
-    setAuth(auth);
-  };
+  // const getAuth = (auth: boolean) => {
+  //   setAuth(auth);
+  // };
 
-  const getAuthAdmin = (auth: boolean) => {
-    setAuthAdmin(auth);
-  };
+  // const getAuthAdmin = (auth: boolean) => {
+  //   setAuthAdmin(auth);
+  // };
 
   const options = {
     method: "get",
   };
 
-  useEffect(() => {
     const fetchAuth = async () => {
       await fetch("/auth", options)
         .then(function (res) {
@@ -47,25 +47,38 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
           const user = data;
           if (user === undefined) {
             setAuthAdmin(false);
-            setAuth(false);
+            // setAuth(false);
           }
-          setAuthAdmin(user.isAdmin === false ? false : true);
+          setAuthAdmin(user.isAdmin);
           setUser(user);
-          setAuth(user.userId === null || false ? false : true);
+          // setAuth(user.userId);
         })
         .catch(function (err) {
           console.error(err);
         });
     };
 
-    fetchAuth();
-  });
+    const logOut = async () => {
+      fetch("/api/user/logout", { method: "POST" })
+      .then((response) => {
+        if (response.ok) {
+          setAuthAdmin(false);
+          setUser(undefined);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      
+    }
+
+    
 
   //console.log({ ADMINAUTH: authAdmin });
 
   return (
     <AuthContext.Provider
-      value={{ auth, getAuth, authAdmin, getAuthAdmin, user }}
+      value={{ authAdmin, user, fetchAuth, logOut }}
     >
       {children}
     </AuthContext.Provider>

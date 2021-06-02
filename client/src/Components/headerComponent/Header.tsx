@@ -10,37 +10,39 @@ import Logo from '../../assets/images/magic-1.png'
 
 function Header() {
   const authContext = useAuthContext();
-  const authUser: boolean = authContext.auth;
+  // const authUser: boolean = authContext.auth;
   const history = useHistory();
-
-  const [authAdmin, setAuthAdmin] = useState<boolean>(authContext.authAdmin)
-  const [auth, setAuth] = useState<boolean>(authUser);
+  const authAdmin = authContext.authAdmin
+  // const auth = authContext.auth
+  const user = authContext.user
+  // const [authAdmin, setAuthAdmin] = useState<boolean>(authContext.authAdmin)
+  // const [auth, setAuth] = useState<boolean>(authUser);
   let [isOpen, setIsOpen] = useState(false);
-  console.log({HEADERADMIN: authAdmin})
+  console.log({HEADERADMIN: user})
 
-  useEffect(() => {
-    setAuthAdmin(authContext.authAdmin);
-  }, [authContext.authAdmin]);
+  // useEffect(() => {
+  //   setAuthAdmin(authContext.authAdmin);
+  // }, [authContext.authAdmin]);
 
-  useEffect(() => {
-    setAuth(authContext.auth);
-  }, [authContext.auth, setAuth, auth]);
+  // useEffect(() => {
+  //   setAuth(authContext.auth);
+  // }, [authContext.auth, setAuth, auth]);
 
   const handleClick = (e: any) => {
     e.preventDefault();
-    setAuth(false);
+    // setAuth(false);
     history.push("/");
-    authContext.getAuth(false);
+    authContext.logOut()
 
-    fetch("/api/user/logout", { method: "POST" })
-      .then((response) => {
-        if (response.ok) {
-          alert("You are now logged out!");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // fetch("/api/user/logout", { method: "POST" })
+    //   .then((response) => {
+    //     if (response.ok) {
+    //       alert("You are now logged out!");
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   function LoggedInButtons() {
@@ -111,7 +113,7 @@ function Header() {
       </div>
 
       <div className="header-right">
-        {auth === false ? <NotLoggedInButtons /> : <LoggedInButtons />}
+        {authContext.user === undefined ? <NotLoggedInButtons /> : <LoggedInButtons />}
         <div className="cartIcon" onClick={() => setIsOpen(!isOpen)}>
           <TemporaryDrawer></TemporaryDrawer>
         </div>

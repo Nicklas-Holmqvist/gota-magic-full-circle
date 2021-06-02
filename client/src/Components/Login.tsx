@@ -57,7 +57,7 @@ function Login() {
       }
 
       if (data.user) {
-        authContext.getAuth(true)
+        authContext.fetchAuth()
         history.push('/ProductList')
       }
       
