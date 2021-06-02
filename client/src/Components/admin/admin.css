@@ -21,6 +21,10 @@
   margin: 1rem 0 0 0;
 }
 
+.subtext {
+  display: none;
+}
+
 .admin-product-stock-input {
   width: 3rem;
   padding: .25rem .5rem;
@@ -58,6 +62,48 @@
   width: 100%;
 }
 
+.order {
+  margin: 1rem 0;
+  padding: 1rem .5rem;
+  background: white
+}
+
+.product-title {
+  margin: 1rem 0;
+  font-weight: bolder;
+}
+
+.order-number {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.order-row {
+  padding: 0.3rem 0;
+  border-bottom: 1px solid grey;
+}
+
+.order-product-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: .8rem;
+  padding: .25rem 0;
+  border-top: 1px solid rgb(162, 162, 162);
+}
+
+.order-product-row b {
+  margin-right: .75rem;
+}
+
+.order-product-row small {
+  margin: .75rem;
+  font-size: .8rem;
+}
+
+.hide {
+  display: none;
+}
 
 .admin-buttons {
   margin-top: 5rem;
@@ -82,4 +128,57 @@
 
 .products-admin-btn:hover, .orders-admin-btn:hover {
   background: rgb(150, 150, 150);
+}
+
+.order-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order {
+  display: none
+}
+
+.desktop-orders {
+  display: unset
+}
+
+@media(max-width: 500px) {
+  .order {
+    display: block;
+  }
+  
+  .desktop-orders {
+    display: none
+  }
+}
+
+@media(max-width: 400px) {
+  .admin-buttons {
+    flex-direction: column;
+    padding: 3rem 2rem 0 2rem;
+  }
+
+  .products-admin-btn {
+    margin-bottom: 2rem;
+  }
+
+  .orders-admin-btn {
+    margin-bottom: 2rem;
+  }
+
+  .admin-product {
+    padding: 3rem 1.5rem 1rem 1.5rem;
+  }
+
+  .subtext {
+    display: block;
+    padding-top: 2rem;
+    text-align: center;
+  }
+
+  .orders {
+    padding: 0 1.5rem;
+  }
 }

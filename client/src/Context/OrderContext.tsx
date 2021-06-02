@@ -49,22 +49,6 @@ export const OrderProvider: FunctionComponent = ({ children }) => {
     method: "get",
   };
 
-  const fetchOrders = async () => {
-    await fetch("/api/order", options)
-      .then(function (res) {
-        if (res.status === 400) {
-          return;
-        }
-        return res.json();
-      })
-      .then(function (data) {
-        console.log(data.allOrders);
-        setAllOrders(data.allOrders);
-      })
-      .catch(function (err) {
-        console.error(err);
-      });
-  };
   const getNewOrderInfo = async (
     id: string,
     orderNumber: number,
@@ -110,6 +94,21 @@ export const OrderProvider: FunctionComponent = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
+  };
+  const fetchOrders = async () => {
+    await fetch("/api/order", options)
+      .then(function (res) {
+        if (res.status === 400) {
+          return;
+        }
+        return res.json();
+      })
+      .then(function (data) {
+        setAllOrders(data.allOrders);
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
   };
 
   return (

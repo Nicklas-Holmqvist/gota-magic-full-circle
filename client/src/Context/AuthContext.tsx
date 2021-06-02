@@ -45,9 +45,13 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
         })
         .then(function (data) {
           const user = data;
+          if (user === undefined) {
+            setAuthAdmin(false);
+            setAuth(false);
+          }
+          setAuthAdmin(user.isAdmin === false ? false : true);
           setUser(user);
-          setAuthAdmin(user.isAdmin);
-          setAuth(user.userId === null ? false : true);
+          setAuth(user.userId === null || false ? false : true);
         })
         .catch(function (err) {
           console.error(err);
@@ -56,6 +60,8 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
 
     fetchAuth();
   });
+
+  //console.log({ ADMINAUTH: authAdmin });
 
   return (
     <AuthContext.Provider

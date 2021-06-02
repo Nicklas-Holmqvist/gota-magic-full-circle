@@ -1,62 +1,56 @@
-import {
-    // Card,
-    // CardContent,
-    // CardActions,
-    // CardMedia,
-    // Button,
-    // ButtonGroup,
-    Typography,
-    makeStyles,
-    Grid,
-  } from "@material-ui/core";
-  import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { formatDiagnostics } from "typescript";
-  import { Product } from "../../DB/Products";
-  // import "../main.css";
-
+import { makeStyles, Grid } from "@material-ui/core";
+import { useState } from "react";
+import { Product } from "../../DB/Products";
  
-  const useStyles = makeStyles({
+const useStyles = makeStyles({
+  width: { width: "100%" }
+});
 
-    font: {
-      // textAlign: "center",
-      fontSize: "1rem",
-      // padding: '5rem'
-    },
+function ProductRow(props: Product) {
+  const style = useStyles();
+  const [stock, setStock] = useState(Number)
 
-    width: {
-      width: "100%",
+  const updateValue = (e: any) => {
+    setStock(e.target.value)
+  }
+
+  const handleStockUpdate = async (e: any) => {
+    e.preventDefault()
+
+    const stockObject = { stock }
+
+    const options = {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(stockObject)
     }
 
-  });
-
-  function ProductRow(props: Product) {
-
-    // här läggs function för att anropa updateStock
-
-    const style = useStyles();
-  
-    return (
-      <Grid className={style.width}>  
-        <Grid item xs={12}>
-          {/* <Grid item xs={1}>{props.productname}</Grid>  
-          <Grid item xs={4}>{props.cardtext}</Grid>     
-          <Grid item xs={2}>{props.price + ' kr'}</Grid>   
-          <Grid item xs={2}>{props.stock + ' in stock'}</Grid>    */}
-
-          <div className="product-divider"></div>
-          <h3 className="admin-product-name">{props.productname}</h3>
-          <p className="admin-product-cardtext">{props.cardtext}</p>
-          <b className="admin-product-price">{props.price + ' kr'}</b>
-          <form className="stock-form">
-            <label htmlFor="stock" className="stock-label">I lager:</label>
-            <input className="admin-product-stock-input" type="text" defaultValue={props.stock} name="stock" />
-            <button type="submit" className="update-stock-btn">Ändra lagersaldo</button> {/* här läggs en onClick={handleStockUpdate} */}
-          </form>
-        </Grid> 
-      </Grid>
-    );
-
+    try {
+      const response = await fetch(`/api/product/${props._id}`, options)
+      const data = await response.json()
+    } catch (err) {
+      console.error(err)
+    }
   }
-  
-  export default ProductRow;
-  
+
+  return (
+    <Grid className={style.width}>  
+      <Grid item xs={12}>
+        <div className="product-divider"></div>
+        <h3 className="admin-product-name">{props.productname}</h3>
+        <p className="admin-product-cardtext">{props.cardtext}</p>
+        <b className="admin-product-price">{props.price + ' kr'}</b>
+        <form className="stock-form">
+          <label htmlFor="stock" className="stock-label">I lager:</label>
+          <input className="admin-product-stock-input" type="text" defaultValue={props.stock} name="stock" onChange={updateValue} />
+          <button type="submit" className="update-stock-btn" onClick={handleStockUpdate}>Ändra lagersaldo</button>
+        </form>
+      </Grid> 
+    </Grid>
+  );
+
+}
+
+export default ProductRow;

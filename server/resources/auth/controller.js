@@ -10,7 +10,6 @@ exports.auth = async (req, res, next) => {
     return next()
   } else {
     if (loggedInUser.isAdmin) {
-      console.log(loggedInUser.email, 'is admin')
       return next()
     } else {
       let error = new Error('User is unauthorized and has no admin rights')
@@ -39,9 +38,11 @@ exports.isAuth = async (req, res) => {
   const cookie = req.cookies.user
 
   const user = await UserModel.findOne({ _id: cookie })
-  
+  if(user === undefined){
+    res.status(400).json(false)
+  }
   if(!user) {
-    res.status(400).json('No logged in!')
+    res.status(400).json(user)
   } else {
     res.status(200).json(user)
   }
