@@ -13,8 +13,14 @@ function Header() {
   const authUser: boolean = authContext.auth;
   const history = useHistory();
 
+  const [authAdmin, setAuthAdmin] = useState<boolean>(authContext.authAdmin)
   const [auth, setAuth] = useState<boolean>(authUser);
   let [isOpen, setIsOpen] = useState(false);
+  console.log({HEADERADMIN: authAdmin})
+
+  useEffect(() => {
+    setAuthAdmin(authContext.authAdmin);
+  }, [authContext.authAdmin]);
 
   useEffect(() => {
     setAuth(authContext.auth);
@@ -25,7 +31,6 @@ function Header() {
     setAuth(false);
     history.push("/");
     authContext.getAuth(false);
-    authContext.getAuthAdmin(false);
 
     fetch("/api/user/logout", { method: "POST" })
       .then((response) => {
@@ -56,6 +61,16 @@ function Header() {
         </Link>
       </>
     );
+  }
+
+  function AdminButton() {
+    return (
+    <Link className="link-style" to="/Admin">
+      <div className="menu-button">
+        <Button>admin</Button>
+      </div>
+    </Link>
+    )
   }
 
   return (
@@ -92,11 +107,7 @@ function Header() {
             <Button>Turneringar</Button>
           </div>
         </Link>
-        <Link className="link-style" to="/Admin">
-          <div className="menu-button">
-            <Button>admin</Button>
-          </div>
-        </Link>
+        {authAdmin === true ? <AdminButton /> : ''}
       </div>
 
       <div className="header-right">
