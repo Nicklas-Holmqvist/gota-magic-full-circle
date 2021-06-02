@@ -1,6 +1,4 @@
 import {
-    Typography,
-    makeStyles,
     Grid,
     Accordion,
     AccordionSummary,
@@ -26,8 +24,6 @@ export interface OrderRow {
   price: string
   quantity: number
 }
-
-
 
 function OrderList(props: Order) {
 
