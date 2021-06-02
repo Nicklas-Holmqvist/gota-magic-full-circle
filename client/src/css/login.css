@@ -80,3 +80,10 @@
   font-size: .75rem;
   text-align: center;
 }
+
+.login-successful-text, .register-successful-text {
+  margin-top: .5rem;
+  color: rgb(69, 187, 69);
+  font-size: .75rem;
+  text-align: center;
+}

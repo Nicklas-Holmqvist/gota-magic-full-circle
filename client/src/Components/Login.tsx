@@ -13,6 +13,7 @@ function Login() {
   const [password, setPassword] = useState("")
   const [emailError, setEmailError] = useState("")
   const [passwordError, setPasswordError] = useState("")
+  const [logInSuccessMsg, setLogInSuccessMsg] = useState("")
 
   const handleEmailChange = (e:any) => {
     setEmail(e.target.value)
@@ -58,7 +59,12 @@ function Login() {
 
       if (data.user) {
         authContext.getAuth(true)
-        history.push('/ProductList')
+        setLogInSuccessMsg('Login successful. Redirecting...')
+
+        setTimeout(() => {
+          history.push('/ProductList')
+        }, 1500)
+
       }
       
     } catch (err) {
@@ -79,6 +85,7 @@ function Login() {
           <input type="password" name="password" id="password-login" onChange={handlePasswordChange} required />
           <span className="password-error">{passwordError}</span>
           <button type="submit" onClick={handleSubmit}>Logga In</button>
+          <span className="login-successful-text">{logInSuccessMsg}</span>
         </form>
         <div className="alternate-link">
           <h4>- ELLER -</h4>
