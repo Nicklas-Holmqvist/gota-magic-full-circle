@@ -14,22 +14,22 @@ import { useCheckoutContext } from "../Context/CheckoutContext";
 function CheckOut3Payment() {
   const checkout = useCheckoutContext();
   const cart = useCart();
-
   const [value, setValue] = useState<string>("");
   const userFromContext = useCheckoutContext();
   const userInfo = userFromContext.userInfo[0];
-  const totalPay = checkout.shippingObject[0].price + cart.cartTotalPrice;
+  const totalPay = checkout.shippingObject[0].price + cart.cartTotalPrice;   
+  
+  function CardPaymentModal() {    
 
-  function CardPaymentModal() {
-    const paymentUser = checkout.userPayment;
-    const [cardName, setCardName] = useState(paymentUser[0].cardName);
-    const [cardNumber, setCardNumber] = useState(paymentUser[0].cardNumber);
-    const [expireDate, setSxpireDate] = useState(paymentUser[0].expiredDate);
-    const [lastDate, setLastDate] = useState(paymentUser[0].lastDate);
-    const [cvc, setCvc] = useState(paymentUser[0].cvc);
-
+    const paymentUser = checkout.userPayment
+    const [cardName, setCardName] = useState(paymentUser[0].cardName)
+    const [cardNumber, setCardNumber] = useState(paymentUser[0].cardNumber)
+    const [expireDate, setSxpireDate] = useState(paymentUser[0].expiredDate)
+    const [lastDate, setLastDate] = useState(paymentUser[0].lastDate)
+    const [cvc, setCvc] = useState(paymentUser[0].cvc)
+    
     const [formValid, setFormValid] = useState(false);
-
+    
     const [cardValidation, setCardValidation] = useState({
       nameValid: false,
       numberValid: false,
@@ -48,26 +48,26 @@ function CheckOut3Payment() {
       ) {
         setFormValid(true);
       } else {
-        return;
+        return
       }
     };
 
-    if (formValid === true) {
-      checkout.getValidationCardPayment(true);
-      checkout.saveUserPayment(cardName, cardNumber, expireDate, lastDate, cvc);
+    if(formValid === true) {
+      checkout.getValidationCardPayment(true)
+      checkout.saveUserPayment(cardName, cardNumber, expireDate, lastDate,cvc )     
     }
 
     useEffect(() => {
-      isFormValid();
-    });
+      isFormValid()       
+    })
 
-    console.log(formValid);
+    console.log(formValid)
 
     // hantera kortnamn ////
     const handleCardNameInput = (event: any) => {
       // let newName = event.target.value;
       setCardName(event.target.value);
-
+            
       /// validera namn input ////
       if (event.target.value.length >= 1) {
         setCardValidation({ ...cardValidation, nameValid: true });
@@ -128,7 +128,9 @@ function CheckOut3Payment() {
       }
     };
     return (
+      
       <div className="card-modal">
+
         <form>
           <h5>Kortinnehavarens namn</h5>
           <TextField
@@ -252,21 +254,22 @@ function CheckOut3Payment() {
   }
 
   const cleanPaymentUser = () => {
-    const cardName = "";
-    const cardNumber = "";
-    const expireDate = "";
-    const lastDate = "";
-    const cvc = "";
-    checkout.saveUserPayment(cardName, cardNumber, expireDate, lastDate, cvc);
-  };
+    const cardName = ""
+    const cardNumber = ""
+    const expireDate = ""
+    const lastDate = ""
+    const cvc = ""
+    checkout.saveUserPayment(cardName, cardNumber, expireDate, lastDate,cvc )   
+  }
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setValue(value);
-    checkout.savePaymentMethod(value);
-    checkout.getValidationPayment(true);
-    checkout.getValidationCardPayment(false);
-    cleanPaymentUser();
-  };
+    setValue(value);    
+    checkout.savePaymentMethod(value)
+    checkout.getValidationPayment(true)
+    checkout.getValidationCardPayment(false)
+    cleanPaymentUser()
+    }
+
 
   return (
     <div className="container flex">

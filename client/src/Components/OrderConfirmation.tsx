@@ -10,7 +10,8 @@ function OrderConfirmation() {
 
   const user = checkoutData.userInfo[0];
   const payment = checkoutData.payment[0];
-  const shipping = checkoutData.shippingObject;
+  const shipping = checkoutData.shippingObject
+
   const totalPay = cart.totalPrice + checkoutData.shippingObject[0].price;
 
   return (
@@ -24,8 +25,7 @@ function OrderConfirmation() {
         </div>
         <div className="user-info">
           <h5 className="order-info-text">
-            Din leverans beräknas anlända till {user.deliveryaddress},{" "}
-            {shipping[0].deliveryTime}
+            Din leverans beräknas anlända till {user.deliveryaddress}, {shipping[0].deliveryTime}
           </h5>
           <h3>Användaruppgifter</h3>
           <p>{user.name}</p>
@@ -38,14 +38,15 @@ function OrderConfirmation() {
           <p>{payment.cardType}</p>
           <h3>Frakt</h3>
           <p>
-            {shipping[0].name}, {shipping[0].deliveryTime}, {shipping[0].price}{" "}
-            kr
+            {shipping[0].name}, {shipping[0].deliveryTime},{" "}
+            {shipping[0].price} kr
           </p>
         </div>
       </div>
 
       <div className="right-side">
         <div className="order-overview">
+          
           <h2>Din beställning</h2>
           <h3 style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
             {cart.totalPrice} kr{" "}

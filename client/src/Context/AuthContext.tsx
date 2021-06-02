@@ -14,13 +14,11 @@ type Context = {
   auth: boolean;
   getAuth: (auth: boolean) => void;
   getAuthAdmin: (auth: boolean) => void;
-  user: any;
 };
 
 export const AuthProvider: FunctionComponent = ({ children }) => {
   const [authAdmin, setAuthAdmin] = useState<boolean>(false);
   const [auth, setAuth] = useState<boolean>(false);
-  const [user, setUser] = useState();
 
   const getAuth = (auth: boolean) => {
     setAuth(auth);
@@ -45,12 +43,11 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
         })
         .then(function (data) {
           const user = data;
-          if (user === undefined) {
-            setAuthAdmin(false);
-            setAuth(false);
+          if(user === undefined) {
+            setAuthAdmin(false)
+            setAuth(false)
           }
           setAuthAdmin(user.isAdmin === false ? false : true);
-          setUser(user);
           setAuth(user.userId === null || false ? false : true);
         })
         .catch(function (err) {
@@ -61,12 +58,10 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
     fetchAuth();
   });
 
-  //console.log({ ADMINAUTH: authAdmin });
+  console.log({ADMINAUTH: authAdmin})
 
   return (
-    <AuthContext.Provider
-      value={{ auth, getAuth, authAdmin, getAuthAdmin, user }}
-    >
+    <AuthContext.Provider value={{ auth, getAuth, authAdmin, getAuthAdmin }}>
       {children}
     </AuthContext.Provider>
   );
