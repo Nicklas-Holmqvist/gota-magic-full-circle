@@ -144,6 +144,12 @@
   display: unset
 }
 
+.update-successful {
+  margin-left: .5rem;
+  color: rgb(69, 187, 69);
+  font-size: .75rem;
+}
+
 @media(max-width: 500px) {
   .order {
     display: block;
