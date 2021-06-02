@@ -55,10 +55,10 @@ function OrderConfirmation() {
             {cart.lsCart.map((item) => {
               return (
                 <div className="cartItem">
-                  <img src={item.img} alt={item.itemName} />
+                  <img src={item.img} alt={item.productname} />
                   <div className="cartInfoText">
                     <p>
-                      <strong>{item.itemName}</strong>
+                      <strong>{item.productname}</strong>
                     </p>
                     <p>{item.price} kr</p>{" "}
                     <p>
