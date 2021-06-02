@@ -59,11 +59,11 @@ function Login() {
 
       if (data.user) {
         authContext.getAuth(true)
-        setLogInSuccessMsg('Login successful. Redirecting...')
+        setLogInSuccessMsg('Inloggning lyckades. Du skickas nu vidare...')
 
         setTimeout(() => {
           history.push('/ProductList')
-        }, 1500)
+        }, 2000)
 
       }
       

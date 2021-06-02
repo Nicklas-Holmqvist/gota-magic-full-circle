@@ -56,11 +56,11 @@ function Register() {
         setEmailError(data.errors.email)
         return
       } else {
-        setRegisterSuccessMsg('Account created! Redirecting to Login page...')
+        setRegisterSuccessMsg('Konto skapat! Skickas vidare till log-in sidan...')
 
         setTimeout(() => {
           history.push('/Login')
-        }, 1500)
+        }, 2000)
       }
       
     } catch (err) {
