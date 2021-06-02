@@ -25,6 +25,10 @@ function ProductPage() {
     width: "100%",
   };
 
+  const stylingImageThumb: CSSProperties = {
+    width:"15rem",
+  }
+
   // Import context
   const products: Product[] = useProducts();
   const params = useParams<{ id: string }>();
@@ -36,13 +40,15 @@ function ProductPage() {
     return <p>Det här magikortet verkar inte finnas.</p>;
   }
 
+  console.log({BILD: product})
+
   return (
     <div className="background">
       <div className="grey-card" style={cardStyle}>
         <div className="container">
           <div className="top flex">
             <div className="image-container flex" style={stylingImg}>
-              <img src={product.image} alt="" />
+              <img style={stylingImageThumb} src={`/` + product.image} alt="" />
             </div>
 
             <div

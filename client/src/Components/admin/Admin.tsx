@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Redirect } from "react-router";
 import { useAuthContext } from "../../Context/AuthContext";
-import { Order, useOrderContext } from '../../Context/OrderContext'
+import { useOrderContext } from '../../Context/OrderContext'
 import Orders from "./Orders";
 // import { useOrderContext, Order } from "../../Context/OrderContext";
 // import OrderList from './OrdeList'

@@ -7,7 +7,7 @@ import { useCart } from "../Context/CartContext";
 import "../css/checkOut1UserInfo.css";
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
-import CheckoutError from './CheckoutError'
+import CheckoutError from "./CheckoutError";
 
 // Interface to the userObject array
 export interface User {
@@ -28,21 +28,24 @@ const useStyles = makeStyles({
 
 function CheckOut1UserInfo() {
   const cart = useCart();
-  
   const [userName, setUserName] = useState<string>("");
   const [userNameError, setUserNameError] = useState<boolean>(false);
   const [userNameErrorText, setUserNameErrorText] = useState<string>("");
   const [userEmail, setUserEmail] = useState<string>("");
   const [userMobile, setUserMobile] = useState<string>("");
   const [userDeliveryaddress, setUserDeliveryaddress] = useState<string>("");
-  const [userDeliveryAdressError, setUserDeliveryAdressError ] = useState<boolean>(false);
-  const [userDeliveryErrorText, setUserDeliveryErrorText] = useState<string>("");
+  const [userDeliveryAdressError, setUserDeliveryAdressError] =
+    useState<boolean>(false);
+  const [userDeliveryErrorText, setUserDeliveryErrorText] =
+    useState<string>("");
   const [userCity, setUserCity] = useState<string>("");
   const [userCityError, setUserCityError] = useState<boolean>(false);
   const [userCityErrorText, setUserCityText] = useState<string>("");
   const [userPostNumber, setUserPostNumber] = useState<string>("");
-  const [userPostNumberError, setUserPostNumberError] = useState<boolean>(false);
-  const [userPostNumberTextError, setUserPostNumberErrorText] = useState<string>("");
+  const [userPostNumberError, setUserPostNumberError] =
+    useState<boolean>(false);
+  const [userPostNumberTextError, setUserPostNumberErrorText] =
+    useState<string>("");
   const [userEmailError, setUserEmailError] = useState<boolean>(false);
   const [userEmailErrorText, setUserEmailErrorText] = useState<string>("");
   const [userMobileError, setUserMobileError] = useState<boolean>(false);
@@ -50,15 +53,13 @@ function CheckOut1UserInfo() {
   const [validated, setValidated] = useState<boolean>(false);
   const [ifValid, setIfValid] = useState<boolean>(false);
 
-  const noCartItems = cart.cart.length
-
+  const noCartItems = cart.cart.length;
 
   // The user array
   const [userObject, setUserObject] = useState<User[]>([]);
 
   const user = useCheckoutContext();
   const style = useStyles();
-
 
   // Functions that handles the inputfields an save it to states right above
   const handleUserName = (e: any) => {
@@ -80,7 +81,7 @@ function CheckOut1UserInfo() {
     } else {
       setUserPostNumberError(true);
       setUserPostNumberErrorText("");
-      setUserToObject();      
+      setUserToObject();
     }
   };
 
@@ -117,7 +118,6 @@ function CheckOut1UserInfo() {
     }
   };
 
-
   const handleuserCity = (e: any) => {
     setUserCity(e.target.value);
     if (e.target.value.length < 2) {
@@ -141,7 +141,7 @@ function CheckOut1UserInfo() {
       userMobile,
       userDeliveryaddress,
       userPostNumber,
-      userCity,      
+      userCity,
       validated
     );
     setUserObject([
@@ -151,34 +151,45 @@ function CheckOut1UserInfo() {
         mobile: userMobile,
         deliveryaddress: userDeliveryaddress,
         postnumber: userPostNumber,
-        city: userCity,        
+        city: userCity,
         validated: validated,
       },
     ]);
   };
 
   useEffect(() => {
-
-    if(ifValid === true) {
-      return
-    } else if(validated === true) {
+    if (ifValid === true) {
+      return;
+    } else if (validated === true) {
       user.saveUserInformation(
         userName,
         userEmail,
         userMobile,
         userDeliveryaddress,
         userPostNumber,
-        userCity,      
+        userCity,
         validated
       );
-        setIfValid(true)
-    } else if(validated === false) {
-      return
-    }    
-    else if (userObject[0].validated === true && validated === true) {
-      return
-    } else {return}
-  }, [ifValid, user, userCity, userDeliveryaddress, userEmail, userMobile, userName, userObject, userPostNumber, validated])
+      setIfValid(true);
+    } else if (validated === false) {
+      return;
+    } else if (userObject[0].validated === true && validated === true) {
+      return;
+    } else {
+      return;
+    }
+  }, [
+    ifValid,
+    user,
+    userCity,
+    userDeliveryaddress,
+    userEmail,
+    userMobile,
+    userName,
+    userObject,
+    userPostNumber,
+    validated,
+  ]);
 
   // This useEffect fetch the localStorage after the page is updated.
   // If this is not running, the saved LS data will be deleted
@@ -226,7 +237,7 @@ function CheckOut1UserInfo() {
           <h2>Utcheckning</h2>
           <h3>Fyll i dina användauppgifter</h3>
         </div>
-        {noCartItems === 0 ? <CheckoutError /> : null} 
+        {noCartItems === 0 ? <CheckoutError /> : null}
         <div className="checkout-form">
           <form className="flex column" autoComplete="on">
             <TextField
@@ -321,10 +332,10 @@ function CheckOut1UserInfo() {
             {cart.cart.map((item) => {
               return (
                 <div className="cartItem">
-                  <img src={item.img} alt={item.itemName} />
+                  <img src={item.img} alt={item.productname} />
                   <div className="cartInfoText">
                     <p>
-                      <strong>{item.itemName}</strong>
+                      <strong>{item.productname}</strong>
                     </p>
                     <p>{item.price} kr</p>{" "}
                     <p>
