@@ -21,6 +21,7 @@ import { useCart } from "../Context/CartContext";
 import { Grid } from "@material-ui/core";
 import { Redirect } from "react-router-dom";
 import { useAuthContext } from "../Context/AuthContext";
+import { useOrderContext } from "../Context/OrderContext";
 
 // Creates an array for all the steps.
 // the amount of strings in the array decides the amount of
@@ -55,11 +56,22 @@ function BreadCrumbs() {
 
   const cart = useCart();
   const user = useCheckoutContext();
+  const userId = useAuthContext();
+  const orderUser = user.userInfo[0];
+  const orderContext = useOrderContext();
+
   const validatedUser = user.validatedUser;
   const validatedUserShipping = user.validatedShipping;
   const validatedUserPayment = user.validatedPayment;
   const validatedUserCardPayment = user.validatedCardPayment;
   const [disableAtPay, setDisableAtPay] = useState(true);
+  const shipping = user.shippingObject;
+
+  let dummyAdress = {
+    adress: "Sörbyn",
+    zipcode: "12312",
+    city: "Rööt",
+  };
 
   const cleanPaymentUser = () => {
     const cardName = "";
@@ -69,7 +81,17 @@ function BreadCrumbs() {
     const cvc = "";
     user.saveUserPayment(cardName, cardNumber, expireDate, lastDate, cvc);
   };
-
+  const dummyOrder = {
+    id: "123",
+    orderNumber: 123,
+    userId: "1111",
+    user: "olle",
+    products: "any",
+    totalCost: "123",
+    shipping: "Boat",
+    address: "Sörbyvägen",
+    sent: true,
+  };
   const [active, setActive] = useState(false);
   // validatedUser === false
   // If this varible is 0 in length, the orderNumber will not get a new one
@@ -115,6 +137,7 @@ function BreadCrumbs() {
       user.getValidationShipping(false);
     } else if (activeStep === 3) {
       setDisableAtPay(true);
+
       setActive(true);
       user.getValidationPayment(false);
       user.getValidationCardPayment(false);
@@ -168,6 +191,25 @@ function BreadCrumbs() {
       setDisableAtPay(false);
       setActive(false);
       paymentDelay();
+      orderContext.getNewOrderInfo(
+        dummyOrder.id,
+        user.orderNumber,
+        userId.user._id,
+        orderUser.name,
+        cart.cart,
+        cart.cartTotalPrice + user.shippingObject[0].price,
+        shipping[0].name,
+
+        {
+          street: orderUser.deliveryaddress,
+          zipCode: orderUser.postnumber,
+          city: orderUser.city,
+        },
+
+        dummyOrder.sent
+      );
+      console.log(cart.cartTotalPrice);
+      console.log(user.userInfo[0]);
     } else {
       handleNext();
     }
