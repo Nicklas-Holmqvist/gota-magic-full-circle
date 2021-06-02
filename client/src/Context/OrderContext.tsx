@@ -3,7 +3,6 @@ import React, {
   createContext,
   FunctionComponent,
   useContext,
-  useEffect,
 } from "react";
 
 export const OrderContext = createContext<Context>(undefined!);
@@ -16,11 +15,11 @@ type Context = {
     id: string,
     orderNumber: number,
     userId: string,
-    user: string,
-    products: OrderRow[],
+    user: any,
+    products: any,
     totalCost: number,
     shipping: string,
-    address: [],
+    address: any,
     sent: boolean
   ) => void;
 };
@@ -29,7 +28,7 @@ export interface Order {
   _id: string;
   orderNumber: number;
   userId: string;
-  user: string;
+  user: any;
   products: OrderRow[];
   totalCost: number;
   shipping: string;
@@ -46,8 +45,6 @@ export interface OrderRow {
 
 export const OrderProvider: FunctionComponent = ({ children }) => {
   const [allOrders, setAllOrders] = useState<[]>([]);
-  const [newOrder, setNewOrder] = useState<{}>();
-
   const options = {
     method: "get",
   };
@@ -68,15 +65,19 @@ export const OrderProvider: FunctionComponent = ({ children }) => {
         console.error(err);
       });
   };
-  const getNewOrderInfo = (
+  const getNewOrderInfo = async (
     id: string,
     orderNumber: number,
     userId: string,
-    user: string,
-    products: OrderRow[],
+    user: any,
+    products: any,
     totalCost: number,
     shipping: string,
-    address: [],
+    adress: {
+      street: string;
+      zipCode: string;
+      city: string;
+    },
     sent: boolean
   ) => {
     const newOrder = {
@@ -87,23 +88,20 @@ export const OrderProvider: FunctionComponent = ({ children }) => {
       products,
       totalCost,
       shipping,
-      address,
+      adress,
       sent,
     };
-    // setNewOrder({});
-    // setNewOrder(newOrder);
     console.log(newOrder);
+    sendOrder(newOrder);
   };
-  const sendOrder = async (e: any) => {
-    e.preventDefault();
-    const newOrder = "";
 
+  const sendOrder = async (order: any) => {
     const options = {
       method: "post",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newOrder),
+      body: JSON.stringify(order),
     };
 
     try {
@@ -115,7 +113,13 @@ export const OrderProvider: FunctionComponent = ({ children }) => {
   };
 
   return (
-    <OrderContext.Provider value={{ allOrders, fetchOrders, getNewOrderInfo }}>
+    <OrderContext.Provider
+      value={{
+        allOrders,
+        fetchOrders,
+        getNewOrderInfo,
+      }}
+    >
       {children}
     </OrderContext.Provider>
   );

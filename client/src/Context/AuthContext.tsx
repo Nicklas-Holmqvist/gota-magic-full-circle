@@ -14,11 +14,13 @@ type Context = {
   auth: boolean;
   getAuth: (auth: boolean) => void;
   getAuthAdmin: (auth: boolean) => void;
+  user: any;
 };
 
 export const AuthProvider: FunctionComponent = ({ children }) => {
   const [authAdmin, setAuthAdmin] = useState<boolean>(false);
   const [auth, setAuth] = useState<boolean>(false);
+  const [user, setUser] = useState();
 
   const getAuth = (auth: boolean) => {
     setAuth(auth);
@@ -43,6 +45,7 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
         })
         .then(function (data) {
           const user = data;
+          setUser(user);
           setAuthAdmin(user.isAdmin);
           setAuth(user.userId === null ? false : true);
         })
@@ -55,7 +58,9 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
   });
 
   return (
-    <AuthContext.Provider value={{ auth, getAuth, authAdmin, getAuthAdmin }}>
+    <AuthContext.Provider
+      value={{ auth, getAuth, authAdmin, getAuthAdmin, user }}
+    >
       {children}
     </AuthContext.Provider>
   );

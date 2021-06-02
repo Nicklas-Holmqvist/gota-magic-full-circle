@@ -56,12 +56,32 @@ function BreadCrumbs() {
 
   const cart = useCart();
   const user = useCheckoutContext();
+  const orderUser = user.userInfo[0];
+  const orderContext = useOrderContext();
 
   const validatedUser = user.validatedUser;
   const validatedUserShipping = user.validatedShipping;
   const validatedUserPayment = user.validatedPayment;
   const validatedUserCardPayment = user.validatedCardPayment;
   const [disableAtPay, setDisableAtPay] = useState(true);
+  const shipping = user.shippingObject;
+
+  const dummyOrder = {
+    id: " 123",
+    orderNumber: 123,
+    userId: "1111",
+    user: "olle",
+    products: "any",
+    totalCost: "123",
+    shipping: "Boat",
+    address: "Sörbyvägen",
+    sent: true,
+  };
+  let dummyAdress = {
+    adress: "Sörbyn",
+    zipcode: "12312",
+    city: "Rööt",
+  };
 
   const cleanPaymentUser = () => {
     const cardName = "";
@@ -117,6 +137,7 @@ function BreadCrumbs() {
       user.getValidationShipping(false);
     } else if (activeStep === 3) {
       setDisableAtPay(true);
+
       setActive(true);
       user.getValidationPayment(false);
       user.getValidationCardPayment(false);
@@ -170,6 +191,26 @@ function BreadCrumbs() {
       setDisableAtPay(false);
       setActive(false);
       paymentDelay();
+      orderContext.getNewOrderInfo(
+        dummyOrder.id,
+        user.orderNumber,
+        authContext.user._id,
+        orderUser.name,
+        cart.cart,
+        cart.cartTotalPrice + user.shippingObject[0].price,
+        shipping[0].name,
+
+        {
+          street: orderUser.deliveryaddress,
+          zipCode: orderUser.postnumber,
+          city: orderUser.city,
+        },
+
+        dummyOrder.sent
+      );
+      console.log(cart.cartTotalPrice);
+      console.log(user.userInfo[0]);
+      console.log(authContext.user._id);
     } else {
       handleNext();
     }

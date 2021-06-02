@@ -3,55 +3,16 @@ import "../main.css";
 import { useCart } from "../Context/CartContext";
 
 import { useCheckoutContext } from "../Context/CheckoutContext";
-import { OrderRow, useOrderContext } from "../Context/OrderContext";
-import { useEffect, useState } from "react";
 
 function OrderConfirmation() {
   const cart = useCart();
   const checkoutData = useCheckoutContext();
-  const orderContext = useOrderContext();
+
   const user = checkoutData.userInfo[0];
   const payment = checkoutData.payment[0];
   const shipping = checkoutData.shippingObject;
-  const [orderProducts, setOrderProducts] = useState<OrderRow[]>([]);
-  const [userAdress, setUserAdress] = useState<any>();
   const totalPay = cart.totalPrice + checkoutData.shippingObject[0].price;
-  const dummyId = "123123123";
-  const sent = false;
-  const shippingDummy = "Airplane";
-  const dummyPrice = "123";
 
-  function GetOrderProducts() {
-    const newOrderProducts = cart.lsCart.map((obj) => {
-      return {
-        productId: obj.id,
-        productName: obj.itemName,
-        price: dummyPrice,
-        quantity: obj.quantity,
-      };
-    });
-    setOrderProducts(newOrderProducts);
-  }
-
-  function getUserAdress() {
-    const newUserAdress = [user.city, user.postnumber, user.deliveryaddress];
-    setUserAdress(newUserAdress);
-  }
-  useEffect(() => {
-    GetOrderProducts();
-    getUserAdress();
-    orderContext.getNewOrderInfo(
-      dummyId,
-      checkoutData.orderNumber,
-      user.email,
-      user.name,
-      orderProducts,
-      totalPay,
-      shippingDummy,
-      userAdress,
-      sent
-    );
-  }, []);
   return (
     <div className="container flex">
       <div className="left-side">

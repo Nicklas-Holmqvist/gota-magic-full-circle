@@ -8,7 +8,6 @@ import "../css/checkOut1UserInfo.css";
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import CheckoutError from "./CheckoutError";
-import { useOrderContext } from "../Context/OrderContext";
 
 // Interface to the userObject array
 export interface User {
@@ -29,7 +28,6 @@ const useStyles = makeStyles({
 
 function CheckOut1UserInfo() {
   const cart = useCart();
-
   const [userName, setUserName] = useState<string>("");
   const [userNameError, setUserNameError] = useState<boolean>(false);
   const [userNameErrorText, setUserNameErrorText] = useState<string>("");
