@@ -87,6 +87,14 @@ function ProductList() {
     paddingTop: '1.5rem',
   };
 
+  const styleCategories: CSSProperties = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    paddingTop: '1rem'
+  }
+
   const productListBtnStyle: CSSProperties = {
     display: "flex",
     justifyContent: "center",
@@ -105,6 +113,12 @@ function ProductList() {
     alignItems: "center",
     margin: "2rem 1rem",
   };
+
+  const catButton: CSSProperties = {
+      fontSize: "0.8rem",
+      border: "1px solid grey",
+      backgroundColor: "white"   
+  }
 
   // const searchStyle: CSSProperties = {
   //   width: "100%",
@@ -251,9 +265,7 @@ function ProductList() {
   };
 
 
-  const categoriesList = categories.map((c)=> (
-      
-    
+  const categoriesList = categories.map((c)=> (    
           <MenuItem onClick={() => {
             getCat(c._id)}}>{c.catName}</MenuItem>
   ))
@@ -294,13 +306,14 @@ function ProductList() {
         </Grid>
         {noResult} */}
 
-        <Grid container xs={12} md={10} style={infoLandingContainer}>
-          
+        <Grid item style={styleCategories}>
+
           <Button
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={handleCategory}        
             className="hamb-menu-icon-btn"
+            style={catButton}
           >
             Kategorier
           </Button>
@@ -314,6 +327,9 @@ function ProductList() {
               <MenuItem onClick={resetAllCategories}>Alla Produkter</MenuItem>
             {categoriesList}
           </Menu>
+        </Grid>
+        <Grid container xs={12} md={10} style={infoLandingContainer}>
+          
           <Grid item style={listStyle}>
             {productData}
             {productViewArray.length === 0 ? <SearchError /> : null}
