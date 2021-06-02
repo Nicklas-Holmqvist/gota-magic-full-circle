@@ -19,7 +19,7 @@ exports.createOrder = async (req, res) => {
             street: req.body.adress.street,
             zipCode: req.body.adress.zipCode,
             city: req.body.adress.city
-            }
+        }
     }
 
     try {
@@ -47,11 +47,11 @@ async function updateProductStock(orderProducts) {
     orderProducts.forEach(async (obj) => {
         if (obj.quantity > 2) {
             console.log(obj)
-            const getProduct = await ProductModel.findById(obj.productId);
+            const getProduct = await ProductModel.findById(obj.id);
             const updateProductStock = { stock: getProduct.stock - obj.quantity }
 
             if (getProduct) {
-                await ProductModel.findByIdAndUpdate({ _id: obj.productId }, updateProductStock)
+                await ProductModel.findByIdAndUpdate({ _id: obj.id }, updateProductStock)
 
 
             } else console.log('No product stock updated ')
