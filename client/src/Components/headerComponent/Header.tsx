@@ -35,7 +35,7 @@ function Header() {
     fetch("/api/user/logout", { method: "POST" })
       .then((response) => {
         if (response.ok) {
-          alert("You are now logged out!");
+          // alert("You are now logged out!");
         }
       })
       .catch((err) => {

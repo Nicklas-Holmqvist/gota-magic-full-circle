@@ -30,7 +30,7 @@ function Admin() {
   },[importOrders])
 
   if (!isAdmintrue) {
-    alert('Good try buddy, but you are not an admin')
+    // alert('Good try buddy, but you are not an admin')
     return <Redirect to="/Login" />;
   } else {
     return (
