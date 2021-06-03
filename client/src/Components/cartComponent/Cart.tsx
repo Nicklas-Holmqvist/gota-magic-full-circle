@@ -23,14 +23,19 @@ const CartComponent = ({ item }: Props) => {
         </div>
         <div className="productInfoText">
           <p>
-            <strong>{item.productname}</strong>
+            <strong>{item.productName}</strong>
           </p>
           <p>{priceText}</p>
           <div className="buttonContainer">
             <ButtonGroup disableElevation variant="contained" color="primary">
               <Button
                 onClick={() =>
-                  cart.addToCart(item.productname, item.price, item.img, item.id)
+                  cart.addToCart(
+                    item.productName,
+                    item.price,
+                    item.img,
+                    item.id
+                  )
                 }
               >
                 +
@@ -45,7 +50,7 @@ const CartComponent = ({ item }: Props) => {
         </div>
       </div>
       <div className="iconContainer">
-        <DeleteIcon onClick={() => cart.removeFromCart(item.productname)} />
+        <DeleteIcon onClick={() => cart.removeFromCart(item.productName)} />
       </div>
     </div>
   );

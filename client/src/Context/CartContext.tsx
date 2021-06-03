@@ -10,7 +10,7 @@ import { orderItem } from "../Types/orderItem";
 type Context = {
   getCartSize: () => number;
   addToCart: (
-    productname: string,
+    productName: string,
     price: number,
     image: string,
     id: string
@@ -78,18 +78,18 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
 
   // Lägger till produkt i varukorgen //
   const addToCart = (
-    productname: string,
+    productName: string,
     price: number,
     image: string,
     id: string
   ) => {
     let existingItem = cart.find(
-      (item) => item.productname === productname //Retunerar true eller false beroende på om det finns två item av samma namn //
+      (item) => item.productName === productName //Retunerar true eller false beroende på om det finns två item av samma namn //
     ) as orderItem;
 
     // skapar ett nytt orderitem med ökad quantity///
     let newItem: orderItem = {
-      productname: productname,
+      productName: productName,
       price: price,
       img: image,
       quantity: existingItem ? existingItem.quantity + 1 : 1, // om två item har samma namn ökar quantity med 1 //
@@ -99,7 +99,7 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
     // filtrerar bort items med samma namn som itemName //
     let newCart = [
       ...cart.filter((item) => {
-        return item.productname !== productname;
+        return item.productName !== productName;
       }),
     ];
 
@@ -111,7 +111,7 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
   const removeFromCart = (productName: string) => {
     let newCart = [
       ...cart.filter((item) => {
-        return item.productname !== productName;
+        return item.productName !== productName;
       }),
     ];
     setCart([...newCart]);
@@ -120,11 +120,11 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
   // minskar quantity om två lika dana item finns//
   const decreaseQuantity = (item: orderItem) => {
     let existingItem = cart.find(
-      (i) => i.productname === item.productname
+      (i) => i.productName === item.productName
     ) as orderItem;
 
     let newItem: orderItem = {
-      productname: existingItem.productname,
+      productName: existingItem.productName,
       price: existingItem.price,
       img: existingItem.img,
       quantity: existingItem.quantity - 1,
@@ -133,7 +133,7 @@ export const CartContextProvider: FunctionComponent = ({ children }) => {
 
     let newCart = [
       ...cart.filter((i) => {
-        return i.productname !== item.productname;
+        return i.productName !== item.productName;
       }),
     ];
 
