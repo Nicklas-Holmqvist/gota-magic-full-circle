@@ -9,11 +9,17 @@ Göta Magic är tillbaka! Denna gången på en helt ny nivå!
 Installera först alla nödvändiga dependencies till server med:
 
 #### `cd server`
+
+och sedan
+
 #### `npm install`
 
-Installera först alla nödvändiga dependencies till client med:
+Installera sedan alla nödvändiga dependencies till client i en ny terminal med:
 
 #### `cd client`
+
+och sedan
+
 #### `npm install`
 
 ### Starta sedan upp servern genom att ange i terminalen:
