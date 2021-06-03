@@ -144,7 +144,13 @@
   display: unset
 }
 
-@media(max-width: 500px) {
+.update-successful {
+  margin-left: .5rem;
+  color: rgb(69, 187, 69);
+  font-size: .75rem;
+}
+
+@media(max-width: 700px) {
   .order {
     display: block;
   }
