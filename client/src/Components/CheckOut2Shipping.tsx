@@ -10,11 +10,21 @@ import React, { useState } from "react";
 import { shippingMethods } from "../DB/ShippingMethods";
 import { useCheckoutContext } from "../Context/CheckoutContext";
 import { useCart } from "../Context/CartContext";
+import { useEffect } from "react";
+
+interface Shipping{
+  deliveryTime: string
+  name: string
+  price: number
+  _id: string
+}
 
 function CheckOut2Shipping() {
   const checkout = useCheckoutContext();
   const cart = useCart();
   const [value, setValue] = useState<string>("");
+  const [shipping, setShipping] = useState<Shipping[]>([])
+  const [shipping1, setShipping1] = useState("")
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -27,14 +37,52 @@ function CheckOut2Shipping() {
     setValue(v);
   };
 
+  
+
+
+  useEffect(() => {
+
+    const options = {
+      method: "get",
+    };
+
+    const fetchCategories = async () => {
+      await fetch("/api/shipping", options)
+        .then(function (res) {
+          if (res.status === 400) {
+            return;
+          }
+          return res.json();
+        })
+        .then(function (data) {
+          setShipping(data);
+        })
+        .catch(function (err) {
+          console.error(err);
+        });
+    };
+  
+    fetchCategories()
+  },[setShipping])
+
+  console.log(shipping)
+
   // Prefixes for displayed text beside the radio btn
-  const shippingMethodText1 =
-    shippingMethods[0].name +
-    " - " +
-    shippingMethods[0].price +
-    " kr - Beräknat leveransdatum (" +
-    shippingMethods[0].deliveryTime +
-    ")";
+  const shippingMethodText1 = () => {
+      if(shipping === undefined) {
+      return
+      
+    } else {
+      const ship = shipping[0].name + " - " + shippingMethods[0].price + " kr - Beräknat leveransdatum (" + shippingMethods[0].deliveryTime + ")"
+      // setShipping1(ship)
+      return ship 
+    }
+  }
+
+  shippingMethodText1()
+
+
+
   const shippingMethodText2 =
     shippingMethods[1].name +
     " - " +
