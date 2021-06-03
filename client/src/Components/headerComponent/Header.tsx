@@ -13,6 +13,7 @@ function Header() {
   const authContext = useAuthContext();
   const history = useHistory();
   let [isOpen, setIsOpen] = useState(false);
+  console.log(authUser)
 
   const handleClick = (e: any) => {
     e.preventDefault();

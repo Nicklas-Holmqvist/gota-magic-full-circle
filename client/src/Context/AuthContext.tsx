@@ -3,6 +3,7 @@ import React, {
   createContext,
   FunctionComponent,
   useContext,
+  useEffect,
 } from "react";
 
 export const AuthContext = createContext<Context>(undefined!);
@@ -10,32 +11,16 @@ export const AuthContext = createContext<Context>(undefined!);
 // Typing for items in ProductProvider
 type Context = {
   user: any;
-  fetchAuth: () => void;
+  fetchAuth: (data:{}) => void;
   logOut: () => void;
 };
 
 export const AuthProvider: FunctionComponent = ({ children }) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<{}>();
 
-  const fetchAuth = async () => {
-    await fetch("/auth", { method: 'GET'})
-      .then(function (res) {
-        if (res.status === 400) {
-          return;
-        }
-        return res.json();
-      })
-      .then(function (data) {
-        const user = data;
-        if (user === undefined) {
-         return
-        }
-        setUser(user);
-      })
-      .catch(function (err) {
-        console.error(err);
-      });
-  };
+  const fetchAuth = (data:{}) => {    
+    setUser(data)
+  }
 
   const logOut = async () => {
     fetch("/api/user/logout", { method: "POST" })
@@ -46,13 +31,35 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
     })
     .catch((err) => {
       console.log(err);
-    });
-    
+    });    
   }
+
+  useEffect(() => {
+    
+      fetch("/auth", { method: 'GET'})
+        .then(function (res) {
+          if (res.status === 400) {
+            return;
+          }
+          return res.json();
+        })
+        .then(function (data) {
+          const user = data;
+          if (user === undefined) {
+           return
+          }
+          setUser(user);
+          console.log({userendpoint:user})
+        })
+        .catch(function (err) {
+          console.error(err);
+        });
+
+  }, [setUser])
 
   return (
     <AuthContext.Provider
-      value={{ user, fetchAuth, logOut }}
+      value={{ user, logOut, fetchAuth }}
     >
       {children}
     </AuthContext.Provider>

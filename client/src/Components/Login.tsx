@@ -57,7 +57,7 @@ function Login() {
       }
 
       if (data.user) {
-        authContext.fetchAuth();
+        authContext.fetchAuth(data.user);
         setLogInSuccessMsg("Inloggning lyckades. Du skickas nu vidare...");
 
         setTimeout(() => {

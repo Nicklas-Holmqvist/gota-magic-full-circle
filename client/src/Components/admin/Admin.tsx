@@ -24,6 +24,9 @@ function Admin() {
     importOrders.fetchOrders()
   },[importOrders])
 
+  if (authContext === undefined) {
+    return <Redirect to="/Login" />;
+  }
   if (!authContext.isAdmin) {
     return <Redirect to="/Login" />;
   } else {
