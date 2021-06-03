@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 export const ShippingContext = createContext<Context>(undefined!);
 
-interface Shipping{
+export interface Shipping{
   deliveryTime: string
   name: string
   price: number

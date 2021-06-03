@@ -135,31 +135,31 @@ function CheckOut2Shipping() {
               <RadioGroup value={value} onChange={handleRadioChange}>
                 <FormControlLabel
                   className="input-field"
-                  value={1}
+                  value={shipping[0] === undefined ? '' : (shipping[0]._id)}
                   control={<Radio />}
                   label={shipping[0] === undefined ? '' : (shipping[0].name + " - " + shipping[0].price + " kr - Beräknat leveransdatum (" + shipping[0].deliveryTime + ")")}
                 />
                 <FormControlLabel
                   className="input-field"
-                  value="2"
+                  value={shipping[1] === undefined ? '' : (shipping[1]._id)}
                   control={<Radio />}
                   label={shipping[1] === undefined ? '' : (shipping[1].name + " - " + shipping[1].price + " kr - Beräknat leveransdatum (" + shipping[1].deliveryTime + ")")}
                 />
                 <FormControlLabel
                   className="input-field"
-                  value="3"
+                  value={shipping[2] === undefined ? '' : (shipping[2]._id)}
                   control={<Radio />}
                   label={shipping[2] === undefined ? '' : (shipping[2].name + " - " + shipping[2].price + " kr - Beräknat leveransdatum (" + shipping[2].deliveryTime + ")")}
                 />
                 <FormControlLabel
                   className="input-field"
-                  value="4"
+                  value={shipping[3] === undefined ? '' : (shipping[3]._id)}
                   control={<Radio />}
                   label={shipping[3] === undefined ? '' : (shipping[3].name + " - " + shipping[3].price + " kr - Beräknat leveransdatum (" + shipping[3].deliveryTime + ")")}
                 />
                 <FormControlLabel
                   className="input-field"
-                  value="5"
+                  value={shipping[4] === undefined ? '' : (shipping[4]._id)}
                   control={<Radio />}
                   label={shipping[4] === undefined ? '' : (shipping[4].name + " - " + shipping[4].price + " kr - Beräknat leveransdatum (" + shipping[4].deliveryTime + ")")}
                 />
