@@ -1,21 +1,16 @@
 // import { Grid } from '@material-ui/core';
 import { useEffect, useState } from "react";
 import { Redirect } from "react-router";
-import { useAuthContext } from "../../Context/AuthContext";
+import { useAuth } from "../../Context/AuthContext";
 import { useOrderContext } from '../../Context/OrderContext'
 import Orders from "./Orders";
-// import { useOrderContext, Order } from "../../Context/OrderContext";
-// import OrderList from './OrdeList'
 import Products from "./Products";
 
 function Admin() {
-  const authContext = useAuthContext();
+  const authContext = useAuth();
   const importOrders = useOrderContext()
 
   const [displayProducts, setDisplayProducts] = useState(true);
-  const [isAdmintrue, setIsAdmintrue] = useState<Boolean>(
-    authContext.authAdmin
-  );
 
   const showProducts = (e: any) => {
     setDisplayProducts(true);
@@ -29,7 +24,7 @@ function Admin() {
     importOrders.fetchOrders()
   },[importOrders])
 
-  if (!isAdmintrue) {
+  if (!authContext.isAdmin) {
     alert('Good try buddy, but you are not an admin')
     return <Redirect to="/Login" />;
   } else {

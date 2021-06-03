@@ -4,43 +4,20 @@ import "./Header.css";
 import Button from "@material-ui/core/Button";
 import TemporaryDrawer from "./Drawer";
 import SimpleMenu from "./SimpleMenu";
-import { useAuthContext } from "../../Context/AuthContext";
+import { useAuth, useAuthContext } from "../../Context/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import Logo from '../../assets/images/magic-1.png'
 
 function Header() {
+  const authUser = useAuth();
   const authContext = useAuthContext();
-  const authUser: boolean = authContext.auth;
   const history = useHistory();
-
-  const [authAdmin, setAuthAdmin] = useState<boolean>(authContext.authAdmin)
-  const [auth, setAuth] = useState<boolean>(authUser);
   let [isOpen, setIsOpen] = useState(false);
-  console.log({HEADERADMIN: authAdmin})
-
-  useEffect(() => {
-    setAuthAdmin(authContext.authAdmin);
-  }, [authContext.authAdmin]);
-
-  useEffect(() => {
-    setAuth(authContext.auth);
-  }, [authContext.auth, setAuth, auth]);
 
   const handleClick = (e: any) => {
     e.preventDefault();
-    setAuth(false);
     history.push("/");
-    authContext.getAuth(false);
-
-    fetch("/api/user/logout", { method: "POST" })
-      .then((response) => {
-        if (response.ok) {
-          alert("You are now logged out!");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    authContext.logOut()
   };
 
   function LoggedInButtons() {
@@ -107,11 +84,11 @@ function Header() {
             <Button>Turneringar</Button>
           </div>
         </Link>
-        {authAdmin === true ? <AdminButton /> : ''}
+        {authUser === undefined ? '' : authUser.isAdmin ? <AdminButton /> : ''}
       </div>
 
       <div className="header-right">
-        {auth === false ? <NotLoggedInButtons /> : <LoggedInButtons />}
+        {authContext.user === undefined ? <NotLoggedInButtons /> : <LoggedInButtons />}
         <div className="cartIcon" onClick={() => setIsOpen(!isOpen)}>
           <TemporaryDrawer></TemporaryDrawer>
         </div>
