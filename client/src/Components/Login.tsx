@@ -58,13 +58,13 @@ function Login() {
       }
 
       if (data.user) {
-        authContext.getAuth(true)
+        authContext.fetchAuth()
+
         setLogInSuccessMsg('Inloggning lyckades. Du skickas nu vidare...')
 
         setTimeout(() => {
           history.push('/ProductList')
         }, 2000)
-
       }
       
     } catch (err) {
