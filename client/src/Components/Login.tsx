@@ -1,77 +1,73 @@
-import '../main.css';
-import '../css/login.css';
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom'
+import "../main.css";
+import "../css/login.css";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useAuthContext } from "../Context/AuthContext";
 
 function Login() {
+  const history = useHistory();
+  const authContext = useAuthContext();
 
-  const history = useHistory()
-  const authContext = useAuthContext()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [logInSuccessMsg, setLogInSuccessMsg] = useState("");
 
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [emailError, setEmailError] = useState("")
-  const [passwordError, setPasswordError] = useState("")
-  const [logInSuccessMsg, setLogInSuccessMsg] = useState("")
+  const handleEmailChange = (e: any) => {
+    setEmail(e.target.value);
+  };
 
-  const handleEmailChange = (e:any) => {
-    setEmail(e.target.value)
-  }
-  
-  const handlePasswordChange = (e:any) => {
-    setPassword(e.target.value)
-  }
+  const handlePasswordChange = (e: any) => {
+    setPassword(e.target.value);
+  };
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    setEmailError('')
-    setPasswordError('')
+    setEmailError("");
+    setPasswordError("");
 
-    const formData = { email, password }
+    const formData = { email, password };
 
     // Email validation
-    if (!email.includes('@' && '.')) {
-      setEmailError('Skriv in en giltig email-adress')
-      return
+    if (!email.includes("@" && ".")) {
+      setEmailError("Skriv in en giltig email-adress");
+      return;
     }
 
     const options = {
-      method: 'post',
+      method: "post",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData)
-    }
+      body: JSON.stringify(formData),
+    };
 
     try {
-      const response = await fetch('/api/user/login', options)
-      const data: any = await response.json()
+      const response = await fetch("/api/user/login", options);
+      const data: any = await response.json();
 
       if (data.errors) {
-        if (data.errors.email !== '') {
-          setEmailError(data.errors.email)
+        if (data.errors.email !== "") {
+          setEmailError(data.errors.email);
         }
-        if (data.errors.password !== '') {
-          setPasswordError(data.errors.password)
+        if (data.errors.password !== "") {
+          setPasswordError(data.errors.password);
         }
       }
 
       if (data.user) {
-        authContext.getAuth(true)
-        setLogInSuccessMsg('Inloggning lyckades. Du skickas nu vidare...')
+        authContext.fetchAuth();
+        setLogInSuccessMsg("Inloggning lyckades. Du skickas nu vidare...");
 
         setTimeout(() => {
-          history.push('/ProductList')
-        }, 2000)
-
+          history.push("/ProductList");
+        }, 2000);
       }
-      
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-
-  }
+  };
 
   return (
     <div className="login-container">
@@ -79,12 +75,26 @@ function Login() {
         <h3>Logga In</h3>
         <form>
           <label htmlFor="email">Email</label>
-          <input type="text" name="email" id="email-login" onChange={handleEmailChange} required />
+          <input
+            type="text"
+            name="email"
+            id="email-login"
+            onChange={handleEmailChange}
+            required
+          />
           <span className="email-error">{emailError}</span>
           <label htmlFor="password">Lösenord</label>
-          <input type="password" name="password" id="password-login" onChange={handlePasswordChange} required />
+          <input
+            type="password"
+            name="password"
+            id="password-login"
+            onChange={handlePasswordChange}
+            required
+          />
           <span className="password-error">{passwordError}</span>
-          <button type="submit" onClick={handleSubmit}>Logga In</button>
+          <button type="submit" onClick={handleSubmit}>
+            Logga In
+          </button>
           <span className="login-successful-text">{logInSuccessMsg}</span>
         </form>
         <div className="alternate-link">
@@ -93,7 +103,7 @@ function Login() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;

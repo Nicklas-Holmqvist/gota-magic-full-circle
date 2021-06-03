@@ -52,7 +52,7 @@ function getStepContent(stepIndex: number) {
 
 function BreadCrumbs() {
   const authContext = useAuthContext();
-  const auth: boolean = authContext.auth;
+  const auth: boolean = authContext.user;
 
   const cart = useCart();
   const user = useCheckoutContext();
@@ -214,7 +214,7 @@ function BreadCrumbs() {
       handleNext();
     }
   };
-  if (!auth) {
+  if (auth === undefined) {
     return <Redirect to="/Login" />;
   }
 
