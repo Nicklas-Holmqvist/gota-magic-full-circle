@@ -46,7 +46,7 @@ function CheckOut2Shipping() {
       method: "get",
     };
 
-    const fetchCategories = async () => {
+    const fetchShippingMethods = async () => {
       await fetch("/api/shipping", options)
         .then(function (res) {
           if (res.status === 400) {
@@ -62,26 +62,32 @@ function CheckOut2Shipping() {
         });
     };
   
-    fetchCategories()
+    fetchShippingMethods()
   },[setShipping])
 
   console.log(shipping)
 
   // Prefixes for displayed text beside the radio btn
-  const shippingMethodText1 = () => {
-      if(shipping === undefined) {
-      return
+  // const shippingMethodText1 = () => {
+  //     if(shipping === undefined) {
+  //     return
       
-    } else {
-      const ship = shipping[0].name + " - " + shippingMethods[0].price + " kr - Beräknat leveransdatum (" + shippingMethods[0].deliveryTime + ")"
-      // setShipping1(ship)
-      return ship 
-    }
-  }
+  //   } else {
+  //     const ship = shipping[0].name + " - " + shippingMethods[0].price + " kr - Beräknat leveransdatum (" + shippingMethods[0].deliveryTime + ")"
+  //     // setShipping1(ship)
+  //     return ship 
+  //   }
+  // }
 
-  shippingMethodText1()
+  // shippingMethodText1()
 
-
+  const shippingMethodText1 =
+  shippingMethods[0].name +
+  " - " +
+  shippingMethods[0].price +
+  " kr - Beräknat leveransdatum (" +
+  shippingMethods[0].deliveryTime +
+  ")";
 
   const shippingMethodText2 =
     shippingMethods[1].name +
@@ -127,31 +133,31 @@ function CheckOut2Shipping() {
                   className="input-field"
                   value="1"
                   control={<Radio />}
-                  label={shippingMethodText1}
+                  label={shipping[0] === undefined ? '' : (shipping[0].name + " - " + shipping[0].price + " kr - Beräknat leveransdatum (" + shipping[0].deliveryTime + ")")}
                 />
                 <FormControlLabel
                   className="input-field"
                   value="2"
                   control={<Radio />}
-                  label={shippingMethodText2}
+                  label={shipping[1] === undefined ? '' : (shipping[1].name + " - " + shipping[1].price + " kr - Beräknat leveransdatum (" + shipping[1].deliveryTime + ")")}
                 />
                 <FormControlLabel
                   className="input-field"
                   value="3"
                   control={<Radio />}
-                  label={shippingMethodText3}
+                  label={shipping[2] === undefined ? '' : (shipping[2].name + " - " + shipping[2].price + " kr - Beräknat leveransdatum (" + shipping[2].deliveryTime + ")")}
                 />
                 <FormControlLabel
                   className="input-field"
                   value="4"
                   control={<Radio />}
-                  label={shippingMethodText4}
+                  label={shipping[3] === undefined ? '' : (shipping[3].name + " - " + shipping[3].price + " kr - Beräknat leveransdatum (" + shipping[3].deliveryTime + ")")}
                 />
                 <FormControlLabel
                   className="input-field"
                   value="5"
                   control={<Radio />}
-                  label={shippingMethodText5}
+                  label={shipping[4] === undefined ? '' : (shipping[4].name + " - " + shipping[4].price + " kr - Beräknat leveransdatum (" + shipping[4].deliveryTime + ")")}
                 />
               </RadioGroup>
             </FormControl>
