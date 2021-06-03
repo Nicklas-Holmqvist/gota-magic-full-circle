@@ -4,22 +4,25 @@ import { CheckoutProvider } from "../Context/CheckoutContext";
 import { ProductProvider } from "../Context/ProductContext";
 import { OrderProvider } from "../Context/OrderContext";
 import { AuthProvider } from "../Context/AuthContext";
+import { ShippingProvider } from "../Context/ShippingContext";
 import Api from "./Api";
 
 function ContextMaster() {
   return (
     <>
-      <AuthProvider>
-        <OrderProvider>
-          <ProductProvider>
-            <CheckoutProvider>
-              <CartContextProvider>
-                <Api />
-              </CartContextProvider>
-            </CheckoutProvider>
-          </ProductProvider>
-        </OrderProvider>
-      </AuthProvider>
+      <ShippingProvider>
+        <AuthProvider>
+          <OrderProvider>
+            <ProductProvider>
+              <CheckoutProvider>
+                <CartContextProvider>
+                  <Api />
+                </CartContextProvider>
+              </CheckoutProvider>
+            </ProductProvider>
+          </OrderProvider>
+        </AuthProvider>
+      </ShippingProvider>
     </>
   );
 }

@@ -7,9 +7,10 @@ import {
   RadioGroup,
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { shippingMethods } from "../DB/ShippingMethods";
+// import { shippingMethods } from "../DB/ShippingMethods";
 import { useCheckoutContext } from "../Context/CheckoutContext";
 import { useCart } from "../Context/CartContext";
+import { useShipping } from "../Context/ShippingContext";
 import { useEffect } from "react";
 
 interface Shipping{
@@ -21,10 +22,13 @@ interface Shipping{
 
 function CheckOut2Shipping() {
   const checkout = useCheckoutContext();
+  const shipping:Shipping[] = useShipping();
   const cart = useCart();
   const [value, setValue] = useState<string>("");
-  const [shipping, setShipping] = useState<Shipping[]>([])
-  const [shipping1, setShipping1] = useState("")
+  // const [shipping, setShipping] = useState<>([])
+  // const [shipping1, setShipping1] = useState("")
+
+  console.log(value)
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -40,32 +44,32 @@ function CheckOut2Shipping() {
   
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const options = {
-      method: "get",
-    };
+  //   const options = {
+  //     method: "get",
+  //   };
 
-    const fetchShippingMethods = async () => {
-      await fetch("/api/shipping", options)
-        .then(function (res) {
-          if (res.status === 400) {
-            return;
-          }
-          return res.json();
-        })
-        .then(function (data) {
-          setShipping(data);
-        })
-        .catch(function (err) {
-          console.error(err);
-        });
-    };
+  //   const fetchShippingMethods = async () => {
+  //     await fetch("/api/shipping", options)
+  //       .then(function (res) {
+  //         if (res.status === 400) {
+  //           return;
+  //         }
+  //         return res.json();
+  //       })
+  //       .then(function (data) {
+  //         setShipping(data);
+  //       })
+  //       .catch(function (err) {
+  //         console.error(err);
+  //       });
+  //   };
   
-    fetchShippingMethods()
-  },[setShipping])
+  //   fetchShippingMethods()
+  // },[setShipping])
 
-  console.log(shipping)
+  // console.log(shipping)
 
   // Prefixes for displayed text beside the radio btn
   // const shippingMethodText1 = () => {
@@ -81,42 +85,42 @@ function CheckOut2Shipping() {
 
   // shippingMethodText1()
 
-  const shippingMethodText1 =
-  shippingMethods[0].name +
-  " - " +
-  shippingMethods[0].price +
-  " kr - Beräknat leveransdatum (" +
-  shippingMethods[0].deliveryTime +
-  ")";
+  // const shippingMethodText1 =
+  // shippingMethods[0].name +
+  // " - " +
+  // shippingMethods[0].price +
+  // " kr - Beräknat leveransdatum (" +
+  // shippingMethods[0].deliveryTime +
+  // ")";
 
-  const shippingMethodText2 =
-    shippingMethods[1].name +
-    " - " +
-    shippingMethods[1].price +
-    " kr - Beräknat leveransdatum (" +
-    shippingMethods[1].deliveryTime +
-    ")";
-  const shippingMethodText3 =
-    shippingMethods[2].name +
-    " - " +
-    shippingMethods[2].price +
-    " kr - Beräknat leveransdatum (" +
-    shippingMethods[2].deliveryTime +
-    ")";
-  const shippingMethodText4 =
-    shippingMethods[3].name +
-    " - " +
-    shippingMethods[3].price +
-    " kr - Beräknat leveransdatum (" +
-    shippingMethods[3].deliveryTime +
-    ")";
-  const shippingMethodText5 =
-    shippingMethods[4].name +
-    " - " +
-    shippingMethods[4].price +
-    " kr - Beräknat leveransdatum (" +
-    shippingMethods[4].deliveryTime +
-    ")";
+  // const shippingMethodText2 =
+  //   shippingMethods[1].name +
+  //   " - " +
+  //   shippingMethods[1].price +
+  //   " kr - Beräknat leveransdatum (" +
+  //   shippingMethods[1].deliveryTime +
+  //   ")";
+  // const shippingMethodText3 =
+  //   shippingMethods[2].name +
+  //   " - " +
+  //   shippingMethods[2].price +
+  //   " kr - Beräknat leveransdatum (" +
+  //   shippingMethods[2].deliveryTime +
+  //   ")";
+  // const shippingMethodText4 =
+  //   shippingMethods[3].name +
+  //   " - " +
+  //   shippingMethods[3].price +
+  //   " kr - Beräknat leveransdatum (" +
+  //   shippingMethods[3].deliveryTime +
+  //   ")";
+  // const shippingMethodText5 =
+  //   shippingMethods[4].name +
+  //   " - " +
+  //   shippingMethods[4].price +
+  //   " kr - Beräknat leveransdatum (" +
+  //   shippingMethods[4].deliveryTime +
+  //   ")";
 
   return (
     <div className="container flex">
@@ -131,7 +135,7 @@ function CheckOut2Shipping() {
               <RadioGroup value={value} onChange={handleRadioChange}>
                 <FormControlLabel
                   className="input-field"
-                  value="1"
+                  value={1}
                   control={<Radio />}
                   label={shipping[0] === undefined ? '' : (shipping[0].name + " - " + shipping[0].price + " kr - Beräknat leveransdatum (" + shipping[0].deliveryTime + ")")}
                 />
