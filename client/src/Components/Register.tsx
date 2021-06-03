@@ -11,6 +11,7 @@ function Register() {
   const [password, setPassword] = useState("")
   const [emailError, setEmailError] = useState("")
   const [passwordError, setPasswordError] = useState("")
+  const [registerSuccessMsg, setRegisterSuccessMsg] = useState("")
 
   const handleEmailChange = (e:any) => {
     setEmail(e.target.value)
@@ -55,7 +56,11 @@ function Register() {
         setEmailError(data.errors.email)
         return
       } else {
-        history.push('/Login')
+        setRegisterSuccessMsg('Konto skapat! Skickas vidare till log-in sidan...')
+
+        setTimeout(() => {
+          history.push('/Login')
+        }, 2000)
       }
       
     } catch (err) {
@@ -75,6 +80,7 @@ function Register() {
           <input type="password" name="password" id="password-register" onChange={handlePasswordChange} required />
           <span className="password-error">{passwordError}</span>
           <button type="submit" onClick={handleSubmit}>Registrera</button>
+          <span className="register-successful-text">{registerSuccessMsg}</span>
         </form>
         <div className="alternate-link">
           <h4>- ELLER -</h4>
