@@ -9,6 +9,7 @@ const useStyles = makeStyles({
 function ProductRow(props: Product) {
   const style = useStyles();
   const [stock, setStock] = useState(Number)
+  const [updateMsg, setUpdateMsg] = useState('')
 
   const updateValue = (e: any) => {
     setStock(e.target.value)
@@ -28,8 +29,13 @@ function ProductRow(props: Product) {
     }
 
     try {
-      const response = await fetch(`/api/product/${props._id}`, options)
-      const data = await response.json()
+      setUpdateMsg('Lagersaldo uppdaterat')
+
+      setTimeout(async () => {
+        const response = await fetch(`/api/product/${props._id}`, options)
+        const data = await response.json()
+        setUpdateMsg('')
+      }, 1500);
     } catch (err) {
       console.error(err)
     }
@@ -46,6 +52,7 @@ function ProductRow(props: Product) {
           <label htmlFor="stock" className="stock-label">I lager:</label>
           <input className="admin-product-stock-input" type="text" defaultValue={props.stock} name="stock" onChange={updateValue} />
           <button type="submit" className="update-stock-btn" onClick={handleStockUpdate}>Ändra lagersaldo</button>
+          <span className="update-successful">{updateMsg}</span>
         </form>
       </Grid> 
     </Grid>

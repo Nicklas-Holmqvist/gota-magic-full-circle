@@ -25,7 +25,6 @@ function Admin() {
   },[importOrders])
 
   if (!authContext.isAdmin) {
-    alert('Good try buddy, but you are not an admin')
     return <Redirect to="/Login" />;
   } else {
     return (
