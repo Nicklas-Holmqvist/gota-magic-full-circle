@@ -6,9 +6,15 @@ Göta Magic är tillbaka! Denna gången på en helt ny nivå!
 
 ## För att köra projektet:
 
-Installera först alla nödvändiga dependencies med:
+Installera först alla nödvändiga dependencies till server med:
 
-### `npm install`
+#### `cd server`
+#### `npm install`
+
+Installera först alla nödvändiga dependencies till client med:
+
+#### `cd client`
+#### `npm install`
 
 ### Starta sedan upp servern genom att ange i terminalen:
 
