@@ -7,14 +7,17 @@ import {
   RadioGroup,
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { shippingMethods } from "../DB/ShippingMethods";
 import { useCheckoutContext } from "../Context/CheckoutContext";
 import { useCart } from "../Context/CartContext";
+import { useShipping, Shipping } from "../Context/ShippingContext";
 
 function CheckOut2Shipping() {
   const checkout = useCheckoutContext();
+  const shipping:Shipping[] = useShipping();
   const cart = useCart();
   const [value, setValue] = useState<string>("");
+
+  console.log(value)
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -26,43 +29,6 @@ function CheckOut2Shipping() {
   const setRadioChange = (v: string) => {
     setValue(v);
   };
-
-  // Prefixes for displayed text beside the radio btn
-  const shippingMethodText1 =
-    shippingMethods[0].name +
-    " - " +
-    shippingMethods[0].price +
-    " kr - Beräknat leveransdatum (" +
-    shippingMethods[0].deliveryTime +
-    ")";
-  const shippingMethodText2 =
-    shippingMethods[1].name +
-    " - " +
-    shippingMethods[1].price +
-    " kr - Beräknat leveransdatum (" +
-    shippingMethods[1].deliveryTime +
-    ")";
-  const shippingMethodText3 =
-    shippingMethods[2].name +
-    " - " +
-    shippingMethods[2].price +
-    " kr - Beräknat leveransdatum (" +
-    shippingMethods[2].deliveryTime +
-    ")";
-  const shippingMethodText4 =
-    shippingMethods[3].name +
-    " - " +
-    shippingMethods[3].price +
-    " kr - Beräknat leveransdatum (" +
-    shippingMethods[3].deliveryTime +
-    ")";
-  const shippingMethodText5 =
-    shippingMethods[4].name +
-    " - " +
-    shippingMethods[4].price +
-    " kr - Beräknat leveransdatum (" +
-    shippingMethods[4].deliveryTime +
-    ")";
 
   return (
     <div className="container flex">
@@ -77,33 +43,33 @@ function CheckOut2Shipping() {
               <RadioGroup value={value} onChange={handleRadioChange}>
                 <FormControlLabel
                   className="input-field"
-                  value="1"
+                  value={shipping[0] === undefined ? '' : (shipping[0]._id)}
                   control={<Radio />}
-                  label={shippingMethodText1}
+                  label={shipping[0] === undefined ? '' : (shipping[0].name + " - " + shipping[0].price + " kr - Beräknat leveransdatum (" + shipping[0].deliveryTime + ")")}
                 />
                 <FormControlLabel
                   className="input-field"
-                  value="2"
+                  value={shipping[1] === undefined ? '' : (shipping[1]._id)}
                   control={<Radio />}
-                  label={shippingMethodText2}
+                  label={shipping[1] === undefined ? '' : (shipping[1].name + " - " + shipping[1].price + " kr - Beräknat leveransdatum (" + shipping[1].deliveryTime + ")")}
                 />
                 <FormControlLabel
                   className="input-field"
-                  value="3"
+                  value={shipping[2] === undefined ? '' : (shipping[2]._id)}
                   control={<Radio />}
-                  label={shippingMethodText3}
+                  label={shipping[2] === undefined ? '' : (shipping[2].name + " - " + shipping[2].price + " kr - Beräknat leveransdatum (" + shipping[2].deliveryTime + ")")}
                 />
                 <FormControlLabel
                   className="input-field"
-                  value="4"
+                  value={shipping[3] === undefined ? '' : (shipping[3]._id)}
                   control={<Radio />}
-                  label={shippingMethodText4}
+                  label={shipping[3] === undefined ? '' : (shipping[3].name + " - " + shipping[3].price + " kr - Beräknat leveransdatum (" + shipping[3].deliveryTime + ")")}
                 />
                 <FormControlLabel
                   className="input-field"
-                  value="5"
+                  value={shipping[4] === undefined ? '' : (shipping[4]._id)}
                   control={<Radio />}
-                  label={shippingMethodText5}
+                  label={shipping[4] === undefined ? '' : (shipping[4].name + " - " + shipping[4].price + " kr - Beräknat leveransdatum (" + shipping[4].deliveryTime + ")")}
                 />
               </RadioGroup>
             </FormControl>

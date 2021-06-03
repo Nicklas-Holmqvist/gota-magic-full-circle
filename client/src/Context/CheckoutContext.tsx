@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import { PaymentMethod, PaymentMethods } from "../DB/PaymentMethods";
-import { ShippingMethod, shippingMethods } from "../DB/ShippingMethods";
+import { useShipping, Shipping } from "../Context/ShippingContext";
 
 // functions and varibles that works through context
 interface CheckoutContextValue {
@@ -21,7 +21,7 @@ interface CheckoutContextValue {
   getValidation: (value:boolean) => void;
   userInfo: User[];
   payment: PaymentMethod[];
-  shippingObject: ShippingMethod[];
+  shippingObject: Shipping[];
   orderNumber: number;
   validatedUser: boolean
   userPayment:PayUser[]
@@ -60,9 +60,9 @@ const baseOrderNumber:number = 1000
 
 
 export const CheckoutProvider: FunctionComponent = ({ children }) => {
-
+  const shipping:Shipping[] = useShipping()
   const [userInfo, setUserInfo] = useState<User[]>([])
-  const [shippingObject, setShippingObject] = useState<ShippingMethod[]>([]); 
+  const [shippingObject, setShippingObject] = useState<Shipping[]>([]); 
   const [payment, setPayment] = useState<PaymentMethod[]>([]);
   const [userPayment, setUserPayment] = useState<PayUser[]>([{cardName:"", cardNumber:"", expiredDate:"", lastDate:"", cvc:""}]);
 
@@ -157,9 +157,9 @@ export const CheckoutProvider: FunctionComponent = ({ children }) => {
 
   // Saves the shippinginformation from CheckOut2Shipping
   const saveShippingMethod = (id: string) => {
-    const freightValue = parseInt(id);
-    const selectedShipping = shippingMethods.filter((s) => {
-      if (s.id === freightValue) {return freightValue}
+    const freightValue = id;
+    const selectedShipping = shipping.filter((s) => {
+      if (s._id === freightValue) {return freightValue}
       else {return null};
     });
 
