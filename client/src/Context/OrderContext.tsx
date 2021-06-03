@@ -95,6 +95,7 @@ export const OrderProvider: FunctionComponent = ({ children }) => {
       console.log(error);
     }
   };
+
   const fetchOrders = async () => {
     await fetch("/api/order", options)
       .then(function (res) {
@@ -110,6 +111,11 @@ export const OrderProvider: FunctionComponent = ({ children }) => {
         console.error(err);
       });
   };
+
+  // const getNewOrderNumber = ()=>{
+  //  const orderNumberList = allOrders.
+
+  // }
 
   return (
     <OrderContext.Provider
