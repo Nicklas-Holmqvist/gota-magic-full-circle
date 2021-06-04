@@ -67,7 +67,7 @@ function ProductList() {
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    paddingTop: '1rem'
+    paddingTop: '6rem'
   }
 
   const productListBtnStyle: CSSProperties = {
