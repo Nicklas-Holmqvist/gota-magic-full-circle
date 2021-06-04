@@ -56,9 +56,21 @@ Lösen: gotamagic123
 
 ---
 
-# Avvägningar på sidan
+# Avvägningar och Tillvägasätt
+
+## Avvägningar
 
 - Vi har tagit bort vår sök funktion på produktlistan för att endast använda oss av Kategorierna som var ett krav för denna inlämning
+
+## Tillvägasätt
+
+### Login, Auth och Logout
+
+Statet "user" används för kontroll av inloggad användare även om man är admin eller inte.
+
+- Om en lyckad inloggning görs, skickas user från Login fetchen till AuthContext och sätts i statet "user"
+- Uppdaterar man sidan körs Auth fetchen och kontrollerar att man är inloggad
+- När man loggar ut sätts statet "user" till "Undefined" 
 
 ---
 
@@ -81,12 +93,11 @@ Lösen: gotamagic123
 - Företagsbeskrivning: Vårt mål är att tillhandahålla det mest väsäntliga för kompetativt magic-spelande i Göteborg. Dels genom att tillgodose väsentliga kort i butik, samt även att arrangera turneringar och andra trevliga tillställningar kring vårat favoritspel.
 
 #### All data som programmet utnyttjar ska vara sparat i en Mongo-databas (produkter, beställningar, konton mm) (G)
-Vi har försökt röra så lite som möjligt på frontend när vi har lagt till våra endpoints. Så därför kan det se lite rörigt ut.
-I det förra projektet hade vi inte den kunskapen vi har nu och skulle bygga sidan med bättre struktur och kod.
+Vi har försökt röra så lite som möjligt på frontend när vi har lagt till våra endpoints som läraren rekommenderade så vi kunde fokusera på backend. Därför kan allt se lite rörigt ut. I det förra projektet hade vi inte den kunskapen vi har nu och skulle bygga sidan med bättre struktur och kod.
 - Lagt in vissa resurser manuellt, och vissa via CRUD endpoints i vår Mongo Databas
 - Products, Categories hämtas i ProductContext
 - Orders hämtas och skapa order körs i OrderContext
-- Auth(user) och Logout körs i AuthContext
+- Auth(user) och Logout körs i AuthContext.
 - Login körs i komponenten Login pga uppbyggnaden med states
 - Shippingmetoder hämtas i ShippingContext
 - Update stock körs i ProductRow under Admin
