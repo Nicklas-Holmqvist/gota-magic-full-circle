@@ -13,7 +13,7 @@ function Orders() {
     } else {
       setMobileView(false)
     }
-  }) 
+  },[]) 
   
   const importOrders = useOrderContext()
   
