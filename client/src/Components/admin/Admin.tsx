@@ -1,4 +1,3 @@
-// import { Grid } from '@material-ui/core';
 import { useEffect, useState } from "react";
 import { Redirect } from "react-router";
 import { useAuth } from "../../Context/AuthContext";
@@ -22,7 +21,7 @@ function Admin() {
 
   useEffect(() => {
     importOrders.fetchOrders()
-  },[importOrders])
+  }, [importOrders])
 
   if (authContext === undefined) {
     return <Redirect to="/Login" />;

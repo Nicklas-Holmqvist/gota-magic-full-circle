@@ -1,4 +1,4 @@
-import React, {
+import {
   useState,
   createContext,
   FunctionComponent,
@@ -30,7 +30,7 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
       }
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
     });    
   }
 
@@ -49,7 +49,6 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
            return
           }
           setUser(user);
-          console.log({userendpoint:user})
         })
         .catch(function (err) {
           console.error(err);

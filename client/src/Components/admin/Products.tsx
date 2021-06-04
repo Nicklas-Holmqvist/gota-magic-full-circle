@@ -1,6 +1,4 @@
-import React, { useState } from "react";
 import { useProductContext } from "../../Context/ProductContext";
-
 import { Product } from "../../DB/Products";
 import ProductRow from "./ProductRow";
 import '../../main.css'
@@ -35,7 +33,7 @@ function Products() {
 
     return(
         <>
-        {viewAllProducts}
+            {viewAllProducts}
         </>
     )
 }

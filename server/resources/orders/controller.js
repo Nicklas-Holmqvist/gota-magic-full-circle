@@ -52,7 +52,6 @@ exports.viewAllOrders = async (req, res) => {
 async function updateProductStock(orderProducts) {
   orderProducts.forEach(async (obj) => {
     if (obj.quantity >= 1) {
-      console.log(obj);
       const getProduct = await ProductModel.findById(obj.id);
       const updateProductStock = { stock: getProduct.stock - obj.quantity };
 

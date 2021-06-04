@@ -1,4 +1,3 @@
-
 import { Button } from "@material-ui/core";
 import "../main.css";
 import "../css/productPage.css";
@@ -39,9 +38,7 @@ function ProductPage() {
   if (!product) {
     return <p>Det här magikortet verkar inte finnas.</p>;
   }
-
-  console.log({BILD: product})
-
+  
   return (
     <div className="background">
       <div className="grey-card" style={cardStyle}>

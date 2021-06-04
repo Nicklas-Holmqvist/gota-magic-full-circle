@@ -1,6 +1,5 @@
 import { Button } from "@material-ui/core";
 import { CSSProperties } from "@material-ui/styles";
-import React from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../../Context/CartContext";
 import CartComponent from "./Cart";

@@ -5,49 +5,36 @@ import '../css/components.css';
 import { useHistory } from 'react-router-dom';
 
 function MissingPage() {
-    let history = useHistory();
-    console.log('tihi');
-    return(
-    
-        <Grid container 
-        justify="center" 
-        alignItems="center" 
-        className="landingContainer" 
-        style={landingContainer}>
-
-            <Grid container sm={12} lg={12} style={infoLandingContainer}>
-            <img style={infoLandingContainerImage} src="./assets/imgs/play/wrong.png" alt="glatt-turnerings-sallskap" /> 
-                <Grid container className="flex" style={textLandingContainer}> 
-                <Grid container style={goBack}>
-
-                <h1>
-                    Någonting gick fel - 
-                </h1>
-                    <Button 
-                        variant="contained" 
-                        color="primary" 
-                        onClick={() => history.goBack()}>
-                            Gå Tillbaka
-                        </Button>
-                </Grid>
-                <div className="breaker"></div>
-                    <Grid container className="bottom-p">
-                        <p>picture above: 'Thoughtseize' illustrated by: Chuck Lukacs</p>
-                    </Grid> 
-
-                </Grid>
-            </Grid>
-        </Grid>
-        
-    );
+	let history = useHistory();
+	
+	return (
+    <Grid container justify="center" alignItems="center" className="landingContainer" style={landingContainer}>
+      <Grid container sm={12} lg={12} style={infoLandingContainer}>
+        <img style={infoLandingContainerImage} src="./assets/imgs/play/wrong.png" alt="glatt-turnerings-sallskap" /> 
+        <Grid container className="flex" style={textLandingContainer}> 
+          <Grid container style={goBack}>
+						<h1>Någonting gick fel - </h1>
+            <Button 
+              variant="contained" 
+              color="primary" 
+              onClick={() => history.goBack()}
+						>
+              Gå Tillbaka
+						</Button>
+          </Grid>
+        	<div className="breaker"></div>
+					<Grid container className="bottom-p">
+						<p>picture above: 'Thoughtseize' illustrated by: Chuck Lukacs</p>
+					</Grid> 
+				</Grid>
+    	</Grid>
+  	</Grid>    
+  );
 }
-
-
 
 const landingContainer: CSSProperties = {
     backgroundImage: 'url(./assets/imgs/what-the-hex.png)',    
-    height: '100%',
-    
+    height: '100%', 
 }
 
 const infoLandingContainer: CSSProperties = {  
@@ -76,7 +63,6 @@ const textLandingContainer: CSSProperties = {
 const goBack: CSSProperties = {
     display: 'flex',
     justifyContent: 'center'
-
 }
 
 
