@@ -32,8 +32,7 @@ function ProductRow(props: Product) {
       setUpdateMsg('Lagersaldo uppdaterat')
 
       setTimeout(async () => {
-        const response = await fetch(`/api/product/${props._id}`, options)
-        const data = await response.json()
+        await fetch(`/api/product/${props._id}`, options)
         setUpdateMsg('')
       }, 1500);
     } catch (err) {
@@ -57,7 +56,6 @@ function ProductRow(props: Product) {
       </Grid> 
     </Grid>
   );
-
 }
 
 export default ProductRow;

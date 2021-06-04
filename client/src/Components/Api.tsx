@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Product } from "../DB/Products";
 import Layout from "./Layout";
@@ -10,7 +10,6 @@ function Api() {
   const productContext = useProductContext();
 
   // Fetch the product DB
-  // const products:Product[] = mockedProducts
   const [products, setProducts] = useState<Product[]>([]);
 
   // Sends the products to ProductContext

@@ -1,4 +1,3 @@
-import React from "react";
 import { CartContextProvider } from "../Context/CartContext";
 import { CheckoutProvider } from "../Context/CheckoutContext";
 import { ProductProvider } from "../Context/ProductContext";

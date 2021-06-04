@@ -1,6 +1,5 @@
 import { Button } from '@material-ui/core'
 import {Link} from 'react-router-dom'
-import React from 'react'
 import '../main.css';
 
 function CheckoutError() {

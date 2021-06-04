@@ -25,11 +25,9 @@ exports.isLoggedIn = async (req, res, next) => {
   if(userCookieId === undefined) {
     let error = new Error('Not logged in') 
     error.status = 401
-    // redirecta till log in page här
 
     return next(error)
   } else {
-    console.log('logged in')
     return next()
   }
 }
