@@ -61,6 +61,7 @@ Lösen: gotamagic123
 ## Avvägningar
 
 - Vi har tagit bort vår sök funktion på produktlistan för att endast använda oss av Kategorierna som var ett krav för denna inlämning
+- Vi har även bestämt att utesluta adressen från våra ordrar på admin-sidan
 
 ## Tillvägasätt
 
