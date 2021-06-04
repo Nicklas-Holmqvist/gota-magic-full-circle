@@ -5,8 +5,10 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import MenuIcon from '@material-ui/icons/Menu';
+import { useAuth, useAuthContext } from "../../Context/AuthContext";
 
 export default function SimpleMenu() {
+  const authUser = useAuth();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -16,6 +18,14 @@ export default function SimpleMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  function AdminButton() {
+    return (
+    <Link className="link-style" to="/Admin">
+      <MenuItem onClick={handleClose}>Admin</MenuItem>
+    </Link>
+    )
+  }
 
 
   return (
@@ -50,6 +60,7 @@ export default function SimpleMenu() {
         <Link className="link-style" to="/Register">
           <MenuItem onClick={handleClose}>Skapa konto</MenuItem>
         </Link>
+        {authUser === undefined ? '' : authUser.isAdmin ? <AdminButton /> : ''}
       </Menu>
     </div>
   );
