@@ -8,7 +8,7 @@ function Orders() {
   const [mobileView, setMobileView] = useState(false)
 
   useEffect(() => {
-    if (window.innerWidth < 500) {
+    if (window.innerWidth < 830) {
       setMobileView(true)
     } else {
       setMobileView(false)
