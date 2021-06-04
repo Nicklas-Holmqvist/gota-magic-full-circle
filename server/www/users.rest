@@ -1,8 +1,5 @@
+// This endpoint just shows all users when logged in, in this REST file
 GET http://localhost:3001/api/user/all
-
-###
-
-GET http://localhost:3001/api/user/60aba162010c3c2f005643e8
 
 ###
 

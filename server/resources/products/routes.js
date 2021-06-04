@@ -5,8 +5,6 @@ const { auth } = require('../auth/controller')
 
 /////////////// hämtar alla producter /////////////////////
 router.get("/api/product/", controller.getAllProducts);
-///////////////                      /////////////////////
-router.get("/api/product/:id", controller.getSpecProduct);
 ////////////// update stock ////////////////////
 router.put("/api/product/:id", auth, controller.updateStock);
 
