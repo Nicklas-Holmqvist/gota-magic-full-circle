@@ -150,6 +150,10 @@
   font-size: .75rem;
 }
 
+.padding-left {
+  padding-left: 1rem;
+}
+
 @media(max-width: 700px) {
   .order {
     display: block;
