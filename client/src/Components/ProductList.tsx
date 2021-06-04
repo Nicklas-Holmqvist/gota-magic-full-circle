@@ -60,6 +60,7 @@ function ProductList() {
     alignItems: "center",
     flexWrap: "wrap",
     paddingTop: '1.5rem',
+    margin: "0 auto"
   };
 
   const styleCategories: CSSProperties = {
