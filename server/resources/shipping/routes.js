@@ -5,7 +5,6 @@ const router = express.Router();
 // Fetch all shippingMethods
 router.get('/api/shipping/', controller.getShippingMethod);
 
-
 module.exports = router;
 
 

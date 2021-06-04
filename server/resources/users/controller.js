@@ -11,16 +11,6 @@ exports.getAllUsers = async (req, res) => {
   }
 }
 
-// Get all users
-exports.getAllUsers = async (req, res) => {
-  const users = await UserModel.find()
-  try {
-    res.send(users)
-  } catch (error) {
-    
-  }
-}
-
 // Create new user
 exports.createUser = async (req, res) => {
 

@@ -19,6 +19,7 @@ app.use("/uploads", express.static("uploads"));
 
 app.use(cookieParser());
 
+// Imports the routes for the resources
 app.use(productRouter);
 app.use(auth);
 app.use(userRouter);

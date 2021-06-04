@@ -16,7 +16,6 @@ exports.createOrder = async (req, res) => {
   newOrderNumber++;
 
   const newOrder = {
-    // orderNumber: req.body.orderNumber,
     orderNumber: newOrderNumber,
     userId: req.body.userId,
     user: req.body.user,

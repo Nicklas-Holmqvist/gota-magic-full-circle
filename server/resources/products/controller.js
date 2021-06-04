@@ -12,16 +12,6 @@ exports.getAllProducts = async (_, res) => {
     }       
 }
 
-// Get one product from para
-exports.getSpecProduct = async (req, res) => {
-    try {
-        const getProduct = await ProductModel.findById(req.params.id); 
-        res.status(200).json(getProduct) 
-    } catch (error) {
-        res.status(404).json('No product found')
-    }
-}
-
 // Update stocks
 exports.updateStock = async (req, res) => {
     const updateProductStock = {stock: req.body.stock}
