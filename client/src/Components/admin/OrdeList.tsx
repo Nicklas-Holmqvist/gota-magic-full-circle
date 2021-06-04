@@ -60,7 +60,7 @@ function OrderList(props: Order) {
                 <Grid item xs={2}>{props.sent === true ? 'Skickat' : 'Ej skickat'}</Grid>  
               </AccordionSummary>
               <Grid container> 
-                <Grid item xs={5}>Produkt</Grid>
+                <Grid item xs={5} className="padding-left">Produkt</Grid>
                 <Grid item xs={2}>Antal</Grid>
                 <Grid item xs={3}>Pris</Grid>
               </Grid>
