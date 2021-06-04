@@ -81,7 +81,7 @@ Lösen: gotamagic123
 - Företagsbeskrivning: Vårt mål är att tillhandahålla det mest väsäntliga för kompetativt magic-spelande i Göteborg. Dels genom att tillgodose väsentliga kort i butik, samt även att arrangera turneringar och andra trevliga tillställningar kring vårat favoritspel.
 
 #### All data som programmet utnyttjar ska vara sparat i en Mongo-databas (produkter, beställningar, konton mm) (G)
-Vi har försökt röra så lite på frontend när vi har lagt till våra endpoints. Så därför kan det se lite rörigt ut.
+Vi har försökt röra så lite som möjligt på frontend när vi har lagt till våra endpoints. Så därför kan det se lite rörigt ut.
 I det förra projektet hade vi inte den kunskapen vi har nu och skulle bygga sidan med bättre struktur och kod.
 - Lagt in vissa resurser manuellt, och vissa via CRUD endpoints i vår Mongo Databas
 - Products, Categories hämtas i ProductContext
