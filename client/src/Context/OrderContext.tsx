@@ -25,25 +25,6 @@ type Context = {
   ) => void;
 };
 
-export interface Order {
-  _id: string;
-  orderNumber: number;
-  userId: string;
-  user: any;
-  products: OrderRow[];
-  totalCost: number;
-  shipping: string;
-  address: [];
-  sent: boolean;
-}
-
-export interface OrderRow {
-  productId: string;
-  productName: string;
-  price: string;
-  quantity: number;
-}
-
 export const OrderProvider: FunctionComponent = ({ children }) => {
   const [allOrders, setAllOrders] = useState<[]>([]);
   const options = {
