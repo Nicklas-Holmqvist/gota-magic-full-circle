@@ -67,12 +67,6 @@ function BreadCrumbs() {
   const [disableAtPay, setDisableAtPay] = useState(true);
   const shipping = user.shippingObject;
 
-  let dummyAdress = {
-    adress: "Sörbyn",
-    zipcode: "12312",
-    city: "Rööt",
-  };
-
   const cleanPaymentUser = () => {
     const cardName = "";
     const cardNumber = "";

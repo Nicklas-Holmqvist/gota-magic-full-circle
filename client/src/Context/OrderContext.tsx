@@ -4,6 +4,7 @@ import React, {
   FunctionComponent,
   useContext,
 } from "react";
+import { orderItem } from "../Types/orderItem";
 
 export const OrderContext = createContext<Context>(undefined!);
 
@@ -15,8 +16,8 @@ type Context = {
     id: string,
     orderNumber: number,
     userId: string,
-    user: any,
-    products: any,
+    user: string,
+    products: orderItem[],
     totalCost: number,
     shipping: string,
     address: any,
@@ -53,8 +54,8 @@ export const OrderProvider: FunctionComponent = ({ children }) => {
     id: string,
     orderNumber: number,
     userId: string,
-    user: any,
-    products: any,
+    user: string,
+    products: orderItem[],
     totalCost: number,
     shipping: string,
     adress: {
@@ -75,7 +76,6 @@ export const OrderProvider: FunctionComponent = ({ children }) => {
       adress,
       sent,
     };
-    console.log(newOrder);
     sendOrder(newOrder);
   };
 
@@ -112,11 +112,6 @@ export const OrderProvider: FunctionComponent = ({ children }) => {
       });
   };
 
-  // const getNewOrderNumber = ()=>{
-  //  const orderNumberList = allOrders.
-
-  // }
-
   return (
     <OrderContext.Provider
       value={{
@@ -130,7 +125,4 @@ export const OrderProvider: FunctionComponent = ({ children }) => {
   );
 };
 
-// Custom Hooks
-
-// Using all in ProductContext
 export const useOrderContext = () => useContext<Context>(OrderContext);
