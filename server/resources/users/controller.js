@@ -11,16 +11,6 @@ exports.getAllUsers = async (req, res) => {
   }
 }
 
-// Get all users
-exports.getAllUsers = async (req, res) => {
-  const users = await UserModel.find()
-  try {
-    res.send(users)
-  } catch (error) {
-    
-  }
-}
-
 // Create new user
 exports.createUser = async (req, res) => {
 
@@ -47,7 +37,6 @@ exports.createUser = async (req, res) => {
 
     // if email already exists in db
     errors.email = 'Denna email är redan registrerad'
-    console.log(errors)
 
     res.status(400).json({ errors })
   }
@@ -80,7 +69,6 @@ exports.login = async (req, res) => {
 
 // Log out
 exports.logout = (req, res) => {
-  console.log('INNE PÅ LOGOUT')
   try {
     res.cookie('user', '', { maxAge: 1 })
     res.status(200).json('User has logged out')

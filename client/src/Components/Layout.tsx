@@ -30,7 +30,6 @@ function Layout() {
           <Route path="/Contact" component={Contact} />
           <Route path="/ProductList" component={ProductList} />
           <Route path="/ProductCart" component={ProductCart} />
-
           <Route path="/BreadCrumbs" component={BreadCrumbs} />
           <Route path="/Login" component={Login} />
           <Route path="/Register" component={Register} />

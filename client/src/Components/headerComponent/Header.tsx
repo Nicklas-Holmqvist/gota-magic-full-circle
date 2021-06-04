@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-
+import { useState } from "react";
 import "./Header.css";
 import Button from "@material-ui/core/Button";
 import TemporaryDrawer from "./Drawer";
@@ -13,7 +12,6 @@ function Header() {
   const authContext = useAuthContext();
   const history = useHistory();
   let [isOpen, setIsOpen] = useState(false);
-  console.log(authUser)
 
   const handleClick = (e: any) => {
     e.preventDefault();

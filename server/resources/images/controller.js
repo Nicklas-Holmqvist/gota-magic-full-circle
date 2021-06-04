@@ -10,7 +10,6 @@ exports.uploadImage = async (req, res, next) => {
   };
 
   try {
-    console.log(req.file, "hejsan?");
     const image = await ImageModel.create(newImage);
     res.status(200).json(image);
   } catch (error) {

@@ -58,7 +58,6 @@ function ProductListCard(props: Props) {
   const usecart = useCart();
   const style = useStyles();
   const [dbStock, setDbStock] = useState(props.stock);
-  // console.log(props.productname, dbStock);
   useEffect(() => {
     updateStock(props.stock);
   }, [usecart.cart]);

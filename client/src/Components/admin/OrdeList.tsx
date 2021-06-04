@@ -7,13 +7,10 @@ import {
   import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
   interface Order{
-    // _id: string
     orderNumber: number
-    // userId: string
     user: string
     totalCost: number
     shipping: string
-    // address: []
     sent: boolean
     products: OrderRow[]
 }
@@ -30,7 +27,6 @@ function OrderList(props: Order) {
     const products:OrderRow[] = props.products
 
     const orderRows = products.map((p) => (
-      // för varje produkt --> namn, antal och pris
       <AccordionDetails>
         <Grid item xs={5}>{p.productName}</Grid>
         <Grid item xs={2}>{p.quantity}</Grid>
@@ -39,7 +35,6 @@ function OrderList(props: Order) {
     ))
     
     const mobileOrderRows = products.map((p) => (
-      // för varje produkt --> namn, antal och pris
       <div className="order-product-row">
         <p><b>{p.productName}</b> × {p.quantity}</p>
         <p><small>à</small> {p.price + ' kr'}</p>
@@ -68,7 +63,6 @@ function OrderList(props: Order) {
             </Accordion>
           </Grid> 
         </Grid>
-
 
         <div className="order">
           <div className="order-row">

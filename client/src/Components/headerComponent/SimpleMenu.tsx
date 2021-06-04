@@ -5,7 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import MenuIcon from '@material-ui/icons/Menu';
-import { useAuth, useAuthContext } from "../../Context/AuthContext";
+import { useAuth } from "../../Context/AuthContext";
 
 export default function SimpleMenu() {
   const authUser = useAuth();

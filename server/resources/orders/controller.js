@@ -16,7 +16,6 @@ exports.createOrder = async (req, res) => {
   newOrderNumber++;
 
   const newOrder = {
-    // orderNumber: req.body.orderNumber,
     orderNumber: newOrderNumber,
     userId: req.body.userId,
     user: req.body.user,
@@ -52,7 +51,6 @@ exports.viewAllOrders = async (req, res) => {
 async function updateProductStock(orderProducts) {
   orderProducts.forEach(async (obj) => {
     if (obj.quantity >= 1) {
-      console.log(obj);
       const getProduct = await ProductModel.findById(obj.id);
       const updateProductStock = { stock: getProduct.stock - obj.quantity };
 

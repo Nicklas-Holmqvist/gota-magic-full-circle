@@ -70,10 +70,9 @@ export const OrderProvider: FunctionComponent = ({ children }) => {
     };
 
     try {
-      const response = await fetch("/api/order", options);
-      console.log(response);
+      await fetch("/api/order", options);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

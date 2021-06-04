@@ -4,11 +4,7 @@ GET http://localhost:3001/api/product
 
 ###
 
-GET http://localhost:3001/api/product/60a63b3118f5ed530cf9daed
-
-###
-
-PUT http://localhost:3001/api/product/60a63b0c18f5ed530cf9dae8
+PUT http://localhost:3001/api/product/60a63a7e18f5ed530cf9dadc
 Content-Type: application/json
 
 {

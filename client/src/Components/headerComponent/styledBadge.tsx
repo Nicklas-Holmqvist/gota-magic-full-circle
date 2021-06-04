@@ -1,4 +1,3 @@
-import React from "react";
 import Badge from "@material-ui/core/Badge";
 import { Theme, withStyles, createStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
@@ -18,11 +17,9 @@ const StyledBadge = withStyles((theme: Theme) =>
 
 export default function CustomizedBadges() {
   const usecart = useCart();
-  const handleDrawer = () => {
-    console.log(usecart.cart.length); //TODO: Olof ska denna bort? 
-  };
+
   return (
-    <IconButton onClick={handleDrawer} aria-label="cart">
+    <IconButton aria-label="cart">
       <StyledBadge badgeContent={usecart.cart.length} color="secondary">
         <ShoppingCartIcon
           color={usecart.cart.length >= 1 ? "primary" : "secondary"}

@@ -62,6 +62,7 @@ Lösen: gotamagic123
 
 - Vi har tagit bort vår sök funktion på produktlistan för att endast använda oss av Kategorierna som var ett krav för denna inlämning
 - Vi har även bestämt att utesluta adressen från våra ordrar på admin-sidan
+- ModelSchema till Products, Shipping och Categories har inga speciell validering mer än String, Number etc. då vi inte skapar nya items
 
 ## Tillvägasätt
 
