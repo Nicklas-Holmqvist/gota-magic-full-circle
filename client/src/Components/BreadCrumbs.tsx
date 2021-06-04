@@ -67,12 +67,6 @@ function BreadCrumbs() {
   const [disableAtPay, setDisableAtPay] = useState(true);
   const shipping = user.shippingObject;
 
-  let dummyAdress = {
-    adress: "Sörbyn",
-    zipcode: "12312",
-    city: "Rööt",
-  };
-
   const cleanPaymentUser = () => {
     const cardName = "";
     const cardNumber = "";
@@ -93,7 +87,6 @@ function BreadCrumbs() {
     sent: false,
   };
   const [active, setActive] = useState(false);
-  // validatedUser === false
   // If this varible is 0 in length, the orderNumber will not get a new one
   //if you do the checkout without anything in the cart
   const ifCartIsEmpty = cart.cart;
@@ -208,8 +201,6 @@ function BreadCrumbs() {
 
         dummyOrder.sent
       );
-      console.log(cart.cartTotalPrice);
-      console.log(user.userInfo[0]);
     } else {
       handleNext();
     }

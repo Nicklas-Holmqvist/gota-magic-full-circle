@@ -61,11 +61,8 @@ function CheckOut3Payment() {
       isFormValid();
     });
 
-    console.log(formValid);
-
     // hantera kortnamn ////
     const handleCardNameInput = (event: any) => {
-      // let newName = event.target.value;
       setCardName(event.target.value);
 
       /// validera namn input ////
@@ -78,7 +75,6 @@ function CheckOut3Payment() {
 
     /// Hanterar kortnummer input ///
     const handleCardNumberInput = (event: any) => {
-      // let newNumber = event.target.value;
       setCardNumber(event.target.value);
 
       //// vaidering av kortnummer ///
@@ -91,7 +87,6 @@ function CheckOut3Payment() {
 
     /// Hanterar expiredate input ////
     const handleCardExpireInput = (event: any) => {
-      // let newExpireDate = event.target.value;
       setSxpireDate(event.target.value);
 
       /// validering av expiredate ////
@@ -104,7 +99,6 @@ function CheckOut3Payment() {
 
     /// Hanterar utgångsdatum input /////
     const handleCardExpireLastDateInput = (event: any) => {
-      // let newExpireLastDate = event.target.value;
       setLastDate(event.target.value);
 
       /// validering utgångsdatum ///
@@ -117,7 +111,6 @@ function CheckOut3Payment() {
 
     /// Hanterar cvc input////
     const handleCvcInput = (event: any) => {
-      // let newCvc = event.target.value;
       setCvc(event.target.value);
 
       /// validerar cvc input ////

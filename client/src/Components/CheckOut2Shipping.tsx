@@ -17,8 +17,6 @@ function CheckOut2Shipping() {
   const cart = useCart();
   const [value, setValue] = useState<string>("");
 
-  console.log(value)
-
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setRadioChange(value);

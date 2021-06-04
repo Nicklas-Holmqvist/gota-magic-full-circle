@@ -11,7 +11,6 @@ exports.getAllCategories = async (req, res) => {
 };
 
 exports.getCategory = async (req, res) => {
-  console.log(req.params.catName);
   try {
     const getCategory = await CategoryModel.findById(req.params.id);
     res.status(200).json(getCategory);
