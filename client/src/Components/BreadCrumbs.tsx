@@ -90,7 +90,7 @@ function BreadCrumbs() {
     totalCost: "123",
     shipping: "Boat",
     address: "Sörbyvägen",
-    sent: true,
+    sent: false,
   };
   const [active, setActive] = useState(false);
   // validatedUser === false
